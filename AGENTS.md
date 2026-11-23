@@ -8,4 +8,4 @@ Swift consumers install through Package.swift and tracked native frameworks. Reb
 
 Public source checks use pinned public SDK Tooling and SDK-owned fixtures. Strict Swift tests use the tracked framework and default pinned dependencies. Keep Rust and Swift WindowManagement pins aligned. Use pinned SDK Tooling for maintainer distribution checks and run native desktop acceptance on an owned worker.
 
-Use English documentation/comments. Use GitHub-hosted CI without private dependency credentials. Human QA/data and existing VM/security/sharing settings are protected. Read README.md and the affected API catalog before changing a contract. Contributor commands and validation live in README.md#development-and-validation.
+Use English documentation/comments. Use GitHub-hosted CI without private dependency credentials. Human QA/data and existing VM/security/sharing settings are protected. Read README.md and its linked Swift guides before changing a public contract. Contributor commands and validation live in README.md#development-and-validation.

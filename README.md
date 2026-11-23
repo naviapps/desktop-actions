@@ -30,9 +30,9 @@ gesture matching and product UI.
 - [Platform boundaries](#platform-boundaries) and [saved-data migrations](#saved-data-migrations)
 - [Development and validation](#development-and-validation)
 - [Windows execution and acceptance](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md)
-- Swift API and shared model contracts: [DesktopActions](https://github.com/naviapps/desktop-actions/blob/main/Sources/DesktopActions/DesktopActions.docc/DesktopActions.md),
-  [DesktopActionsMacOS](https://github.com/naviapps/desktop-actions/blob/main/Sources/DesktopActionsMacOS/DesktopActionsMacOS.docc/DesktopActionsMacOS.md)
-  and [DesktopActionsSwiftUI](https://github.com/naviapps/desktop-actions/blob/main/Sources/DesktopActionsSwiftUI/DesktopActionsSwiftUI.docc/DesktopActionsSwiftUI.md)
+- Swift guides for [the shared action model](https://github.com/naviapps/desktop-actions/blob/main/docs/swift.md),
+  [macOS execution](https://github.com/naviapps/desktop-actions/blob/main/docs/swift-macos.md)
+  and [SwiftUI controls](https://github.com/naviapps/desktop-actions/blob/main/docs/swiftui.md)
 - [C header](https://github.com/naviapps/desktop-actions/blob/main/crates/ffi/include/desktop_actions.h) and
   [.NET public API](https://github.com/naviapps/desktop-actions/tree/main/bindings/dotnet/src/NaviApps.DesktopActions)
 
@@ -197,7 +197,7 @@ Run results compare their status and execution report. Sequence reports compare
 their status, aggregate success and ordered deliveries.
 
 For live macOS execution and host permission hooks, see the
-[macOS API guide](https://github.com/naviapps/desktop-actions/blob/main/Sources/DesktopActionsMacOS/DesktopActionsMacOS.docc/DesktopActionsMacOS.md).
+[macOS API guide](https://github.com/naviapps/desktop-actions/blob/main/docs/swift-macos.md).
 For .NET Windows execution, see the [Windows guide](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md).
 Managed Windows hosts can opt into captured-foreground execution with
 `WindowsActionExecutor.CaptureForegroundTarget` and `ExecuteForTargetAsync`.
@@ -316,10 +316,10 @@ packaging and validation entry points.
 
 A clean clone uses the tracked framework. Rebuild it after production Rust/C/input
 changes with `mise exec -- make native`; test-only edits do not require a rebuild.
-`make check-distribution` verifies that framework and runs the release build,
-distribution tool tests and DocC checks. The Rust tests in `make check` cover the input codec, metadata invariants, and platform plan
-matrix. The binding tests exercise typed projections, error mapping, ownership,
-and native adapter behavior.
+`make check-distribution` verifies the framework and runs the release build and
+distribution tool tests. The Rust tests in `make check` cover the input codec,
+metadata invariants and platform plan matrix. The binding tests exercise typed
+projections, error mapping, ownership and native adapter behavior.
 The strict Swift tests compile all library products in debug mode.
 Run the C and .NET fixtures separately without rebuilding it:
 
@@ -350,9 +350,7 @@ records OS effects separately from compilation and installation.
 
 Run `mise exec -- make lint` to check source and workflows or
 `mise exec -- make format` to format source files.
-For documentation changes, `mise exec -- make test-docs` builds symbol graphs and
-verifies all three DocC catalogs with warnings as errors; it may resolve and compile
-Swift dependencies. Check Markdown alone with
+Check Markdown with
 `mise exec -- dprint check README.md AGENTS.md 'docs/*.md'`.
 
 ## License

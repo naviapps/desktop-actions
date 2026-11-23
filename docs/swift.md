@@ -1,4 +1,4 @@
-# ``DesktopActions``
+# Swift action model and planning
 
 Describe desktop actions, inspect native plans and permission requirements, and serialize action payloads without
 running live system integrations.
@@ -15,7 +15,7 @@ The core target includes:
 - `ActionInput`, `ActionInputShape`, `ActionInputDescriptor`, and
   `ActionInputParameter` for host-supplied values and input requirements
 - `ActionKindCapabilities` and `ActionRetryBehavior` for conservative host-policy metadata
-- `ActionPlatform` and ``ActionKind/supportedPlatforms`` for Rust-derived adapter availability
+- `ActionPlatform` and `ActionKind.supportedPlatforms` for Rust-derived adapter availability
 - `ActionCodec` for versioned JSON action envelopes
 - `ActionResultCodec` for strict original-byte execution-report JSON
 - `ActionPlan` and `ActionPreflight` for inspecting instructions, permission requirements and hints
@@ -42,7 +42,7 @@ persist action history. Those live integrations are provided by
 `DesktopActionsMacOS` or the host app.
 
 ActionRequest identifiers are the canonical serialization names for the current action catalog. Use
-``ActionKind/identifier`` and `ActionCodec` payloads for persistence, IPC, and tool bindings
+`ActionKind.identifier` and `ActionCodec` payloads for persistence, IPC, and tool bindings
 instead of relying on enum case names as external protocol strings.
 
 Use `ActionKind` when building a picker or command catalog before input is available:
@@ -92,21 +92,21 @@ Live execution reports `ActionExecutionReport` values with ordered `ActionAttemp
 `WindowPlacementRequest` and `WindowMoveRequest` payloads instead of duplicate fixed-placement
 catalog cases.
 
-``ActionRequest/showWindowOverview`` opens Mission Control on macOS and Task View on Windows.
+`ActionRequest.showWindowOverview` opens Mission Control on macOS and Task View on Windows.
 The macOS primary step launches `com.apple.exposelauncher` without Automation; its ordered
-Control-Up fallback requires Accessibility. ``ActionRequest/switchToNextVirtualDesktop`` and
-``ActionRequest/switchToPreviousVirtualDesktop`` switch existing desktops (Spaces on macOS).
-``ActionRequest/missionControlAppExpose`` remains a macOS-only vendor operation.
+Control-Up fallback requires Accessibility. `ActionRequest.switchToNextVirtualDesktop` and
+`ActionRequest.switchToPreviousVirtualDesktop` switch existing desktops (Spaces on macOS).
+`ActionRequest.missionControlAppExpose` remains a macOS-only vendor operation.
 
-``ActionRequest/quitFrontmostApplication`` requests application-wide graceful termination
-on macOS and is unsupported on Windows. ``ActionRequest/closeForegroundWindow`` requests
+`ActionRequest.quitFrontmostApplication` requests application-wide graceful termination
+on macOS and is unsupported on Windows. `ActionRequest.closeForegroundWindow` requests
 an ordinary close of one captured foreground window on both platforms. A close can show
 a save prompt or be refused; acceptance does not confirm closure or saved data. There is
 no process-termination or keyboard fallback, and hosts must not retry after focus changes.
 
 Saved legacy Mission Control identifiers and Windows application-quit requests require
 host migration before decoding. See the
-[saved-data migration table](https://github.com/naviapps/desktop-actions/blob/main/README.md#saved-data-migrations)
+[saved-data migration table](../README.md#saved-data-migrations)
 for replacement identifiers and platform-sensitive handling; the SDK exposes no legacy aliases.
 
 ## Keyboard input
@@ -126,39 +126,13 @@ virtual keys. Unavailable brightness mappings are explicit. Constructing an even
 not prove that audio or display hardware handles it.
 
 Hosts can validate shortcut input with
-``ActionPreflight/isValidKeyboardShortcut(_:)`` before saving or importing it.
+`ActionPreflight.isValidKeyboardShortcut(_:)` before saving or importing it.
 The single-argument overload uses the macOS ANSI mapping. Pass an explicit platform
 to inspect another adapter's key vocabulary. Validation and execution share the
 Rust physical-key parser. Parsing has no live effects and does not rewrite
 persisted action strings.
 
-## Topics
-
-### Actions
-
-- ``ActionRequest``
-- ``ActionKind``
-- ``ActionCategory``
-- ``ActionKindCapabilities``
-- ``ActionRetryBehavior``
-- ``ActionInput``
-- ``ActionInputShape``
-- ``ActionInputDescriptor``
-- ``ActionInputParameter``
-
-### Preflight
-
-- ``ActionPreflight``
-- ``ActionPlan``
-- ``ActionStep``
-- ``ActionMethod``
-- ``ActionKeyStroke``
-- ``ActionModifiers``
-- ``WindowingExecution``
-- ``ActionPermission``
-- ``ActionPermissionHint``
-- ``ActionPermissionReason``
-- ``ActionPermissionSet``
+## Preflight
 
 Swift `ActionRequest.plan(for:)` and .NET `ActionRequest.Plan` expose the same Rust plan for
 an explicit platform. Swift `ActionStep.method` and .NET `ActionPlanStep.Instruction`
@@ -183,26 +157,19 @@ let instruction = windows.steps.first?.method
 let canPlan = windows.isExecutable
 ```
 
-### Results
-
-- ``ActionResult``
-- ``ActionExecutionReport``
-- ``ActionAttempt``
-- ``ActionError``
-- ``ActionErrorCode``
-- ``ActionSkipReason``
+## Results
 
 The .NET result codecs use generated JSON metadata. Result construction, decoding
 and the runner's failure reporting work when `System.Text.Json` reflection is disabled.
 
-### Previewing an Action Kind
+## Previewing an Action Kind
 
 Use `ActionPreflight.inspectKind(_:on:)` to inspect a kind's availability and
 privacy requirements for the selected platform before collecting input.
 .NET offers the same information through `ActionCatalog.InspectKind`.
 Plan the actual request to check its input and inspect its instructions.
 
-### Bounded Execution
+## Bounded Execution
 
 `ActionRunner` applies host-supplied capacity and deadlines around an explicit async
 operation. A worker waits for its cancellation handle to be registered before it
@@ -217,13 +184,6 @@ cannot be undone by cancelling the caller.
 Completion checks the deadline even if timer scheduling is delayed, so a late result
 cannot become success. Interactive timeout exemptions are an explicit host choice.
 The C reducer rejects duplicate or out-of-order step results without advancing state.
-
-- ``ActionRunner``
-- ``ActionRunResult``
-- ``ActionRunner/ConfigurationError``
-- ``ActionSequenceReport``
-- ``ActionSequenceStatus``
-- ``ActionSequenceFailureBehavior``
 
 `ActionRunner.runSequence` (and .NET `ActionRunner.RunSequenceAsync`) delivers requests in order using the same bounded
 runner as individual requests. The host explicitly chooses whether completed
@@ -242,11 +202,7 @@ Rust owns order, continuation and aggregate success. Bindings retain immutable
 request and result values.
 Hosts retain custom commands, permission guidance, logging and deadline exemptions.
 
-### Coding
-
-- ``ActionCodec``
-- ``ActionCodecError``
-- ``ActionResultCodec``
+## Coding
 
 Rust trims Unicode whitespace from text inputs and rejects empty or NUL-containing
 execution values. Format characters such as U+200B remain part of folder, application
@@ -283,22 +239,16 @@ failures remain distinct from macOS privacy denials. Exact float round trips pre
 finite durations and coordinates; Swift `ActionAttempt.durationSeconds` retains the
 wire value while its `duration` view rounds to the nearest attosecond.
 
-### Windowing
+## Windowing
 
 Import `WindowManagement` for window request values. Their API documentation is
 owned by the [WindowManagement package](https://github.com/naviapps/window-management).
 
-On macOS, ``ActionRequest/toggleFocusedWindowFullScreen`` requests the opposite of
+On macOS, `ActionRequest.toggleFocusedWindowFullScreen` requests the opposite of
 the focused window's native full-screen state. It requires Accessibility and takes no input.
 An automatic retry may undo the transition or affect a different window.
 
-### Input Presentation
-
-- ``ActionDescriptor``
-- ``ActionInputForm``
-- ``ActionTextInputKind``
-- ``ActionTextInputEvaluation``
-- ``ActionTextInputIssue``
+## Input Presentation
 
 Swift `ActionTextInputKind.evaluate`, .NET `ActionTextInput.Evaluate` and C
 `desktop_actions_text_input_evaluate` share Rust's pure draft evaluator, including supplied Shortcut

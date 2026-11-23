@@ -1,4 +1,4 @@
-# ``DesktopActionsSwiftUI``
+# SwiftUI action input controls
 
 Compose standard action inputs with host-owned copy, drafts and native services.
 
@@ -6,7 +6,7 @@ Compose standard action inputs with host-owned copy, drafts and native services.
 
 This optional product supplies `ActionTextInputField`, `ActionSelectionInput` and
 `ActionShortcutMenu`. It also supplies standard SF Symbols through
-``DesktopActions/ActionKind/standardSystemImage``. Hosts can override artwork.
+`DesktopActions.ActionKind.standardSystemImage`. Hosts can override artwork.
 The core `DesktopActions` product does not import SwiftUI or a native adapter.
 
 Input kinds and forms come from the Rust catalog through `ActionKind.descriptor`

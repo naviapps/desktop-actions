@@ -4,13 +4,13 @@ SWIFT_STRICT_FLAGS := -Xswiftc -strict-concurrency=complete -Xswiftc -warnings-a
 
 .DEFAULT_GOAL := check
 
-.PHONY: check check-source check-distribution build build-release clean format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-distribution-tools
+.PHONY: check check-source check-distribution build build-release clean format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-distribution-tools
 
 check: check-source test test-consumer
 
 check-source: lint test-rust
 
-check-distribution: native-verify build-release test-docs test-distribution-tools
+check-distribution: native-verify build-release test-distribution-tools
 
 build:
 	swift build $(SWIFT_STRICT_FLAGS)
@@ -55,9 +55,6 @@ test-c:
 
 test-installed-c:
 	$(SDK_TOOLING) rust-c-consumers --language c
-
-test-docs:
-	$(SDK_TOOLING) docs
 
 test-distribution-tools:
 	$(SDK_TOOLING) python -m unittest discover -s distribution/tests -v

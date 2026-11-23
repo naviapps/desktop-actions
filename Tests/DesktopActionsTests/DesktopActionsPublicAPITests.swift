@@ -5,7 +5,7 @@ import WindowManagement
 import XCTest
 
 final class DesktopActionsPublicAPITests: XCTestCase {
-  func testDocCActionKindCatalogSampleIsUsableWithoutTestableImport() throws {
+  func testActionKindGuideExampleUsesPublicAPI() throws {
     let kind: ActionKind = .openURL
     let identifier = kind.identifier
     let inputDescriptor: ActionInputDescriptor = kind.inputDescriptor
@@ -43,7 +43,7 @@ final class DesktopActionsPublicAPITests: XCTestCase {
     XCTAssertTrue(permissionHints.isEmpty)
   }
 
-  func testDocCActionCreationSampleIsUsableWithoutTestableImport() throws {
+  func testActionCreationGuideExampleUsesPublicAPI() throws {
     let action = try XCTUnwrap(
       ActionKind.openURL.makeAction(input: .string("https://example.com"))
     )

@@ -1,4 +1,4 @@
-# ``DesktopActionsMacOS``
+# Swift action execution on macOS
 
 Execute DesktopActions actions using live macOS integrations.
 
@@ -22,7 +22,7 @@ Host apps should provide an `ActionExecutorConfiguration` when they need app-spe
 hooks, recovery UI, or logging. The package does not own user onboarding, shortcut registration,
 persistence, analytics, or telemetry.
 The default Accessibility hook reads the current macOS trust state without prompting.
-Use ``ActionExecutorConfiguration/LogLevel`` to decide which executor diagnostics are forwarded.
+Use `ActionExecutorConfiguration.LogLevel` to decide which executor diagnostics are forwarded.
 
 Execution throws `CancellationError` when the calling task is cancelled. Existing
 callers must use `try await` and handle cancellation separately from a returned
@@ -32,7 +32,7 @@ are stopped and reaped before cancellation returns. Host apps own deadlines; the
 executor adds no implicit timeout. Cancellation cannot undo completed OS effects.
 
 Hosts running an action from an approval that can become stale can pass a `beforeStep`
-check to ``ActionExecutor/execute(_:beforeStep:)``. The executor checks approval before
+check to `ActionExecutor.execute(_:beforeStep:)`. The executor checks approval before
 calling an Accessibility or Automation readiness hook or starting System Events. It checks
 again before dispatching the step, including for a step with no permissions or a failed
 prerequisite. If Screen Recording access is denied, the executor checks approval before
@@ -153,7 +153,7 @@ permission requirements to users.
 
 DesktopActionsMacOS keeps permission UX injectable instead of depending on a specific onboarding
 library. Hosts using `SystemPermissionsMacOS` can implement
-``ActionExecutorConfiguration/Permissions`` hooks with its status checks, explicit requests and
+`ActionExecutorConfiguration.Permissions` hooks with its status checks, explicit requests and
 System Settings navigation. Automation checks must select the target application. Hosts decide
 when a prompt is appropriate and handle unknown, unsupported and failed results explicitly;
 DesktopActions keeps its permission hints action-specific.
@@ -166,23 +166,3 @@ and decide whether names may appear in diagnostics. Cancellation throws
 `CancellationError`; other failures use `ShortcutsCatalogError` without raw
 output. The child process is stopped and reaped before cancellation or failure
 returns. The default limit is one MiB and the default timeout is ten seconds.
-
-## Topics
-
-### Execution
-
-- ``ActionExecutor``
-- ``ActionExecutor/init(configuration:)``
-- ``ActionExecutor/execute(_:beforeStep:)``
-- ``ActionExecutorConfiguration``
-- ``ActionExecutorConfiguration/init(permissions:log:)``
-- ``ActionExecutorConfiguration/Permissions``
-- ``ActionExecutorConfiguration/Permissions/init(ensureAccessibility:ensureAutomation:onAutomationDenied:onScreenRecordingRequired:)``
-- ``ActionExecutorConfiguration/LogLevel``
-
-### Shortcuts Catalog
-
-- ``ShortcutsCatalog``
-- ``ShortcutsCatalog/init(timeout:maximumOutputByteCount:)``
-- ``ShortcutsCatalog/shortcutNames()``
-- ``ShortcutsCatalogError``

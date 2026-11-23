@@ -2,9 +2,6 @@
 inputs = ["Package.swift", "Sources", "Tests", "Artifacts", "ThirdParty"]
 executable = "DesktopActionsConsumer"
 
-[docs]
-output = ".native-build"
-
 [rust_c]
 git_url = "https://github.com/naviapps/desktop-actions.git"
 rust_packages = ["desktop-actions"]

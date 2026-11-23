@@ -14,8 +14,9 @@ from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
+from sdk_tooling.ffi import DARWIN_TARGETS
 from sdk_tooling.native_plan import ffi_product
-from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance
+from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetch_args
 
 from distribution.nuget import pack_sdk
 
@@ -115,17 +116,7 @@ def check_dependency_version(root, dependency):
 
 def build_sdk(native, selected, tools, environment, host):
     subprocess.run(
-        [
-            "cargo",
-            "fetch",
-            "--locked",
-            "--target",
-            TARGET,
-            "--target",
-            "aarch64-apple-darwin",
-            "--target",
-            "x86_64-apple-darwin",
-        ],
+        locked_fetch_args(notice_targets=DARWIN_TARGETS),
         cwd=native.root,
         env=environment,
         check=True,
@@ -257,7 +248,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
         def retain_notices(self, env=None):
             cargo.runtime_notices(self.root, env)
             cargo.CargoDependencies(
-                self.root, self.notice_packages, (*ffi.DARWIN_TARGETS, TARGET), env
+                self.root, self.notice_packages, (*DARWIN_TARGETS, TARGET), env
             ).retain_notices()
 
     base = root / ".native-build"
@@ -280,9 +271,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
             RUSTUP_AUTO_INSTALL="0",
             CARGO_INCREMENTAL="0",
         )
-        subprocess.run(
-            ["cargo", "fetch", "--locked", "--target", TARGET], cwd=parent, env=env, check=True
-        )
+        subprocess.run(locked_fetch_args(notice_targets=()), cwd=parent, env=env, check=True)
         metadata = json.loads(
             subprocess.check_output(
                 [
