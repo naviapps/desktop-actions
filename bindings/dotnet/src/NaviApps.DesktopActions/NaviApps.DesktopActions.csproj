@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>false</IsPackable>
+    <Description>Shared action planning, bounded execution and native desktop effects.</Description>
+  </PropertyGroup>
+  <ItemGroup><PackageReference Include="NaviApps.WindowManagement" Version="[0.1.0]" /></ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PathMap>$(MSBuildProjectDirectory)=/desktop-actions/bindings/dotnet/src/$(MSBuildProjectName)</PathMap>
+  </PropertyGroup>
+</Project>

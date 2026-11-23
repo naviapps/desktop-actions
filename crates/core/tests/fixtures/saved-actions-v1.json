@@ -1,0 +1,231 @@
+[
+  {
+    "action": {
+      "kind": "action.editing.copy"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.editing.paste"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.editing.cut"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.editing.undo"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.editing.redo"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.frontmost-application.hide"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.frontmost-application.quit"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.volume-up"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.volume-down"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.volume-mute"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.play-pause"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.next"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.media.previous"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": "cmd+shift+k",
+      "kind": "action.keyboard.shortcut"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": "https://example.com",
+      "kind": "action.workspace.open-url"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": "Safari",
+      "kind": "action.workspace.launch-application"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": "Morning Routine",
+      "kind": "action.workspace.run-shortcut"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": "/Applications",
+      "kind": "action.workspace.open-folder"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.mission-control"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.show-desktop"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.lock-screen"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.sleep-mac"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.mission-control-next-space"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.mission-control-previous-space"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.mission-control-app-expose"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.brightness-up"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.brightness-down"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.toggle-appearance"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.show-notification-center"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.capture-screen-full"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.capture-screen-selection"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "kind": "action.system.capture-screen-window"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": {
+        "area": "visible",
+        "inset": 0,
+        "placement": {
+          "column": 0,
+          "columns": 2,
+          "columnSpan": 1,
+          "kind": "grid",
+          "row": 0,
+          "rows": 1,
+          "rowSpan": 1
+        },
+        "screen": {
+          "kind": "containing-window"
+        }
+      },
+      "kind": "action.window.placement"
+    },
+    "version": 1
+  },
+  {
+    "action": {
+      "input": {
+        "direction": "next",
+        "preservesRelativePosition": true
+      },
+      "kind": "action.window.move"
+    },
+    "version": 1
+  }
+]

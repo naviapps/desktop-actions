@@ -1,0 +1,16 @@
+url-trim	{"identifier":"action.workspace.open-url","value":"  https://example.com  ","platform":"macos"}	{"normalizedValue":"https://example.com","confirmedValue":"https://example.com","issue":null,"canConfirm":true}
+url-blank	{"identifier":"action.workspace.open-url","value":"  \n","platform":"macos"}	{"normalizedValue":"","confirmedValue":"","issue":null,"canConfirm":false}
+url-incomplete	{"identifier":"action.workspace.open-url","value":"https:example","platform":"macos"}	{"normalizedValue":"https:example","confirmedValue":"https:example","issue":"invalid-url","canConfirm":false}
+url-nul	{"identifier":"action.workspace.open-url","value":"bad\u0000value","platform":"macos"}	{"normalizedValue":"bad\u0000value","confirmedValue":"bad\u0000value","issue":"invalid-url","canConfirm":false}
+url-ignores-unrelated-observation	{"identifier":"action.workspace.open-url","value":"https://example.com","platform":"macos","directoryExists":false}	{"normalizedValue":"https://example.com","confirmedValue":"https://example.com","issue":null,"canConfirm":true}
+missing-directory-preserves-normalized-path	{"identifier":"action.workspace.open-folder","value":" /fixture/Example​ \n","platform":"macos","directoryExists":false}	{"normalizedValue":"/fixture/Example​","confirmedValue":"/fixture/Example​","issue":"directory-unavailable","canConfirm":false}
+directory-not-checked	{"identifier":"action.workspace.open-folder","value":"/fixture","platform":"macos","directoryExists":null}	{"normalizedValue":"/fixture","confirmedValue":"/fixture","issue":null,"canConfirm":true}
+shortcut-case-proposal	{"identifier":"action.workspace.run-shortcut","value":" MORNING ","platform":"macos","shortcuts":["Morning","Morning"]}	{"normalizedValue":"MORNING","confirmedValue":"Morning","issue":null,"canConfirm":true}
+shortcut-ambiguous	{"identifier":"action.workspace.run-shortcut","value":"MORNING","platform":"macos","shortcuts":["morning","Morning"]}	{"normalizedValue":"MORNING","confirmedValue":"MORNING","issue":"ambiguous-shortcut","canConfirm":false}
+shortcut-exact-formatting	{"identifier":"action.workspace.run-shortcut","value":" ​Morning ","platform":"macos","shortcuts":["Morning","​Morning"]}	{"normalizedValue":"​Morning","confirmedValue":"​Morning","issue":null,"canConfirm":true}
+shortcut-unobserved-list	{"identifier":"action.workspace.run-shortcut","value":"Manual","platform":"macos","shortcuts":[]}	{"normalizedValue":"Manual","confirmedValue":"Manual","issue":null,"canConfirm":true}
+shortcut-missing	{"identifier":"action.workspace.run-shortcut","value":"Missing","platform":"macos","shortcuts":["Morning"]}	{"normalizedValue":"Missing","confirmedValue":"Missing","issue":"shortcut-not-found","canConfirm":false}
+shortcut-unsupported-with-observation	{"identifier":"action.workspace.run-shortcut","value":"Morning","platform":"windows","shortcuts":["Morning"]}	{"normalizedValue":"Morning","confirmedValue":"Morning","issue":"unsupported-platform","canConfirm":false}
+non-text-kind	{"identifier":"action.editing.copy","value":"draft","platform":"macos"}	-
+duplicate-observation	{"identifier":"action.workspace.open-folder","value":"/fixture","platform":"macos","directoryExists":false,"directoryExists":true}	-
+unknown-field	{"identifier":"action.workspace.open-folder","value":"/fixture","platform":"macos","observation":false}	-

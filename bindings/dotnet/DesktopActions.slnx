@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/NaviApps.DesktopActions/NaviApps.DesktopActions.csproj" />
+  <Project Path="tests/DesktopActions.Tests/DesktopActions.Tests.csproj" />
+</Solution>

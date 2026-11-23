@@ -1,0 +1,700 @@
+[
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "context-dependent"
+    },
+    "category": "editing",
+    "identifier": "action.editing.copy",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "copy",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "editing",
+    "identifier": "action.editing.paste",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "paste",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "editing",
+    "identifier": "action.editing.cut",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "cut",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "editing",
+    "identifier": "action.editing.undo",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "undo",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "editing",
+    "identifier": "action.editing.redo",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "redo",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "context-dependent"
+    },
+    "category": "editing",
+    "identifier": "action.editing.select-all",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "selectAll",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "context-dependent"
+    },
+    "category": "editing",
+    "identifier": "action.editing.find-in-app",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "findInApp",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "safe"
+    },
+    "category": "frontmost-application",
+    "identifier": "action.frontmost-application.hide",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "hideFrontmostApplication",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "frontmost-application",
+    "identifier": "action.frontmost-application.quit",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "quitFrontmostApplication",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.volume-up",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "volumeUp",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.volume-down",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "volumeDown",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.volume-mute",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "toggleAudioMute",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.play-pause",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "mediaPlayPause",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.next",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "mediaNext",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "media",
+    "identifier": "action.media.previous",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "mediaPrevious",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": true,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "keyboard",
+    "identifier": "action.keyboard.shortcut",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Keyboard shortcut string.",
+        "exampleInput": {
+          "shape": "string",
+          "value": "cmd+shift+k"
+        },
+        "name": "shortcut"
+      },
+      "shape": "string"
+    },
+    "name": "keyboardShortcut",
+    "inputForm": "keyboard-shortcut"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "workspace",
+    "identifier": "action.workspace.open-url",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "URL string to open.",
+        "exampleInput": {
+          "shape": "string",
+          "value": "https://example.com"
+        },
+        "name": "url"
+      },
+      "shape": "string"
+    },
+    "name": "openURL",
+    "inputForm": "url"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "safe"
+    },
+    "category": "workspace",
+    "identifier": "action.workspace.launch-application",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Application name, bundle identifier, or .app bundle path.",
+        "exampleInput": {
+          "shape": "string",
+          "value": "Safari"
+        },
+        "name": "application"
+      },
+      "shape": "string"
+    },
+    "name": "launchApplication",
+    "inputForm": "application"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "workspace",
+    "identifier": "action.workspace.run-shortcut",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Shortcuts shortcut name.",
+        "exampleInput": {
+          "shape": "string",
+          "value": "Morning Routine"
+        },
+        "name": "shortcut"
+      },
+      "shape": "string"
+    },
+    "name": "runShortcut",
+    "inputForm": "shortcut"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "workspace",
+    "identifier": "action.workspace.open-folder",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Folder path to open.",
+        "exampleInput": {
+          "shape": "string",
+          "value": "/Applications"
+        },
+        "name": "folder"
+      },
+      "shape": "string"
+    },
+    "name": "openFolder",
+    "inputForm": "folder"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.show-window-overview",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "showWindowOverview",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.show-desktop",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "showDesktop",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.lock-screen",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "lockScreen",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.sleep-mac",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "sleepSystem",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.switch-to-next-virtual-desktop",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "switchToNextVirtualDesktop",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.switch-to-previous-virtual-desktop",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "switchToPreviousVirtualDesktop",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.mission-control-app-expose",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "missionControlAppExpose",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.brightness-up",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "brightnessUp",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.brightness-down",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "brightnessDown",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.toggle-appearance",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "toggleAppearance",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.show-notification-center",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "showNotificationCenter",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.capture-screen-full",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "captureScreenFull",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": true,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.capture-screen-selection",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "captureScreenSelection",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": false,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": true,
+      "retryBehavior": "unsafe"
+    },
+    "category": "system",
+    "identifier": "action.system.capture-screen-window",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "captureScreenWindow",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": true,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "safe"
+    },
+    "category": "window",
+    "identifier": "action.window.placement",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Focused-window placement request.",
+        "exampleInput": {
+          "shape": "window-placement",
+          "value": {
+            "area": "visible",
+            "inset": 0,
+            "placement": {
+              "column": 0,
+              "columns": 2,
+              "columnSpan": 1,
+              "kind": "grid",
+              "row": 0,
+              "rows": 1,
+              "rowSpan": 1
+            },
+            "screen": {
+              "kind": "containing-window"
+            }
+          }
+        },
+        "name": "request"
+      },
+      "shape": "window-placement"
+    },
+    "name": "windowPlacement",
+    "inputForm": "window-placement"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": true,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "window",
+    "identifier": "action.window.move",
+    "inputDescriptor": {
+      "parameter": {
+        "description": "Focused-window screen movement request.",
+        "exampleInput": {
+          "shape": "window-move",
+          "value": {
+            "direction": "next",
+            "preservesRelativePosition": true
+          }
+        },
+        "name": "request"
+      },
+      "shape": "window-move"
+    },
+    "name": "windowMove",
+    "inputForm": "window-move"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": true,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "window",
+    "identifier": "action.window.minimize",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "minimizeFocusedWindow",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": false,
+      "requiresFocusedWindow": true,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "window",
+    "identifier": "action.window.toggle-full-screen",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "toggleFocusedWindowFullScreen",
+    "inputForm": "none"
+  },
+  {
+    "capabilities": {
+      "isDestructive": true,
+      "requiresFocusedWindow": true,
+      "requiresFrontmostApplication": false,
+      "requiresInteractiveSelection": false,
+      "retryBehavior": "unsafe"
+    },
+    "category": "window",
+    "identifier": "action.window.close",
+    "inputDescriptor": {
+      "shape": "none"
+    },
+    "name": "closeForegroundWindow",
+    "inputForm": "none"
+  }
+]

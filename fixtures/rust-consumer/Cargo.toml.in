@@ -1,0 +1,11 @@
+[package]
+name = "desktop-actions-consumer"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+desktop-actions = { git = "https://github.com/naviapps/desktop-actions.git", rev = "@SDK_REVISION@" }
+window-management = { git = "https://github.com/naviapps/window-management.git", rev = "60308da2d5049866da91c9f01a72bdc70c93da04" }
