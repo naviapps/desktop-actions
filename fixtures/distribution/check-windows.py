@@ -12,11 +12,14 @@ import tempfile
 import tomllib
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from types import SimpleNamespace
 
-from _tooling import git, load, support_inputs
-from sdk_packages import pack_sdk
+from sdk_tooling.adapters import git, load, support_inputs
+from sdk_tooling.native_plan import builder
 
-ROOT = Path(__file__).resolve().parent.parent
+from fixtures.distribution.sdk_packages import pack_sdk
+
+ROOT = Path(__file__).resolve().parents[2]
 TARGET = "x86_64-pc-windows-msvc"
 RID = "win-x64"
 REPOSITORY = "naviapps/window-management"
@@ -268,7 +271,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
     result = Path(artifacts_path or base) / "desktop-actions-win-x64"
     commit = git(root, "rev-parse", "HEAD^{commit}").decode().strip()
     verify_snapshot(root, commit)
-    tool_inputs = support_inputs()
+    tool_inputs = support_inputs(root)
 
     with tempfile.TemporaryDirectory(prefix="desktop-x64-", dir=base) as temporary:
         work = Path(temporary)
@@ -301,7 +304,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
         )
         dependency, dependency_revision = dependency_source(metadata, env)
         snapshot(dependency, dependency_revision, child)
-        actions = WindowsSdk(parent, symbol_prefix="desktop_actions_", minimum_macos="26.0")
+        actions = builder(parent, tooling=lambda _: SimpleNamespace(NativeBuilder=WindowsSdk))
         window = WindowsSdk(child, symbol_prefix="window_management_", minimum_macos="26.0")
         check_dependency_version(parent, window)
         window_binary = build_sdk(window, selected, tools, env, host)
@@ -381,7 +384,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                 )
 
             verify_snapshot(root, commit)
-            if support_inputs() != tool_inputs:
+            if support_inputs(root) != tool_inputs:
                 raise ValueError("The SDK build tools changed during Windows acceptance")
             for label, sdk, source, binary, package in (
                 ("sdk", actions, commit, actions_binary, actions_package),

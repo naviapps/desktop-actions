@@ -17,7 +17,7 @@
       "desktop-actions-ffi"
     ],
     "package": "desktop-actions-ffi",
-    "specification": "tools/native.py",
+    "specification": "native.toml",
     "symbolPrefix": "desktop_actions_",
     "targets": [
       "aarch64-apple-darwin",
@@ -2387,8 +2387,8 @@
     "crates/ffi/src/windows.rs": "3463e403956f2d8a8c2bdd7f226c25450f209bf9fdddb9d8e5274187f96f9ce5",
     "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3",
     "crates/windows/src/lib.rs": "79e3b8adcdc84f6ecaf2a90e86435e175f13ed3d5b49df37af72248819d22eab",
-    "rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
-    "tools/native.py": "9229b2c2203af437ba3a646ef40fb2daf9aee1dd2bd3578d52ed5170808066b0"
+    "native.toml": "7af5ca278a0e3c1b4863bfd5339fc6357ac9cf2ec057fc0795826837676166fc",
+    "rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33"
   },
   "linkage": "dynamic-framework",
   "outputs": {
@@ -2430,8 +2430,5 @@
     "cargo.py": "fe4e389f0411b34f1a1f248389992a59b0d2f23f50c90eed4e1938749efa5678",
     "native.py": "baedab3e8e7931f22049d15f12e5e4bb05b73e39e735e9f4ff9272ebc88e51ff",
     "tools/native-dep-info/src/main.rs": "0a59fb162cc855001899ad9b83875fac0ed837e73caafd116453352c9b56e2cf"
-  },
-  "tooling": {
-    "naviapps/sdk-tooling": "9648fc5fd0e11ad8da333cbea59511dfaaac834f"
   }
 }

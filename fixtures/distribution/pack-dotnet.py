@@ -3,9 +3,10 @@
 
 import argparse
 
-from _tooling import load
-from native import builder
-from sdk_packages import pack_sdk
+from sdk_tooling.adapters import load
+from sdk_tooling.native_plan import builder
+
+from fixtures.distribution.sdk_packages import pack_sdk
 
 
 def main():

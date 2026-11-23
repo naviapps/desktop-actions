@@ -1,0 +1,4 @@
+[[artifacts]]
+id = "sdk"
+symbol_prefix = "desktop_actions_"
+minimum_macos = "26.0"

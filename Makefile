@@ -4,13 +4,13 @@ SWIFT_STRICT_FLAGS := -Xswiftc -strict-concurrency=complete -Xswiftc -warnings-a
 
 .DEFAULT_GOAL := check
 
-.PHONY: check check-source check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-tools
+.PHONY: check check-source check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-fixtures
 
 check: check-source test test-consumer
 
 check-source: lint test-rust
 
-check-distribution: native-verify build-release test-docs test-tools
+check-distribution: native-verify build-release test-docs test-fixtures
 
 build:
 	swift build $(SWIFT_STRICT_FLAGS)
@@ -31,10 +31,10 @@ test-consumer:
 	$(SDK_TOOLING) swift-consumer
 
 native:
-	python3 tools/native.py
+	$(SDK_TOOLING) native
 
 native-verify:
-	python3 tools/native.py --verify
+	$(SDK_TOOLING) native --verify
 
 test-rust:
 	cargo clippy --workspace --all-targets --locked --offline -- -D warnings
@@ -52,5 +52,5 @@ test-installed-c:
 test-docs:
 	$(SDK_TOOLING) docs
 
-test-tools:
-	python3 -B -m unittest discover -s tools/tests -v
+test-fixtures:
+	$(SDK_TOOLING) python -m unittest discover -s fixtures/distribution/tests -v

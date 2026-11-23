@@ -24,8 +24,13 @@ def pack_sdk(native, selected, arguments, environment=None):
         nuget_config=root / "bindings/dotnet/NuGet.Config",
         input_files=(
             [
-                root / "tools" / name
-                for name in ("pack-dotnet.py", "_tooling.py", "check-windows.py", "sdk_packages.py")
+                root / path
+                for path in (
+                    "mise.toml",
+                    "fixtures/distribution/pack-dotnet.py",
+                    "fixtures/distribution/check-windows.py",
+                    "fixtures/distribution/sdk_packages.py",
+                )
             ]
             if basename == "NaviApps.DesktopActions"
             else []

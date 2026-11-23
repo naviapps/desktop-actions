@@ -150,16 +150,17 @@ and its pinned dependencies. For native desktop effects or x64 emulation
 on ARM64, use the local command in an owned desktop.
 
 Run the same acceptance on an owned worker from a clean DesktopActions
-checkout. Set `NAVI_SDK_TOOLING_SOURCE` to the clean checkout specified by
-[the SDK Tooling task](../mise.toml) and set `DOTNET_BIN`
-to the absolute path of .NET 10.0.403 for x64.
+checkout. Use a clean SDK Tooling checkout at the revision in
+[the SDK Tooling task](../mise.toml) and set `DOTNET_BIN` to the absolute
+path of .NET 10.0.403 for x64.
 The command without `--desktop` runs the C and managed fixtures,
 Rust tests and isolated NuGet consumers. Add `--desktop` only when the
 desktop belongs to the acceptance fixture. The managed driver exercises the
 public SDK against a separate x64 Rust Win32 target with a native edit control.
 
 ```powershell
-python -E -S -B tools/check-windows.py --desktop
+$tooling = 'C:\src\sdk-tooling'
+python -I -B (Join-Path $tooling 'tasks/sdk') python fixtures/distribution/check-windows.py --desktop
 ```
 
 The producer builds the Cargo-locked WindowManagement revision in an exact,
@@ -176,6 +177,5 @@ and pinned shared-tool digests, host and execution mode, and retained file diges
 
 For a separate macOS managed test, use
 `make test-dotnet DOTNET_TEST_FLAGS='--package-source /path/to/private-feed'`
-with the same pinned tooling checkout and a feed containing the pinned
-WindowManagement package. Restore uses a fresh cache and does not modify global
+with a feed containing the pinned WindowManagement package. Restore uses a fresh cache and does not modify global
 NuGet sources.

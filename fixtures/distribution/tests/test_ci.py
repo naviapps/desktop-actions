@@ -3,19 +3,18 @@
 import importlib.util
 import json
 import subprocess
-import sys
 import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock, call, patch
 
-tools = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("windows_sdk", tools / "check-windows.py")
+from sdk_tooling.adapters import load
+
+distribution = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location("windows_sdk", distribution / "check-windows.py")
 windows_sdk = importlib.util.module_from_spec(spec)
-with patch.object(sys, "path", [str(tools), *sys.path]):
-    spec.loader.exec_module(windows_sdk)
-    from _tooling import load
+spec.loader.exec_module(windows_sdk)
 
 
 class LockedDependencyTests(unittest.TestCase):

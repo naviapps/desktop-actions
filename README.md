@@ -300,17 +300,10 @@ gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
   -f sdk=desktop-actions -f revision="$(git rev-parse HEAD)"
 ```
 
-For local distribution checks, prepare a clean SDK Tooling checkout at the exact
-revision in the `sdk-tooling` task in [`mise.toml`](mise.toml). Point
-`NAVI_SDK_TOOLING_SOURCE` to that checkout before running the detailed targets.
-
-```sh
-export NAVI_SDK_TOOLING_SOURCE=/path/to/sdk-tooling
-mise exec -- make check-distribution
-```
-
-Use that checkout for native artifact verification and rebuilds, C and .NET
-package checks. For a detailed Swift dependency-graph check, run
+For local macOS distribution checks, run `mise exec -- make check-distribution`.
+It uses the revision in the `sdk-tooling` task in [`mise.toml`](mise.toml).
+[`native.toml`](native.toml) declares the native artifact and is recorded in its
+build receipt. For a detailed Swift dependency-graph check, run
 `mise run sdk-tooling -- swift-consumer --distribution`.
 
 ### Native artifacts and package checks
@@ -318,8 +311,7 @@ package checks. For a detailed Swift dependency-graph check, run
 A clean clone uses the tracked framework. Rebuild it after production Rust/C/input
 changes with `mise exec -- make native`; test-only edits do not require a rebuild.
 `make check-distribution` verifies that framework and runs the release build,
-shared Rust action contracts, distribution tooling tests and DocC checks.
-The Rust tests cover the input codec, metadata invariants, and platform plan
+distribution fixture tests and DocC checks. The Rust tests in `make check` cover the input codec, metadata invariants, and platform plan
 matrix. The binding tests exercise typed projections, error mapping, ownership,
 and native adapter behavior.
 The strict Swift tests compile all library products in debug mode.
@@ -337,7 +329,7 @@ on an owned Windows worker. The manual macOS package route uses the tracked
 framework and tests a fresh local-feed client.
 
 ```sh
-mise exec -- python3 tools/pack-dotnet.py --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
+mise run sdk-tooling -- python fixtures/distribution/pack-dotnet.py --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
 mise run sdk-tooling -- binding-consumer nuget .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
 ```
 
