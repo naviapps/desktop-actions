@@ -19,14 +19,23 @@ final class ShortcutsCatalogTests: XCTestCase {
     await assertFailure(.executionFailed, catalog: ShortcutsCatalog(executableURL: fixture))
   }
 
-  func testNamesPreserveCaseHeaderLikeNamesAndLeadingDashes() async throws {
+  func testDistinctNamesPreserveTheirOriginalUTF8Spelling() async throws {
+    let composed = "Caf\u{00E9}"
+    let decomposed = "Cafe\u{0301}"
     let fixture = try makeTemporaryExecutable(
-      "printf 'Name\\n-Work\\nbeta\\nBeta\\n名前\\nbeta\\n\\n'")
+      "printf 'Name\\n-Work\\nbeta\\nBeta\\n名前\\nbeta\\n\(composed)\\n\(decomposed)\\n\(composed)\\n\\n'"
+    )
     defer { try? FileManager.default.removeItem(at: fixture.deletingLastPathComponent()) }
     let names = try await ShortcutsCatalog(executableURL: fixture).shortcutNames()
-    XCTAssertEqual(Set(names), Set(["Name", "-Work", "beta", "Beta", "名前"]))
-    XCTAssertEqual(names.count, 5)
-    XCTAssertTrue(names.firstIndex(of: "Beta")! < names.firstIndex(of: "beta")!)
+    let expected = ["Name", "-Work", "beta", "Beta", "名前", composed, decomposed]
+    XCTAssertEqual(Set(names.map { Data($0.utf8) }), Set(expected.map { Data($0.utf8) }))
+    XCTAssertEqual(names.count, expected.count)
+    XCTAssertLessThan(
+      try XCTUnwrap(names.firstIndex(of: "Beta")),
+      try XCTUnwrap(names.firstIndex(of: "beta")))
+    XCTAssertEqual(
+      names.filter { $0 == composed }.map { Data($0.utf8) },
+      [decomposed, composed].map { Data($0.utf8) })
   }
 
   func testOutputLargerThanPipeBufferIsDrainedBeforeWaitingForExit() async throws {

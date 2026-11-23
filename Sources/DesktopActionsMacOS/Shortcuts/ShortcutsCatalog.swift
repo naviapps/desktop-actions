@@ -29,7 +29,8 @@ public struct ShortcutsCatalog: Sendable {
     self.maximumOutputByteCount = max(1, maximumOutputByteCount)
   }
 
-  /// Returns sorted, distinct names, preserving case and names such as `Name` or `-Work`.
+  /// Returns sorted names, deduplicated by exact UTF-8 spelling.
+  /// Preserves case, Unicode spelling, and names such as `Name` or `-Work`.
   ///
   /// Throws ``ShortcutsCatalogError`` for listing failures, or `CancellationError`
   /// when the calling task is cancelled. The child process is stopped and reaped
@@ -82,10 +83,15 @@ public struct ShortcutsCatalog: Sendable {
     guard let output = String(data: data, encoding: .utf8) else {
       throw ShortcutsCatalogError.invalidOutput
     }
-    let names = Set(output.components(separatedBy: .newlines).filter { !$0.isEmpty })
+    var seen: Set<Data> = []
+    let names = output.components(separatedBy: .newlines).filter { name in
+      !name.isEmpty && seen.insert(Data(name.utf8)).inserted
+    }
     return names.sorted {
       let comparison = $0.localizedCaseInsensitiveCompare($1)
-      return comparison == .orderedSame ? $0 < $1 : comparison == .orderedAscending
+      guard comparison == .orderedSame else { return comparison == .orderedAscending }
+      if $0 != $1 { return $0 < $1 }
+      return $0.utf8.lexicographicallyPrecedes($1.utf8)
     }
   }
 }
