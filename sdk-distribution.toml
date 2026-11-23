@@ -10,7 +10,6 @@ commands = [
     "--git-dependency-source",
     "naviapps/window-management={temp}/window-management",
   ],
-  ["sdk-tooling", "swift-consumer", "--distribution"],
 ]
 
 [windows]
