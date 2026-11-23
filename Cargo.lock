@@ -384,7 +384,7 @@ checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
 [[package]]
 name = "window-management"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae"
+source = "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a"
 dependencies = [
  "num-bigint",
  "serde",
@@ -393,7 +393,7 @@ dependencies = [
 [[package]]
 name = "window-management-windows"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae"
+source = "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a"
 dependencies = [
  "window-management",
  "windows-sys",

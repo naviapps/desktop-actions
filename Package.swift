@@ -32,7 +32,7 @@ let package = Package(
     ),
     dependency(
       "window-management", environment: "WINDOW_MANAGEMENT_PACKAGE_PATH",
-      revision: "f70c70625c9b6082a09b91752155e1df0105dbae"
+      revision: "5c9710417d3b6597df7a6bcc94b6bb82008da96a"
     ),
   ],
   targets: [

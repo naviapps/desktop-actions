@@ -630,7 +630,7 @@
           "lib"
         ],
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "targetName": "window_management",
         "version": "0.1.0"
       },
@@ -641,7 +641,7 @@
           "lib"
         ],
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "targetName": "window_management_windows",
         "version": "0.1.0"
       },
@@ -1389,7 +1389,7 @@
           "lib"
         ],
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "targetName": "window_management",
         "version": "0.1.0"
       },
@@ -1400,7 +1400,7 @@
           "lib"
         ],
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "targetName": "window_management_windows",
         "version": "0.1.0"
       },
@@ -1588,7 +1588,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "b2f1c52b12ea037894a40d6bad2ede33de39c6fd5069d58f1a15d83006a7b0c7",
+          "Cargo.toml": "78739c3c516eb1ed5b292b32582cfa17b5af0b847636e955ce1ea4ec35df4abc",
           "crates/core/Cargo.toml": "41bb2e841039178ea5e05b042fc969b6cd0585901ae0d6e5d823d0c67dd5475c"
         },
         "name": "desktop-actions",
@@ -1601,7 +1601,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "b2f1c52b12ea037894a40d6bad2ede33de39c6fd5069d58f1a15d83006a7b0c7",
+          "Cargo.toml": "78739c3c516eb1ed5b292b32582cfa17b5af0b847636e955ce1ea4ec35df4abc",
           "crates/ffi/Cargo.toml": "8dd93a028d3c2a4a0422fe22f8d02085a72db305d4bce713318ab730b72c2632"
         },
         "name": "desktop-actions-ffi",
@@ -1614,7 +1614,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "b2f1c52b12ea037894a40d6bad2ede33de39c6fd5069d58f1a15d83006a7b0c7",
+          "Cargo.toml": "78739c3c516eb1ed5b292b32582cfa17b5af0b847636e955ce1ea4ec35df4abc",
           "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3"
         },
         "name": "desktop-actions-windows",
@@ -3353,12 +3353,12 @@
           "crates/core/src/requests.rs": "76d3ed79ed92e34e0d13654653867bf6a8b728fcb23a3d779e9069935c485314",
           "crates/core/src/snapshots.rs": "1d464d2cf262af01b92e0cf25da9af106c01171a83c6545c0a52147cee03f7af",
           "crates/core/tests/display_overlap.rs": "4d5b08b294ee1cf24ec9a850dd4d57ecd3e15876185ba9ff7aa40cc88006fa47",
-          "crates/core/tests/geometry.rs": "f8c0d0dbba9076efd776f01bbb1fef05b0847be88e6925472a3621983790184a",
+          "crates/core/tests/geometry.rs": "ef9d2358eacfffdd905c9930cde5e1c9e840d3cebfd39344b09b349cfede0435",
           "crates/core/tests/requests.rs": "e88dfd2606b8bbd32904f42b564cac61d969bb66b82aadde39251634f0609c48",
           "crates/core/tests/snapshots.rs": "19450e1d9809576d00e03940e222b58440185191a007c52910dbe8e0a2fbd297"
         },
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "version": "0.1.0"
       },
       {
@@ -3375,7 +3375,7 @@
           "crates/windows/src/movement_tests.rs": "a54d2f09cbc3cc4176888cf46ecd0099d4e440ad2e79c92d973f56c087839de5"
         },
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=f70c70625c9b6082a09b91752155e1df0105dbae#f70c70625c9b6082a09b91752155e1df0105dbae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=5c9710417d3b6597df7a6bcc94b6bb82008da96a#5c9710417d3b6597df7a6bcc94b6bb82008da96a",
         "version": "0.1.0"
       },
       {
@@ -3725,8 +3725,8 @@
       "x86_64-apple-darwin"
     ],
     "workspaceInputs": {
-      "Cargo.lock": "3603263926eae317b01ee06c7ccf44ae2bc888201e490ce53b81969362f99a5a",
-      "Cargo.toml": "b2f1c52b12ea037894a40d6bad2ede33de39c6fd5069d58f1a15d83006a7b0c7",
+      "Cargo.lock": "ba162d4bf05671f50ece665d3ae71f9fc8202ac5076a88daaa1621ff5c94a25c",
+      "Cargo.toml": "78739c3c516eb1ed5b292b32582cfa17b5af0b847636e955ce1ea4ec35df4abc",
       "crates/core/Cargo.toml": "41bb2e841039178ea5e05b042fc969b6cd0585901ae0d6e5d823d0c67dd5475c",
       "crates/ffi/Cargo.toml": "8dd93a028d3c2a4a0422fe22f8d02085a72db305d4bce713318ab730b72c2632",
       "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3",
@@ -3781,8 +3781,8 @@
     "_desktop_actions_windows_target_destroy"
   ],
   "inputs": {
-    "Cargo.lock": "3603263926eae317b01ee06c7ccf44ae2bc888201e490ce53b81969362f99a5a",
-    "Cargo.toml": "b2f1c52b12ea037894a40d6bad2ede33de39c6fd5069d58f1a15d83006a7b0c7",
+    "Cargo.lock": "ba162d4bf05671f50ece665d3ae71f9fc8202ac5076a88daaa1621ff5c94a25c",
+    "Cargo.toml": "78739c3c516eb1ed5b292b32582cfa17b5af0b847636e955ce1ea4ec35df4abc",
     "LICENSE": "e18e92825e5b064c568d67d636729c2d8669b61ea9d68b0fa5283b713d70aab1",
     "ThirdParty/Rust/COPYRIGHT": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af",
     "ThirdParty/Rust/COPYRIGHT-library.html": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27",
@@ -3916,7 +3916,7 @@
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Headers": "036ae9446c4f0c59046671d1d96e2de4f606b340d8a5c1927b2d51bc293e0365",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Modules": "278b6b2d8f8418e2e4877a67a109b6e3865174e4fa7405870a643e95cbc2f783",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Resources": "c213ee8e9c523538d862da3e5716b64bf090f6a1be08914954ae33cfbda7dbb2",
-    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/CDesktopActions": "d81289a4427148d46a16cd5ed0b84fddb7fb6fafff856e2e738344a33af881c4",
+    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/CDesktopActions": "a0b0af868a9a472eccca37b6fdcd0724ebb8808f6dabdf68d0d40d11327fc959",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Headers/desktop_actions.h": "36322fff1498c9bc143c7387233d34dd7e898d232e4c7024215a7608f201de44",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Modules/module.modulemap": "6e397aade44622e98c18b764b9db6c020bd1aa3fc261dde8c8709f7072a54f86",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Resources/Info.plist": "dd868704fc95ad4b32dd4c9329c4810da26651641159426ecaae7cfcd5de2453",
