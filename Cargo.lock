@@ -43,7 +43,7 @@ dependencies = [
 [[package]]
 name = "desktop-applications"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/desktop-applications.git?rev=6598e592b6625c5ac1fb6de6c36e7c25c3e9e238#6598e592b6625c5ac1fb6de6c36e7c25c3e9e238"
+source = "git+https://github.com/naviapps/desktop-applications.git?rev=4ea3b7ed9d22adcfac05a42fc98e826467dbea90#4ea3b7ed9d22adcfac05a42fc98e826467dbea90"
 dependencies = [
  "serde",
 ]
@@ -51,7 +51,7 @@ dependencies = [
 [[package]]
 name = "desktop-applications-windows"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/desktop-applications.git?rev=6598e592b6625c5ac1fb6de6c36e7c25c3e9e238#6598e592b6625c5ac1fb6de6c36e7c25c3e9e238"
+source = "git+https://github.com/naviapps/desktop-applications.git?rev=4ea3b7ed9d22adcfac05a42fc98e826467dbea90#4ea3b7ed9d22adcfac05a42fc98e826467dbea90"
 dependencies = [
  "desktop-applications",
  "serde",
@@ -384,7 +384,7 @@ checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
 [[package]]
 name = "window-management"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/window-management.git?rev=60308da2d5049866da91c9f01a72bdc70c93da04#60308da2d5049866da91c9f01a72bdc70c93da04"
+source = "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b"
 dependencies = [
  "num-bigint",
  "serde",
@@ -393,7 +393,7 @@ dependencies = [
 [[package]]
 name = "window-management-windows"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/window-management.git?rev=60308da2d5049866da91c9f01a72bdc70c93da04#60308da2d5049866da91c9f01a72bdc70c93da04"
+source = "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b"
 dependencies = [
  "window-management",
  "windows-sys",

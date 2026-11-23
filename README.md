@@ -56,7 +56,7 @@ the SDK build you intend to install. Put client source in
 `Sources/ActionClient/main.swift`.
 
 ```swift
-// swift-tools-version: 6.4
+// swift-tools-version: 6.3
 import PackageDescription
 
 let package = Package(
@@ -241,8 +241,8 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 
 ## Development and validation
 
-Use Swift 6.4/Xcode on macOS 26 or newer, Rust 1.99.1 and .NET 10. Developer commands
-load the immutable `sdk-tooling` revision in `tools/tooling-sources.json`; see
+Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10. Developer
+commands load the immutable `sdk-tooling` revision in `tools/tooling-sources.json`; see
 [shared setup](https://github.com/naviapps/sdk-tooling#readme) for caches, offline use
 and source overrides. Review `mise.toml`, then run from the repository root:
 
@@ -256,12 +256,13 @@ mise exec -- make check
 `mise install` may download tools. Select Xcode with `DEVELOPER_DIR` when needed. For local host development, set
 `DESKTOP_APPLICATIONS_PACKAGE_PATH` and `WINDOW_MANAGEMENT_PACKAGE_PATH` to the
 same checkouts declared by that host. Without overrides SwiftPM uses immutable pins.
-Keep the Rust and Swift WindowManagement revisions aligned.
+Keep the Rust and Swift revisions aligned for DesktopApplications and WindowManagement.
 
 ### Consumer installation checks
 
-The GitHub-hosted macOS workflow runs the shared Rust action contracts, strict
-Swift tests and three independent clients against the pinned dependencies.
+The Xcode 27 job runs the shared Rust action contracts, strict Swift tests,
+and three independent clients against the pinned dependencies. The macOS 26
+job runs strict Swift tests and the standalone Swift consumer with Xcode 26.6.
 The independent clients use injected desktop effects:
 
 | Command                              | Coverage                                                                                                                                                                                              |

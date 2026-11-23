@@ -1,4 +1,4 @@
-// swift-tools-version: 6.4
+// swift-tools-version: 6.3
 import PackageDescription
 
 func dependency(_ name: String, environment: String, revision: String) -> Package.Dependency {
@@ -25,14 +25,14 @@ let package = Package(
   dependencies: [
     dependency(
       "desktop-applications", environment: "DESKTOP_APPLICATIONS_PACKAGE_PATH",
-      revision: "6598e592b6625c5ac1fb6de6c36e7c25c3e9e238"),
+      revision: "4ea3b7ed9d22adcfac05a42fc98e826467dbea90"),
     .package(
       url: "https://github.com/swiftlang/swift-subprocess.git",
       .upToNextMinor(from: "1.0.2")
     ),
     dependency(
       "window-management", environment: "WINDOW_MANAGEMENT_PACKAGE_PATH",
-      revision: "60308da2d5049866da91c9f01a72bdc70c93da04"
+      revision: "34bf9d3bc5c7079b283f763296fea9bc0eed020b"
     ),
   ],
   targets: [
