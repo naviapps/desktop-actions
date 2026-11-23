@@ -317,30 +317,39 @@ using (var cancellation = new CancellationTokenSource())
     }
     Require((await AwaitCapacity(bounded, copy, success)).Status == ActionRunStatus.Completed, "Worker acknowledgement did not release capacity");
 }
-var timed = new ActionRunner(1, TimeSpan.FromMilliseconds(250));
 using (var cancellation = new CancellationTokenSource())
 {
+    var clock = new RunnerClock();
+    var timed = new ActionRunner(1, TimeSpan.FromMilliseconds(250), clock);
     var started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
     var task = timed.RunAsync(copy, async (_, token) =>
     {
         started.SetResult(); await Task.Delay(Timeout.InfiniteTimeSpan, token); return success;
     }, exemptFromTimeout: true, cancellationToken: cancellation.Token);
     await started.Task.WaitAsync(TimeSpan.FromSeconds(5));
-    await Task.Delay(350);
-    Require(!task.IsCompleted, "Interactive exemption acquired an ordinary deadline");
+    clock.Advance(TimeSpan.FromMilliseconds(350));
+    Require(!clock.HasPendingTimer && !task.IsCompleted, "Interactive exemption acquired an ordinary deadline");
     cancellation.Cancel();
     Require((await task.WaitAsync(TimeSpan.FromSeconds(5))).Status == ActionRunStatus.Cancelled, "Exempt operation cancellation");
 }
 var exceptionResult = await bounded.RunAsync(copy, (_, _) => Task.FromException<ActionExecutionReport>(new InvalidOperationException("private exception marker")));
 Require(exceptionResult.Status == ActionRunStatus.Completed && exceptionResult.Report?.FinalResult.Error?.Code == ActionErrorCode.InternalError && !exceptionResult.Report.ToJson().Contains("private exception marker"), "Executor exception leaked raw diagnostics");
-for (var i = 0; i < 16; ++i)
 {
-    var expired = new ActionRunner(1, TimeSpan.FromTicks(1));
-    var invoked = false;
-    var delivery = await expired.RunAsync(copy, (_, _) => { invoked = true; return Task.FromResult(success); });
+    var clock = new RunnerClock();
+    var timeout = TimeSpan.FromTicks(1);
+    var expired = new ActionRunner(1, timeout, clock);
+    // Reservation sees the current time. Both the queued worker and timer see the deadline.
+    clock.AdvanceAfterNextTimestamp(timeout);
+    var invoked = 0;
+    var delivery = await expired.RunAsync(copy, (_, _) =>
+    {
+        Interlocked.Increment(ref invoked);
+        return Task.FromResult(success);
+    }).WaitAsync(TimeSpan.FromSeconds(5));
     Require(delivery.Status == ActionRunStatus.TimedOut, "An expired execution reported completion");
-    await Task.Delay(1);
-    Require(!invoked, "A worker began effects after its deadline");
+    Require((await AwaitCapacity(expired, copy, success)).Status == ActionRunStatus.Completed,
+        "The expired worker did not release capacity.");
+    Require(invoked == 0, "A worker began effects after its deadline");
 }
 foreach (var configuration in new Action[] { () => _ = new ActionRunner(0, TimeSpan.FromSeconds(1)), () => _ = new ActionRunner(1, TimeSpan.Zero), () => _ = new ActionRunner(1, TimeSpan.MaxValue) })
 {
@@ -572,7 +581,9 @@ using (var selectorCancellation = new CancellationTokenSource())
     catch (OperationCanceledException error) when (error.CancellationToken == selectorCancellation.Token) { }
 }
 {
-    var runner = new ActionRunner(1, TimeSpan.FromSeconds(1));
+    var clock = new RunnerClock();
+    var timeout = TimeSpan.FromSeconds(1);
+    var runner = new ActionRunner(1, timeout, clock);
     var started = new TaskCompletionSource<ActionRequest>(TaskCreationOptions.RunContinuationsAsynchronously);
     var release = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
     var claims = new List<ActionRequest>();
@@ -592,6 +603,9 @@ using (var selectorCancellation = new CancellationTokenSource())
     try
     {
         Require(ReferenceEquals(await started.Task.WaitAsync(TimeSpan.FromSeconds(5)), copy), "Wrong first sequence worker.");
+        clock.Advance(timeout - TimeSpan.FromTicks(1));
+        Require(clock.HasPendingTimer && !task.IsCompleted, "The worker timed out before its deadline.");
+        clock.Advance(TimeSpan.FromTicks(1));
         var delivery = await task.WaitAsync(TimeSpan.FromSeconds(5));
         Require(delivery.Status == ActionSequenceStatus.TimedOut && !delivery.AllActionsSucceeded
             && delivery.Results is [{ Status: ActionRunStatus.TimedOut, Report: null }],
@@ -606,17 +620,28 @@ using (var selectorCancellation = new CancellationTokenSource())
         "Acknowledging the timed-out worker failed to restore capacity.");
 }
 {
-    var runner = new ActionRunner(1, TimeSpan.FromTicks(9000));
+    var clock = new RunnerClock();
+    var timeout = TimeSpan.FromTicks(9000);
+    var runner = new ActionRunner(1, timeout, clock);
+    var started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
     var release = new TaskCompletionSource<ActionExecutionReport>(TaskCreationOptions.RunContinuationsAsynchronously);
     var claims = new List<ActionRequest>();
     try
     {
         var task = runner.RunSequenceAsync([copy, paste], ActionSequenceFailureBehavior.Continue,
-            (_, _) => release.Task, exemptFromTimeout: action =>
+            (_, _) =>
+            {
+                started.TrySetResult();
+                return release.Task;
+            }, exemptFromTimeout: action =>
             {
                 claims.Add(action);
                 return false;
             });
+        await started.Task.WaitAsync(TimeSpan.FromSeconds(5));
+        clock.Advance(timeout);
+        Require(clock.HasPendingTimer && !task.IsCompleted, "The managed timer rounded the wait down.");
+        clock.Advance(TimeSpan.FromMilliseconds(1) - timeout);
         var delivery = await task.WaitAsync(TimeSpan.FromSeconds(5));
         Require(delivery.Status == ActionSequenceStatus.TimedOut && !delivery.AllActionsSucceeded
             && delivery.Results is [{ Status: ActionRunStatus.TimedOut, Report: null }]
@@ -631,9 +656,9 @@ static async Task<ActionRunResult> AwaitCapacity(ActionRunner runner, ActionRequ
     var deadline = System.Diagnostics.Stopwatch.StartNew();
     while (deadline.Elapsed < TimeSpan.FromSeconds(5))
     {
-        var result = await runner.RunAsync(action, (_, _) => Task.FromResult(success));
+        var result = await runner.RunAsync(action, (_, _) => Task.FromResult(success), exemptFromTimeout: true);
         if (result.Status != ActionRunStatus.Busy) return result;
-        await Task.Delay(1);
+        await Task.Yield();
     }
     throw new TimeoutException("Native worker acknowledgement did not release capacity.");
 }

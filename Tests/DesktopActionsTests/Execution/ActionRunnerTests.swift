@@ -24,7 +24,11 @@ final class ActionRunnerTests: XCTestCase {
   }
 
   func testTimeoutRetainsCapacityUntilUncooperativeWorkerActuallyReturns() async throws {
-    let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .milliseconds(200))
+    let timerSleeping = expectation(description: "deadline timer started sleeping")
+    timerSleeping.assertForOverFulfill = false
+    let clock = ActionTestClock(onSleep: { timerSleeping.fulfill() })
+    let runner = try ActionRunner(
+      maximumConcurrentExecutions: 1, timeout: .milliseconds(200), clock: clock)
     let started = expectation(description: "worker started")
     let gate = Gate()
     let first = Task { @Sendable in
@@ -34,7 +38,8 @@ final class ActionRunnerTests: XCTestCase {
         return ActionRunnerTests.success
       }
     }
-    await fulfillment(of: [started], timeout: 2)
+    await fulfillment(of: [started, timerSleeping], timeout: 2)
+    clock.advance(by: .milliseconds(200))
     let outcome = await first.value
     XCTAssertEqual(outcome, .timedOut)
     let occupied = await runner.run(.paste) { _ in
@@ -44,6 +49,29 @@ final class ActionRunnerTests: XCTestCase {
     XCTAssertEqual(occupied, .busy)
     await gate.open()
     await ActionTestFixtures.assertExecutionCapacityReleased(runner, report: Self.success)
+  }
+
+  func testWorkerDoesNotStartEffectsAtItsDeadline() async throws {
+    let clock = ActionTestClock()
+    let ran = OperationProbe()
+    let workerFinished = expectation(description: "expired worker returned")
+    let runner = try ActionRunner(
+      maximumConcurrentExecutions: 1, timeout: .nanoseconds(1), clock: clock
+    ) { priority, operation in
+      clock.advance(by: .nanoseconds(1))
+      return Task.detached(priority: priority) {
+        await operation()
+        workerFinished.fulfill()
+      }
+    }
+
+    let outcome = await runner.run(.copy) { _ in
+      ran.record()
+      return ActionRunnerTests.success
+    }
+    XCTAssertEqual(outcome, .timedOut)
+    await fulfillment(of: [workerFinished], timeout: 2)
+    XCTAssertFalse(ran.didRun)
   }
 
   func testCancellationReturnsPromptlyButCannotOverbookAWorker() async throws {
@@ -161,7 +189,9 @@ final class ActionRunnerTests: XCTestCase {
   }
 
   func testHostCanExemptInteractiveWorkFromItsDefaultTimeout() async throws {
-    let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .milliseconds(10))
+    let clock = ActionTestClock()
+    let runner = try ActionRunner(
+      maximumConcurrentExecutions: 1, timeout: .milliseconds(10), clock: clock)
     let gate = Gate()
     let started = expectation(description: "interactive worker started")
     let task = Task { @Sendable in
@@ -172,7 +202,7 @@ final class ActionRunnerTests: XCTestCase {
       }
     }
     await fulfillment(of: [started], timeout: 2)
-    try await Task.sleep(for: .milliseconds(30))
+    clock.advance(by: .milliseconds(30))
     await gate.open()
     let outcome = await task.value
     XCTAssertEqual(outcome, .completed(Self.success))

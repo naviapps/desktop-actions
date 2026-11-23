@@ -9,7 +9,10 @@
     <IsPackable Condition="'$(SdkNativeRuntimeAssets)' == ''">false</IsPackable>
     <Description>Shared action planning, bounded execution and native desktop effects.</Description>
   </PropertyGroup>
-  <ItemGroup><PackageReference Include="NaviApps.WindowManagement" Version="[0.1.0]" /></ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NaviApps.WindowManagement" Version="[0.1.0]" />
+    <InternalsVisibleTo Include="DesktopActions.Tests" />
+  </ItemGroup>
   <PropertyGroup>
     <Authors>Navi Apps</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

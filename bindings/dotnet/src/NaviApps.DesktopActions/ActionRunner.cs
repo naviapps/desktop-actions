@@ -1,4 +1,3 @@
-using System.Diagnostics;
 namespace NaviApps.DesktopActions;
 
 /// <summary>The one terminal delivery chosen by Rust for a reserved execution.</summary>
@@ -33,12 +32,18 @@ public sealed class ActionRunResult : IEquatable<ActionRunResult>
 public sealed partial class ActionRunner
 {
     private readonly ExecutionPoolHandle pool;
-    private readonly long origin = Stopwatch.GetTimestamp();
+    private readonly TimeProvider clock;
+    private readonly long origin;
     /// <summary>Use explicit host-selected policy. Invalid or unrepresentable policy is rejected, not clamped.</summary>
     public ActionRunner(int maximumConcurrentExecutions, TimeSpan timeout)
+        : this(maximumConcurrentExecutions, timeout, TimeProvider.System) { }
+
+    internal ActionRunner(int maximumConcurrentExecutions, TimeSpan timeout, TimeProvider clock)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumConcurrentExecutions);
         if (timeout.Ticks <= 0 || (ulong)timeout.Ticks > ulong.MaxValue / 100) throw new ArgumentOutOfRangeException(nameof(timeout));
+        this.clock = clock;
+        origin = clock.GetTimestamp();
         pool = Native.CreatePool(maximumConcurrentExecutions, (ulong)timeout.Ticks * 100);
         if (pool.IsInvalid) throw new ArgumentException("Invalid native execution policy.");
     }
@@ -70,7 +75,7 @@ public sealed partial class ActionRunner
     }
     private ulong Now()
     {
-        var scaled = (UInt128)(ulong)(Stopwatch.GetTimestamp() - origin) * 1_000_000_000 / (ulong)Stopwatch.Frequency;
+        var scaled = (UInt128)(ulong)(clock.GetTimestamp() - origin) * 1_000_000_000 / (ulong)clock.TimestampFrequency;
         return scaled > ulong.MaxValue ? ulong.MaxValue : (ulong)scaled;
     }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "Cleanup disposes both sources only after worker, timer, cancellation callbacks and caller detachment complete.")]
@@ -127,7 +132,7 @@ public sealed partial class ActionRunner
                     var remainingNanoseconds = deadline - now;
                     var milliseconds = Math.Min(1 + (remainingNanoseconds - 1) / 1_000_000,
                         (ulong)TimeSpan.TicksPerDay / TimeSpan.TicksPerMillisecond);
-                    await Task.Delay((int)milliseconds, timerStop.Token).ConfigureAwait(false);
+                    await Task.Delay(TimeSpan.FromMilliseconds((int)milliseconds), owner.clock, timerStop.Token).ConfigureAwait(false);
                 }
             }
             catch (OperationCanceledException) { }

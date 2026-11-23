@@ -20,20 +20,23 @@ public final class ActionRunner: Sendable {
 
   /// Creates a reusable runner with explicit host policy and nanosecond precision.
   public convenience init(maximumConcurrentExecutions: Int, timeout: Duration) throws {
-    try self.init(maximumConcurrentExecutions: maximumConcurrentExecutions, timeout: timeout) {
-      priority, operation in
-      Task.detached(priority: priority, operation: operation)
-    }
+    try self.init(
+      maximumConcurrentExecutions: maximumConcurrentExecutions, timeout: timeout,
+      clock: ContinuousClock())
   }
 
   init(
-    maximumConcurrentExecutions: Int, timeout: Duration, launchWorker: @escaping WorkerLauncher
+    maximumConcurrentExecutions: Int, timeout: Duration,
+    clock: some Clock<Duration> = ContinuousClock(),
+    launchWorker: @escaping WorkerLauncher = { priority, operation in
+      Task.detached(priority: priority, operation: operation)
+    }
   ) throws {
     guard maximumConcurrentExecutions > 0 else { throw ConfigurationError.invalidCapacity }
     guard let nanoseconds = Self.nanoseconds(timeout), nanoseconds > 0 else {
       throw ConfigurationError.invalidTimeout
     }
-    pool = Pool(maximum: maximumConcurrentExecutions, timeout: nanoseconds)
+    pool = Pool(maximum: maximumConcurrentExecutions, timeout: nanoseconds, clock: clock)
     self.launchWorker = launchWorker
   }
 
@@ -95,9 +98,7 @@ public final class ActionRunner: Sendable {
                 return
               }
               guard pool.active(id) else { return }
-              let now = pool.now()
-              let remaining = deadline > now ? deadline - now : 1
-              do { try await Task.sleep(for: Self.duration(remaining)) } catch { return }
+              do { try await pool.sleep(until: deadline) } catch { return }
             }
           }
           completion.install(timer: timer)
@@ -121,19 +122,22 @@ public final class ActionRunner: Sendable {
   }
   private final class Pool: @unchecked Sendable {
     private let owner: OpaquePointer
-    private let clock: ContinuousClock
-    private let origin: ContinuousClock.Instant
-    init(maximum: Int, timeout: UInt64) {
+    private let now: @Sendable () -> UInt64
+    private let sleepUntil: @Sendable (UInt64) async throws -> Void
+    init(maximum: Int, timeout: UInt64, clock: some Clock<Duration>) {
       precondition(
         desktop_actions_abi_version() == DESKTOP_ACTIONS_ABI_VERSION,
         "Unsupported native DesktopActions ABI")
-      let clock = ContinuousClock()
-      self.clock = clock
-      origin = clock.now
+      let origin = clock.now
+      now = { ActionRunner.nanoseconds(origin.duration(to: clock.now)) ?? UInt64.max }
+      sleepUntil = { deadline in
+        try await clock.sleep(
+          until: origin.advanced(by: ActionRunner.duration(deadline)), tolerance: nil)
+      }
       owner = desktop_actions_execution_create(maximum, timeout)!
     }
     deinit { desktop_actions_execution_destroy(owner) }
-    func now() -> UInt64 { ActionRunner.nanoseconds(origin.duration(to: clock.now)) ?? UInt64.max }
+    func sleep(until deadline: UInt64) async throws { try await sleepUntil(deadline) }
     func reserve(exempt: Bool) -> UInt64 {
       desktop_actions_execution_reserve(owner, now(), exempt ? 1 : 0)
     }

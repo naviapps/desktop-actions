@@ -14,7 +14,6 @@ from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
-from sdk_tooling.ffi import DARWIN_TARGETS
 from sdk_tooling.native_plan import ffi_product
 from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetch_args
 
@@ -116,7 +115,7 @@ def check_dependency_version(root, dependency):
 
 def build_sdk(native, selected, tools, environment, host):
     subprocess.run(
-        locked_fetch_args(notice_targets=DARWIN_TARGETS),
+        locked_fetch_args(),
         cwd=native.root,
         env=environment,
         check=True,
@@ -247,16 +246,6 @@ def publish_acceptance(stage, destination, artifacts, receipt):
 def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_aot=False):
     artifacts = selected("artifacts")
     windows = selected("windows")
-    ffi = selected("ffi")
-    cargo = selected("cargo")
-
-    class WindowsSdk(ffi.FfiProduct):
-        def retain_notices(self, env=None):
-            cargo.runtime_notices(self.root, env)
-            cargo.CargoDependencies(
-                self.root, self.notice_packages, (*DARWIN_TARGETS, TARGET), env
-            ).retain_notices()
-
     base = root / ".native-build"
     base.mkdir(exist_ok=True)
     if base.is_symlink():
@@ -296,8 +285,8 @@ def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_
         )
         dependency, dependency_revision = dependency_source(metadata, env)
         snapshot(dependency, dependency_revision, child)
-        actions = ffi_product(parent, factory=WindowsSdk)
-        window = ffi_product(child, factory=WindowsSdk)
+        actions = ffi_product(parent)
+        window = ffi_product(child)
         check_dependency_version(parent, window)
         window_binary = build_sdk(window, selected, tools, env, host)
         check_c_fixture(window, selected, window_binary)

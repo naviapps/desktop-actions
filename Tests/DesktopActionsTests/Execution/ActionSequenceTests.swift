@@ -1,6 +1,7 @@
-import DesktopActions
 import Synchronization
 import XCTest
+
+@testable import DesktopActions
 
 final class ActionSequenceTests: XCTestCase {
   private static let success = ActionExecutionReport(result: .success)
@@ -144,22 +145,31 @@ final class ActionSequenceTests: XCTestCase {
   }
 
   func testTimeoutNeverStartsAnotherActionWhileNativeWorkIsUnacknowledged() async throws {
-    let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(1))
+    let clock = ActionTestClock()
+    let runner = try ActionRunner(
+      maximumConcurrentExecutions: 1, timeout: .seconds(1), clock: clock)
+    let started = expectation(description: "sequence worker started")
     let gate = Gate()
     let calls = Calls()
     let claims = Claims()
-    let report = await runner.runSequence(
-      [.copy, .paste], failureBehavior: .continue,
-      exemptFromTimeout: { action in
-        claims.append(action)
-        return false
-      },
-      operation: { action in
-        await calls.append(action)
-        await gate.wait()
-        return Self.success
-      }
-    )
+    let sequence = Task { @Sendable in
+      await runner.runSequence(
+        [.copy, .paste], failureBehavior: .continue,
+        exemptFromTimeout: { action in
+          claims.append(action)
+          return false
+        },
+        operation: { action in
+          await calls.append(action)
+          started.fulfill()
+          await gate.wait()
+          return ActionSequenceTests.success
+        }
+      )
+    }
+    await fulfillment(of: [started], timeout: 2)
+    clock.advance(by: .seconds(1))
+    let report = await sequence.value
     XCTAssertEqual(report.status, .timedOut)
     XCTAssertEqual(report.results, [.timedOut])
     XCTAssertFalse(report.allActionsSucceeded)

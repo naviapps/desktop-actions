@@ -1,4 +1,5 @@
 import DesktopActions
+import Synchronization
 import WindowManagement
 import XCTest
 
@@ -83,5 +84,49 @@ enum ActionTestFixtures {
       (.toggleFocusedWindowFullScreen, .toggleFocusedWindowFullScreen),
       (.closeForegroundWindow, .closeForegroundWindow),
     ]
+  }
+}
+
+final class ActionTestClock: Clock {
+  typealias Instant = ContinuousClock.Instant
+
+  private struct State {
+    var elapsed: Duration = .zero
+    var sleepers: [UUID: (deadline: Instant, signal: AsyncStream<Void>.Continuation)] = [:]
+  }
+
+  private let origin = ContinuousClock.now
+  private let state = Mutex(State())
+  private let onSleep: @Sendable () -> Void
+
+  init(onSleep: @escaping @Sendable () -> Void = {}) { self.onSleep = onSleep }
+
+  var minimumResolution: Duration { .nanoseconds(1) }
+  var now: Instant { state.withLock { origin.advanced(by: $0.elapsed) } }
+
+  func sleep(until deadline: Instant, tolerance _: Duration?) async throws {
+    try Task.checkCancellation()
+    let (waiting, signal) = AsyncStream<Void>.makeStream()
+    let id = UUID()
+    let registered = state.withLock { state in
+      guard origin.advanced(by: state.elapsed) < deadline else { return false }
+      state.sleepers[id] = (deadline, signal)
+      return true
+    }
+    guard registered else { return }
+    defer { state.withLock { _ = $0.sleepers.removeValue(forKey: id) } }
+    onSleep()
+    var waiter = waiting.makeAsyncIterator()
+    _ = await waiter.next()
+    try Task.checkCancellation()
+  }
+
+  func advance(by duration: Duration) {
+    let ready = state.withLock { state in
+      state.elapsed += duration
+      let deadline = origin.advanced(by: state.elapsed)
+      return state.sleepers.values.filter { $0.deadline <= deadline }.map(\.signal)
+    }
+    for signal in ready { signal.finish() }
   }
 }
