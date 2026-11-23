@@ -1,0 +1,25 @@
+[macos]
+commands = [
+  ["xcrun", "swift", "--version"],
+  ["cargo", "fetch", "--locked"],
+  ["make", "check-distribution", 'SDK_TOOLING=python3 -I -B "{tooling}/tasks/sdk"'],
+  ["git", "clone", "https://github.com/naviapps/window-management.git", "{temp}/window-management"],
+  [
+    "python3",
+    "-I",
+    "-B",
+    "{tooling}/tasks/sdk",
+    "installed-consumers",
+    "--git-dependency-source",
+    "naviapps/window-management={temp}/window-management",
+  ],
+  ["python3", "-I", "-B", "{tooling}/tasks/sdk", "swift-consumer", "--distribution"],
+]
+
+[windows]
+commands = [
+  ["rustup", "install", "--no-self-update"],
+  ["cargo", "fmt", "--all", "--", "--check"],
+  ["python", "-E", "-S", "-B", "-m", "unittest", "discover", "-s", "tools/tests"],
+  ["python", "-I", "-B", "{tooling}/tasks/sdk", "windows", "tools/check-windows.py"],
+]

@@ -242,8 +242,8 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 ## Development and validation
 
 Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10.
-The build and verification scripts live in `tools/`. Review `mise.toml`, then run
-from the repository root:
+The checks use public SDK Tooling pinned in [`mise.toml`](mise.toml), together
+with SDK-owned fixtures and validation settings. Run from the repository root.
 
 ```sh
 mise trust mise.toml
@@ -258,7 +258,8 @@ same checkouts declared by that host. Without overrides SwiftPM uses immutable p
 Keep the Rust and Swift revisions aligned for DesktopApplications and WindowManagement.
 
 `make check` runs the source checks, Rust workspace tests and Clippy, strict
-Swift tests, and the standalone Swift consumer from this checkout. GitHub Actions
+Swift tests and the standalone Swift consumer. The first invocation of the
+shared tool can fetch its pinned revision without private credentials. GitHub Actions
 runs the Swift tests and consumer on macOS 26 with Xcode 26.6 and macOS 27 with
 Xcode 27.2. Public Windows CI runs the Rust workspace tests on x64.
 
@@ -266,19 +267,18 @@ Xcode 27.2. Public Windows CI runs the Rust workspace tests on x64.
 
 The independent clients use injected desktop effects.
 
-| Command                              | Coverage                                                                                                                                                 |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mise exec -- make test-consumer`    | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner with consumer-owned permission hooks. |
-| `tools/install-consumers.py`         | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
-| `mise exec -- make test-installed-c` | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
+| Command                                       | Coverage                                                                                                                                                 |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mise exec -- make test-consumer`             | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner with consumer-owned permission hooks. |
+| `mise run sdk-tooling -- installed-consumers` | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
+| `mise exec -- make test-installed-c`          | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
 
-For both Rust/C clients outside CI, set up
-[distribution verification](#distribution-verification) and supply a complete local
-WindowManagement mirror or bundle containing its pinned revision.
+For both Rust/C clients outside CI, supply a complete local WindowManagement mirror
+or bundle containing its pinned revision.
 
 ```sh
-mise exec -- python3 -B tools/install-consumers.py \
-  --git-dependency-source /path/to/window-management.bundle
+mise run sdk-tooling -- installed-consumers \
+  --git-dependency-source naviapps/window-management=/path/to/window-management.bundle
 ```
 
 Run from a clean committed checkout. Shallow producer checkouts also need a complete
@@ -290,8 +290,10 @@ verifies native effects on an owned worker.
 
 ### Distribution verification
 
-Maintainers dispatch the detailed macOS and Windows checks in the private
-`naviapps/sdk-tooling` repository with the full SDK commit SHA from `main`.
+Dispatch the detailed macOS and Windows checks in
+[`naviapps/sdk-tooling`](https://github.com/naviapps/sdk-tooling) with the full SDK
+commit SHA from `main`. [`sdk-distribution.toml`](sdk-distribution.toml) declares
+the commands for each platform.
 
 ```sh
 gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
@@ -299,7 +301,7 @@ gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
 ```
 
 For local distribution checks, prepare a clean SDK Tooling checkout at the exact
-revision in [tools/tooling-sources.json](tools/tooling-sources.json). Point
+revision in the `sdk-tooling` task in [`mise.toml`](mise.toml). Point
 `NAVI_SDK_TOOLING_SOURCE` to that checkout before running the detailed targets.
 
 ```sh
@@ -307,9 +309,9 @@ export NAVI_SDK_TOOLING_SOURCE=/path/to/sdk-tooling
 mise exec -- make check-distribution
 ```
 
-Use that same checkout for native artifact verification and rebuilds, DocC, C and
-.NET package checks, and the standalone Swift consumer's detailed
-`tools/consumer.py --distribution` mode.
+Use that checkout for native artifact verification and rebuilds, C and .NET
+package checks. For a detailed Swift dependency-graph check, run
+`mise run sdk-tooling -- swift-consumer --distribution`.
 
 ### Native artifacts and package checks
 
@@ -325,7 +327,7 @@ Run the C and .NET fixtures separately without rebuilding it:
 
 ```sh
 mise exec -- make test-c
-mise exec -- python3 tools/test-dotnet.py --package-source /path/to/private-feed
+mise run sdk-tooling -- binding-consumer dotnet --package-source /path/to/private-feed
 ```
 
 `DOTNET_BIN` selects an existing .NET executable. Follow the
@@ -336,7 +338,7 @@ framework and tests a fresh local-feed client.
 
 ```sh
 mise exec -- python3 tools/pack-dotnet.py --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
-mise exec -- python3 tools/test-package.py .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
+mise run sdk-tooling -- binding-consumer nuget .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
 ```
 
 The package fixture checks codecs, platform planning, shared window requests/runtime and bounded execution

@@ -1,0 +1,24 @@
+[swift]
+inputs = ["Package.swift", "Sources", "Tests", "Artifacts", "ThirdParty"]
+executable = "DesktopActionsConsumer"
+
+[docs]
+output = ".native-build"
+
+[installed]
+git_url = "https://github.com/naviapps/desktop-actions.git"
+rust_packages = ["desktop-actions"]
+rust_git_dependencies = ["window-management"]
+
+[installed.c]
+framework = "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework"
+header = "desktop_actions.h"
+
+[bindings]
+abi_fixture = "crates/ffi/tests/c/abi.c"
+dotnet_project = "bindings/dotnet/tests/DesktopActions.Tests/DesktopActions.Tests.csproj"
+nuget_id = "NaviApps.DesktopActions"
+nuget_fixtures = [
+  "bindings/dotnet/tests/PackageConsumer/Program.cs",
+  "bindings/dotnet/tests/PackageReflectionFreeConsumer/Program.cs",
+]

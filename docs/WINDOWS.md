@@ -151,7 +151,7 @@ on ARM64, use the local command in an owned desktop.
 
 Run the same acceptance on an owned worker from a clean DesktopActions
 checkout. Set `NAVI_SDK_TOOLING_SOURCE` to the clean checkout specified by
-[the distribution tooling pin](../tools/tooling-sources.json) and set `DOTNET_BIN`
+[the SDK Tooling task](../mise.toml) and set `DOTNET_BIN`
 to the absolute path of .NET 10.0.403 for x64.
 The command without `--desktop` runs the C and managed fixtures,
 Rust tests and isolated NuGet consumers. Add `--desktop` only when the

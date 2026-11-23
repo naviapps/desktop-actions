@@ -1,4 +1,5 @@
 DOTNET_TEST_FLAGS ?=
+SDK_TOOLING ?= mise run sdk-tooling --
 SWIFT_STRICT_FLAGS := -Xswiftc -strict-concurrency=complete -Xswiftc -warnings-as-errors
 
 .DEFAULT_GOAL := check
@@ -9,7 +10,7 @@ check: check-source test test-consumer
 
 check-source: lint test-rust
 
-check-distribution: lint native-verify build-release test-rust test-docs test-tools
+check-distribution: native-verify build-release test-docs test-tools
 
 build:
 	swift build $(SWIFT_STRICT_FLAGS)
@@ -18,16 +19,16 @@ build-release:
 	swift build -c release $(SWIFT_STRICT_FLAGS)
 
 format:
-	mise exec -- python3 -B tools/quality.py format --dotnet
+	$(SDK_TOOLING) quality format --dotnet
 
 lint:
-	mise exec -- python3 -B tools/quality.py check --dotnet
+	$(SDK_TOOLING) quality check --dotnet
 
 test:
 	swift test $(SWIFT_STRICT_FLAGS)
 
 test-consumer:
-	python3 -B tools/consumer.py
+	$(SDK_TOOLING) swift-consumer
 
 native:
 	python3 tools/native.py
@@ -40,16 +41,16 @@ test-rust:
 	cargo test --workspace --locked --offline
 
 test-dotnet:
-	python3 tools/test-dotnet.py $(DOTNET_TEST_FLAGS)
+	$(SDK_TOOLING) binding-consumer dotnet $(DOTNET_TEST_FLAGS)
 
 test-c:
-	python3 tools/test-c.py
+	$(SDK_TOOLING) binding-consumer c
 
 test-installed-c:
-	python3 -B tools/install-consumers.py --language c
+	$(SDK_TOOLING) installed-consumers --language c
 
 test-docs:
-	python3 tools/test-docs.py
+	$(SDK_TOOLING) docs
 
 test-tools:
 	python3 -B -m unittest discover -s tools/tests -v
