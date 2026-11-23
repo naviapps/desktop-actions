@@ -1,6 +1,11 @@
 using System.Text.Json;
 using NaviApps.DesktopActions;
 
+#if NATIVE_AOT_FIXTURE
+if (System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported)
+    throw new InvalidOperationException("The fixture requires Native AOT execution.");
+#endif
+
 AppContext.SetSwitch("System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault", false);
 if (JsonSerializer.IsReflectionEnabledByDefault)
     throw new InvalidOperationException("The fixture requires JSON reflection to be disabled.");

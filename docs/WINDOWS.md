@@ -163,6 +163,18 @@ $tooling = 'C:\src\sdk-tooling'
 python -I -B (Join-Path $tooling 'ci/run_sdk_tooling.py') python -m distribution.verify_windows --desktop
 ```
 
+To check Native AOT on GitHub's Windows x64 runner, dispatch the opt-in job:
+
+```sh
+gh workflow run check-windows.yml --repo naviapps/desktop-actions --ref main -f native-aot=true
+```
+
+The job publishes the reflection-free consumer with the pinned .NET SDK and
+runs the resulting x64 executable. Compiler and runtime packs come from
+NuGet.org. The consumer restores the exact DesktopActions and WindowManagement
+packages built in that run, and the published DLLs must match them byte for byte.
+The acceptance record marks a successful Native AOT run.
+
 The producer builds the Cargo-locked WindowManagement revision in an exact,
 detached checkout and checks that its managed version matches DesktopActions.
 Both SDK packages carry only the verified `win-x64` DLL. The managed builds

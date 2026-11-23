@@ -193,8 +193,17 @@ def run_managed_fixture(native, selected, dotnet, environment, directory, source
 
 
 def check_installed_package(
-    selected, dotnet, environment, native, name, package, fixture, *depends
+    selected, dotnet, environment, native, name, package, fixture, *depends, native_aot=False
 ):
+    properties = {
+        "Nullable": "enable",
+        "TreatWarningsAsErrors": "true",
+        "UseSharedCompilation": "false",
+    }
+    optional = {}
+    if native_aot:
+        properties["DefineConstants"] = "NATIVE_AOT_FIXTURE"
+        optional["native_aot"] = True
     selected("nuget").run_isolated_consumer(
         dotnet,
         packages=[package, *depends],
@@ -203,11 +212,8 @@ def check_installed_package(
         work_parent=native.root / ".native-build/packages",
         env=environment,
         runtime=RID,
-        properties={
-            "Nullable": "enable",
-            "TreatWarningsAsErrors": "true",
-            "UseSharedCompilation": "false",
-        },
+        properties=properties,
+        **optional,
     )
 
 
@@ -238,7 +244,7 @@ def publish_acceptance(stage, destination, artifacts, receipt):
         )
 
 
-def accept(root, environment, host, tools, dotnet, selected, desktop):
+def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_aot=False):
     artifacts = selected("artifacts")
     windows = selected("windows")
     ffi = selected("ffi")
@@ -364,7 +370,8 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                                 shutil.copyfile(source, diagnostics / name)
                     raise
             actions_package = pack_sdk(actions, selected, [RID], sources=[feed], environment=env)
-            for fixture in ("PackageConsumer.cs", "ReflectionFreeConsumer.cs"):
+            fixtures = [("PackageConsumer.cs", False), ("ReflectionFreeConsumer.cs", native_aot)]
+            for fixture, publish_native in fixtures:
                 check_installed_package(
                     selected,
                     dotnet,
@@ -374,6 +381,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                     actions_package,
                     parent / "fixtures/consumers/dotnet" / fixture,
                     window_package,
+                    native_aot=publish_native,
                 )
 
             verify_snapshot(root, commit)
@@ -414,6 +422,8 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                 "toolInputs": tool_inputs,
                 "outputs": artifacts.hashes(artifacts.files(stage), stage),
             }
+            if native_aot:
+                receipt["nativeAotFixtureExecuted"] = True
             artifacts.write_json(stage / RECEIPT, receipt)
             publish_acceptance(stage, result, artifacts, receipt)
 
@@ -423,11 +433,23 @@ def main(argv=None):
     parser.add_argument(
         "--desktop", action="store_true", help="Run the separate-process owned desktop fixture"
     )
+    parser.add_argument(
+        "--native-aot", action="store_true", help="Publish and run the win-x64 Native AOT consumer"
+    )
     args = parser.parse_args(argv)
     if sys.platform != "win32":
         raise SystemExit("An owned Windows worker is required for runtime acceptance")
     worker = X64Acceptance(ROOT)
-    accept(ROOT, worker.env, worker.host, worker.tools, worker.dotnet, load, args.desktop)
+    accept(
+        ROOT,
+        worker.env,
+        worker.host,
+        worker.tools,
+        worker.dotnet,
+        load,
+        args.desktop,
+        native_aot=args.native_aot,
+    )
     print("Windows x64 SDK package and runtime acceptance passed.")
 
 
