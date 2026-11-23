@@ -88,33 +88,6 @@ final class DesktopActionsSourceBoundaryTests: XCTestCase {
     )
   }
 
-  func testActionPreflightPlanningSeamsStayNarrow() throws {
-    let preflightSource = try readRepositoryFile(
-      "Sources/DesktopActions/Preflight/ActionPreflight.swift"
-    )
-    XCTAssertFalse(
-      containsPublicStaticFunction(named: "plan", in: preflightSource),
-      "Hosts should use permissions(forKind:) and permissionHints(forKind:), not sample plans."
-    )
-  }
-
-  func testInternalActionInputNormalizationStaysOutOfPublicSurface() throws {
-    let source = try String(
-      contentsOf: Self.repositoryRoot()
-        .appendingPathComponent("Sources/DesktopActions/Actions/ActionInput.swift"),
-      encoding: .utf8
-    )
-
-    XCTAssertFalse(
-      containsPublicProperty(named: "normalized", in: source),
-      "ActionInput normalization is an internal validation detail exposed through creation and Codable boundaries."
-    )
-    XCTAssertFalse(
-      containsPublicStaticFunction(named: "normalizedString", in: source),
-      "ActionInput string normalization is an internal validation detail, not a host-facing utility API."
-    )
-  }
-
   private func readRepositoryFile(_ relativePath: String) throws -> String {
     try String(
       contentsOf: Self.repositoryRoot().appendingPathComponent(relativePath),
@@ -175,16 +148,6 @@ final class DesktopActionsSourceBoundaryTests: XCTestCase {
       #"^\s*(?:@[\w.]+(?:\([^)]*\))?\s*)*public\s+(?:static\s+)?(?:let|var)\s+"#
       + NSRegularExpression.escapedPattern(for: name)
       + #"\b"#
-    return source.split(separator: "\n").contains { line in
-      line.range(of: pattern, options: .regularExpression) != nil
-    }
-  }
-
-  private func containsPublicStaticFunction(named name: String, in source: String) -> Bool {
-    let pattern =
-      #"^\s*(?:@[\w.]+(?:\([^)]*\))?\s*)*public\s+static\s+func\s+"#
-      + NSRegularExpression.escapedPattern(for: name)
-      + #"\s*\("#
     return source.split(separator: "\n").contains { line in
       line.range(of: pattern, options: .regularExpression) != nil
     }

@@ -11,10 +11,11 @@ coverage belongs to its recorded source, platform and test conditions.
 - `crates/core`: the authoritative catalog, action codec, input normalization,
   physical shortcut parser, execution plans, permission metadata, result codecs/reduction and bounded execution state.
 - `crates/ffi`: owned C JSON results and thread-safe execution handles.
-- `Sources`: Swift values, optional standard SwiftUI inputs and the native macOS execution adapter.
+- `Sources`: Swift values, optional SwiftUI inputs and the native macOS adapter.
+- `crates/windows`: the native Windows adapter.
 - `bindings/dotnet`: managed values and native interop.
 - `Artifacts`: SwiftPM native frameworks and their build receipt.
-- `tools`: build and language-boundary verification entry points.
+- `fixtures`: standalone SDK consumers and SDK-specific distribution checks.
 
 Window geometry, placement requests and display selection belong to the separate
 [WindowManagement SDK](https://github.com/naviapps/window-management). Application discovery,
@@ -342,8 +343,8 @@ records OS effects separately from compilation and installation.
 
 ### Documentation and static checks
 
-Run `mise run lint` to check source and workflows or `mise run format` to format
-source files.
+Run `mise exec -- make lint` to check source and workflows or
+`mise exec -- make format` to format source files.
 For documentation changes, `mise exec -- make test-docs` builds symbol graphs and
 verifies all three DocC catalogs with warnings as errors; it may resolve and compile
 Swift dependencies. Check Markdown alone with

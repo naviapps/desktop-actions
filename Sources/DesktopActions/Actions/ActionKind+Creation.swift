@@ -11,6 +11,6 @@ extension ActionKind {
   private func makeRequest(input: ActionInput?) -> ActionRequest? {
     guard let data = try? JSONEncoder().encode(ActionRequest.Projection(kind: self, input: input))
     else { return nil }
-    return try? JSONDecoder().decode(ActionRequest.self, from: data)
+    return try? ActionCodec.decodeRequest(data)
   }
 }

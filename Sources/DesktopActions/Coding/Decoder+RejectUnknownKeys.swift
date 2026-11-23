@@ -13,27 +13,6 @@ private struct AnyCodingKey: CodingKey {
   }
 }
 
-extension KeyedDecodingContainer {
-  func decodeIfPresentRejectingNull<T: Decodable>(
-    _ type: T.Type,
-    forKey key: Key
-  ) throws -> T? {
-    guard contains(key) else {
-      return nil
-    }
-
-    guard try !decodeNil(forKey: key) else {
-      throw DecodingError.dataCorruptedError(
-        forKey: key,
-        in: self,
-        debugDescription: "\(key.stringValue) must be omitted instead of null."
-      )
-    }
-
-    return try decode(type, forKey: key)
-  }
-}
-
 extension Decoder {
   func rejectUnknownKeys<AllowedKey: CodingKey>(
     allowed allowedKeys: [AllowedKey],
