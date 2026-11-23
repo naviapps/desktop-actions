@@ -16,11 +16,7 @@ def main():
     )
     parser.add_argument("--package-source", action="append", default=[])
     options = parser.parse_args()
-    arguments = [value for rid in options.runtime for value in ("--runtime", rid)]
-    arguments += [
-        value for source in options.package_source for value in ("--package-source", source)
-    ]
-    pack_sdk(xcframework(), load, arguments)
+    pack_sdk(xcframework(), load, options.runtime, sources=options.package_source)
 
 
 if __name__ == "__main__":

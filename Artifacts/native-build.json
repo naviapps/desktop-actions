@@ -1,4 +1,5 @@
 {
+  "abiProbeArchitecture": "arm64",
   "abiVersion": 6,
   "architectures": [
     "arm64",
@@ -6,6 +7,1526 @@
   ],
   "buildScriptInputDirectories": [],
   "buildScriptInputRoots": [],
+  "cargoBuild": {
+    "aarch64-apple-darwin": [
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "autocfg",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "autocfg",
+        "version": "1.5.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-actions",
+        "source": "workspace",
+        "targetName": "desktop_actions",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "cdylib"
+        ],
+        "name": "desktop-actions-ffi",
+        "source": "workspace",
+        "targetName": "desktop_actions_ffi",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-actions-windows",
+        "source": "workspace",
+        "targetName": "desktop_actions_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-applications",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "targetName": "desktop_applications",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-applications-windows",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "targetName": "desktop_applications_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "displaydoc",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "displaydoc",
+        "version": "0.2.7"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "form_urlencoded",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_collections",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_collections",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_locale_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_locale_core",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_normalizer",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_normalizer",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "icu_normalizer_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_normalizer_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_normalizer_data",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_properties",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_properties",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "icu_properties_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_properties_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_properties_data",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "baked"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_provider",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_provider",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "compiled_data",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "idna",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "idna_adapter",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "idna_adapter",
+        "version": "1.2.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "itoa",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "litemap",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "memchr",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-bigint",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_bigint",
+        "version": "0.5.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-integer",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_integer",
+        "version": "0.1.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "num-traits",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "0.2.19"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-traits",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_traits",
+        "version": "0.2.19"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "percent-encoding",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "percent_encoding",
+        "version": "2.3.2"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "potential_utf",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "proc-macro2",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.107"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "proc-macro2",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "proc_macro2",
+        "version": "1.0.107"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "quote",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "quote",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "quote",
+        "version": "1.0.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "derive",
+          "serde_derive",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "derive",
+          "serde_derive",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "result",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "result",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default"
+        ],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "serde_derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_derive",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "float_roundtrip",
+          "raw_value",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde_json",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.154"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "float_roundtrip",
+          "raw_value",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde_json",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "const_generics"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "smallvec",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "stable_deref_trait",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "clone-impls",
+          "default",
+          "derive",
+          "extra-traits",
+          "fold",
+          "parsing",
+          "printing",
+          "proc-macro",
+          "visit"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "syn",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "syn",
+        "version": "3.0.9"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "synstructure",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "synstructure",
+        "version": "0.14.0"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "tinystr",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "unicode-ident",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "unicode_ident",
+        "version": "1.0.27"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "url",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "url",
+        "version": "2.5.8"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "utf8_iter",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "window-management",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b",
+        "targetName": "window_management",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "window-management-windows",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b",
+        "targetName": "window_management_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "writeable",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive",
+          "zerofrom"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "yoke",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "yoke-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "yoke_derive",
+        "version": "0.8.4"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerofrom",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "zerofrom-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerofrom_derive",
+        "version": "0.1.8"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "yoke",
+          "zerofrom"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerotrie",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive",
+          "yoke"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerovec",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "zerovec-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerovec_derive",
+        "version": "0.11.7"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "zmij",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.23"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "zmij",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zmij",
+        "version": "1.0.23"
+      }
+    ],
+    "x86_64-apple-darwin": [
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "autocfg",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "autocfg",
+        "version": "1.5.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-actions",
+        "source": "workspace",
+        "targetName": "desktop_actions",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "cdylib"
+        ],
+        "name": "desktop-actions-ffi",
+        "source": "workspace",
+        "targetName": "desktop_actions_ffi",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-actions-windows",
+        "source": "workspace",
+        "targetName": "desktop_actions_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-applications",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "targetName": "desktop_applications",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "desktop-applications-windows",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "targetName": "desktop_applications_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "displaydoc",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "displaydoc",
+        "version": "0.2.7"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "form_urlencoded",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_collections",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_collections",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_locale_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_locale_core",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_normalizer",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_normalizer",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "icu_normalizer_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_normalizer_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_normalizer_data",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_properties",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_properties",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "icu_properties_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_properties_data",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_properties_data",
+        "version": "2.1.2"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "baked"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "icu_provider",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "icu_provider",
+        "version": "2.1.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "compiled_data",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "idna",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "compiled_data"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "idna_adapter",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "idna_adapter",
+        "version": "1.2.1"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "itoa",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "litemap",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "memchr",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-bigint",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_bigint",
+        "version": "0.5.1"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-integer",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_integer",
+        "version": "0.1.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "num-traits",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "0.2.19"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "i128",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "num-traits",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "num_traits",
+        "version": "0.2.19"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "alloc",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "percent-encoding",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "percent_encoding",
+        "version": "2.3.2"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "potential_utf",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "proc-macro2",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.107"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "proc-macro2",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "proc_macro2",
+        "version": "1.0.107"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "quote",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "quote",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "quote",
+        "version": "1.0.47"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "derive",
+          "serde_derive",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "derive",
+          "serde_derive",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "result",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "result",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde_core",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default"
+        ],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "serde_derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_derive",
+        "version": "1.0.229"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "float_roundtrip",
+          "raw_value",
+          "std"
+        ],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "serde_json",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.154"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "float_roundtrip",
+          "raw_value",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "serde_json",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "const_generics"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "smallvec",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "stable_deref_trait",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "clone-impls",
+          "default",
+          "derive",
+          "extra-traits",
+          "fold",
+          "parsing",
+          "printing",
+          "proc-macro",
+          "visit"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "syn",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "syn",
+        "version": "3.0.9"
+      },
+      {
+        "compilation": "host",
+        "features": [
+          "default",
+          "proc-macro"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "synstructure",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "synstructure",
+        "version": "0.14.0"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "zerovec"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "tinystr",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "unicode-ident",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "unicode_ident",
+        "version": "1.0.27"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "default",
+          "std"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "url",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "url",
+        "version": "2.5.8"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "utf8_iter",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "window-management",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b",
+        "targetName": "window_management",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "window-management-windows",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=34bf9d3bc5c7079b283f763296fea9bc0eed020b#34bf9d3bc5c7079b283f763296fea9bc0eed020b",
+        "targetName": "window_management_windows",
+        "version": "0.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "writeable",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive",
+          "zerofrom"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "yoke",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "yoke-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "yoke_derive",
+        "version": "0.8.4"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerofrom",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "zerofrom-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerofrom_derive",
+        "version": "0.1.8"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "yoke",
+          "zerofrom"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerotrie",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "compilation": "target",
+        "features": [
+          "derive",
+          "yoke"
+        ],
+        "kind": [
+          "lib"
+        ],
+        "name": "zerovec",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "proc-macro"
+        ],
+        "name": "zerovec-derive",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zerovec_derive",
+        "version": "0.11.7"
+      },
+      {
+        "compilation": "host",
+        "features": [],
+        "kind": [
+          "custom-build"
+        ],
+        "name": "zmij",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "build-script-build",
+        "version": "1.0.23"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "zmij",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "zmij",
+        "version": "1.0.23"
+      }
+    ]
+  },
   "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: aarch64-apple-darwin\nrelease: 1.99.1\nLLVM version: 23.1.1",
   "configuration": {
     "ffi": "crates/ffi",
@@ -2427,10 +3948,12 @@
   "schema": 3,
   "toolInputs": {
     "artifacts.py": "1754138ef1807e593e1d228d678cb396398435c6ff69c1d96fadc80fe443747e",
+    "c_compiler.py": "3005695b914b6e416c7eddd1f31d3ee37a633f4176ea7a131b59935d8ad95594",
     "cargo.py": "ad44c7666dfcff89d35c7008ccada6910a6ea6f299a9f955e917f841a563a597",
+    "cargo_build.py": "0aee57b901cbfc9ed8bebff51725f9a71d242f904e184b1c9965965741dabba4",
     "crates/rustc-dep-info/src/main.rs": "0a59fb162cc855001899ad9b83875fac0ed837e73caafd116453352c9b56e2cf",
-    "ffi.py": "805e7507a2a59c5c5d3edb2d654a2276ea8677ac1b755aa0dee466af87651d85",
+    "ffi.py": "4e3f22f317710575236e124899b4dcadf6ddc1eed8482294a8a5874314d010ce",
     "native_plan.py": "126791c1993dded2be0f46784a28528d40ed1218c46d1f1aadb2c026f047dcd3",
-    "xcframework.py": "37d848a3d58af479b8c13c6466cef1917029e4a9709e986a66a6a4ff1e431e08"
+    "xcframework.py": "277c2e390f94f45614479e289deccea9c2c3e0af71d5c6ce5421872161671558"
   }
 }

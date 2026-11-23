@@ -1,0 +1,19 @@
+<Project>
+  <!-- The locked WindowManagement source predates the standard SDK pack layout. -->
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Authors>Navi Apps</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PublishRepositoryUrl>false</PublishRepositoryUrl>
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="../../../../LICENSE" Pack="true" PackagePath="/" />
+    <None Include="../../../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../../../ThirdParty/**/*" Exclude="../../../../ThirdParty/**/.DS_Store;../../../../ThirdParty/**/registry-notices.json" Pack="true" PackagePath="ThirdParty/" />
+    <None Include="$(SdkNativeRuntimeAssets)/**/*"
+          Pack="true" PackagePath="runtimes/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

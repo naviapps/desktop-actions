@@ -152,7 +152,7 @@ on ARM64, use the local command in an owned desktop.
 Run the same acceptance on an owned worker from a clean DesktopActions
 checkout. Use a clean SDK Tooling checkout at the revision in
 [the SDK Tooling task](../mise.toml) and set `DOTNET_BIN` to the absolute
-path of .NET 10.0.403 for x64.
+path of the x64 .NET SDK selected by [`global.json`](../global.json).
 The command without `--desktop` runs the C and managed fixtures,
 Rust tests and isolated NuGet consumers. Add `--desktop` only when the
 desktop belongs to the acceptance fixture. The managed driver exercises the

@@ -308,7 +308,13 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
         check_dependency_version(parent, window)
         window_binary = build_sdk(window, selected, tools, env, host)
         check_c_fixture(window, selected, window_binary)
-        window_package = pack_sdk(window, selected, ["--runtime", RID], env)
+        window_package = pack_sdk(
+            window,
+            selected,
+            [RID],
+            pack_targets=parent / "distribution/window-management-pack.targets",
+            environment=env,
+        )
         check_installed_package(
             selected,
             dotnet,
@@ -368,9 +374,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                             if source.is_file() and not source.is_symlink():
                                 shutil.copyfile(source, diagnostics / name)
                     raise
-            actions_package = pack_sdk(
-                actions, selected, ["--runtime", RID, "--package-source", str(feed)], env
-            )
+            actions_package = pack_sdk(actions, selected, [RID], sources=[feed], environment=env)
             for fixture in ("PackageConsumer.cs", "ReflectionFreeConsumer.cs"):
                 check_installed_package(
                     selected,
