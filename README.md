@@ -241,10 +241,9 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 
 ## Development and validation
 
-Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10. Developer
-commands load the immutable `sdk-tooling` revision in `tools/tooling-sources.json`; see
-[shared setup](https://github.com/naviapps/sdk-tooling#readme) for caches, offline use
-and source overrides. Review `mise.toml`, then run from the repository root:
+Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10.
+The build and verification scripts live in `tools/`. Review `mise.toml`, then run
+from the repository root:
 
 ```sh
 mise trust mise.toml
@@ -283,9 +282,9 @@ mise exec -- python3 -B tools/install-consumers.py \
 Run from a clean committed checkout. Shallow producer checkouts also need a complete
 mirror or bundle via `--git-source`. CI clones WindowManagement for the local
 delivery check, while a fresh Cargo cache may fetch public crates.
-See [shared consumer mechanisms](https://github.com/naviapps/sdk-tooling/blob/main/docs/REFERENCE.md#consumer-verification)
-for isolation and evidence formats. These checks prove local installation, not remote
-Git installation or native desktop acceptance.
+These checks verify installation from isolated local sources. The
+[Windows desktop fixture](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
+verifies native effects on an owned worker.
 
 ### Native artifacts and package checks
 
@@ -316,15 +315,15 @@ mise exec -- python3 tools/test-package.py .native-build/packages/NaviApps.Deskt
 
 The package fixture checks codecs, platform planning, shared window requests/runtime and bounded execution
 without posting input. Keep `ThirdParty/`, Rust provenance, framework
-`Resources/ThirdPartyNotices.txt` and NuGet runtime notices intact. See
-[native artifact rules](https://github.com/naviapps/sdk-tooling/blob/main/docs/REFERENCE.md#native-artifacts-and-provenance)
-for receipt verification. [Windows acceptance](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md#windows-ci-and-owned-acceptance)
+`Resources/ThirdPartyNotices.txt` and NuGet runtime notices intact.
+`mise exec -- make native-verify` checks the framework against its build receipt.
+[Windows acceptance](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 records OS effects separately from compilation and installation.
 
 ### Documentation and static checks
 
-Run `mise run lint` or `mise run format` according to the
-[shared quality policy](https://github.com/naviapps/sdk-tooling/blob/main/docs/REFERENCE.md#quality-and-documentation-checks).
+Run `mise run lint` to check source and workflows or `mise run format` to format
+source files.
 For documentation changes, `mise exec -- make test-docs` builds symbol graphs and
 verifies all three DocC catalogs with warnings as errors; it may resolve and compile
 Swift dependencies. Check Markdown alone with

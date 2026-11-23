@@ -13,7 +13,7 @@ import tomllib
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from _tooling import git, load_candidate, verify
+from _tooling import git, load, support_inputs
 from sdk_packages import pack_sdk
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -244,7 +244,7 @@ def publish_acceptance(stage, destination, artifacts, receipt):
         )
 
 
-def accept(root, approved, revision, environment, host, tools, dotnet, selected, desktop):
+def accept(root, environment, host, tools, dotnet, selected, desktop):
     artifacts = selected("artifacts")
     windows = selected("windows")
     sdk_tools = selected("native")
@@ -268,6 +268,7 @@ def accept(root, approved, revision, environment, host, tools, dotnet, selected,
     result = Path(artifacts_path or base) / "desktop-actions-win-x64"
     commit = git(root, "rev-parse", "HEAD^{commit}").decode().strip()
     verify_snapshot(root, commit)
+    tool_inputs = support_inputs()
 
     with tempfile.TemporaryDirectory(prefix="desktop-x64-", dir=base) as temporary:
         work = Path(temporary)
@@ -379,8 +380,9 @@ def accept(root, approved, revision, environment, host, tools, dotnet, selected,
                     window_package,
                 )
 
-            verify(approved, revision)
             verify_snapshot(root, commit)
+            if support_inputs() != tool_inputs:
+                raise ValueError("The SDK build tools changed during Windows acceptance")
             for label, sdk, source, binary, package in (
                 ("sdk", actions, commit, actions_binary, actions_package),
                 ("window-dependency", window, dependency_revision, window_binary, window_package),
@@ -413,7 +415,7 @@ def accept(root, approved, revision, environment, host, tools, dotnet, selected,
                 "desktopFixtureExecuted": desktop,
                 "source": commit,
                 "windowManagementSource": dependency_revision,
-                "sdkToolingSource": revision,
+                "toolInputs": tool_inputs,
                 "outputs": artifacts.hashes(artifacts.files(stage), stage),
             }
             artifacts.write_json(stage / RECEIPT, receipt)
@@ -423,19 +425,12 @@ def accept(root, approved, revision, environment, host, tools, dotnet, selected,
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--tooling-source", required=True, type=Path, help="Approved SDK tooling checkout"
-    )
-    parser.add_argument(
-        "--tooling-revision", required=True, help="Full commit SHA of the approved tooling"
-    )
-    parser.add_argument(
         "--desktop", action="store_true", help="Run the separate-process owned desktop fixture"
     )
     args = parser.parse_args(argv)
     if sys.platform != "win32":
         raise SystemExit("An owned Windows worker is required for runtime acceptance")
-    selected = load_candidate(args.tooling_source, args.tooling_revision)
-    windows = selected("windows")
+    windows = load("windows")
     host = windows.host_architecture()
     env, tools, dotnet = windows.native_environment(host, target_architecture="x64")
     expected = tomllib.loads((ROOT / "mise.toml").read_text())["tools"]["dotnet"]
@@ -444,17 +439,7 @@ def main(argv=None):
         != expected
     ):
         raise ValueError("Use the pinned x64 .NET SDK from mise.toml")
-    accept(
-        ROOT,
-        args.tooling_source,
-        args.tooling_revision,
-        env,
-        host,
-        tools,
-        dotnet,
-        selected,
-        args.desktop,
-    )
+    accept(ROOT, env, host, tools, dotnet, load, args.desktop)
     print("Windows x64 SDK package and runtime acceptance passed.")
 
 

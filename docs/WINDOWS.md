@@ -144,19 +144,18 @@ embedded controls or backslash repair.
 ## Windows CI and owned acceptance
 
 GitHub Actions uses a Windows x64 runner to validate Rust, C, .NET and installed
-NuGet consumers against the pinned SDK and tooling revisions. For native desktop
+NuGet consumers against the SDK checkout and its pinned dependencies. For native desktop
 effects or x64 emulation on ARM64, use the local command in an owned desktop.
 
 Run the same acceptance on an owned worker from a clean DesktopActions
-checkout. Set `DOTNET_BIN` to the absolute path of .NET 10.0.403 for x64
-and supply a clean checked-out SDK Tooling commit with ARM64-hosted x64
-support. The command without `--desktop` runs the C and managed fixtures,
+checkout. Set `DOTNET_BIN` to the absolute path of .NET 10.0.403 for x64.
+The command without `--desktop` runs the C and managed fixtures,
 Rust tests and isolated NuGet consumers. Add `--desktop` only when the
 desktop belongs to the acceptance fixture. The managed driver exercises the
 public SDK against a separate x64 Rust Win32 target with a native edit control.
 
 ```powershell
-python -E -S -B tools/check-windows.py --tooling-source C:/tools/approved-sdk-tooling --tooling-revision <full-commit-sha> --desktop
+python -E -S -B tools/check-windows.py --desktop
 ```
 
 The producer builds the Cargo-locked WindowManagement revision in an exact,
@@ -168,8 +167,8 @@ in the same run. The Windows producer leaves both SDK pins intact.
 The accepted package pair, native receipts and coverage record stay below
 `NAVI_CI_ARTIFACTS/desktop-actions-win-x64` in CI or
 `.native-build/desktop-actions-win-x64` locally. The record identifies the
-DesktopActions, WindowManagement and SDK Tooling source revisions, host
-and execution mode, and retained file digests.
+DesktopActions and WindowManagement source revisions, SDK-owned tool
+digests, host and execution mode, and retained file digests.
 
 For a separate macOS managed test, use
 `make test-dotnet DOTNET_TEST_FLAGS='--package-source /path/to/private-feed'`

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run this SDK's package fixture through the pinned local-feed consumer driver."""
+"""Run the NuGet consumer fixtures in an isolated local feed."""
 
 from pathlib import Path
 

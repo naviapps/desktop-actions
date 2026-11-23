@@ -22,16 +22,14 @@ def pack_sdk(native, selected, arguments, environment=None):
         authors="Navi Apps",
         package_files=files,
         nuget_config=root / "bindings/dotnet/NuGet.Config",
-        input_files=[
-            root / "tools/pack-dotnet.py",
-            root / "tools/_tooling.py",
-            root / "tools/tooling-sources.json",
-            *(
-                [root / "tools/check-windows.py", root / "tools/sdk_packages.py"]
-                if basename == "NaviApps.DesktopActions"
-                else []
-            ),
-        ],
+        input_files=(
+            [
+                root / "tools" / name
+                for name in ("pack-dotnet.py", "_tooling.py", "check-windows.py", "sdk_packages.py")
+            ]
+            if basename == "NaviApps.DesktopActions"
+            else []
+        ),
         argv=arguments,
         environment=environment,
     )

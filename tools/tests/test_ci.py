@@ -144,6 +144,7 @@ class NativeFixtureTests(unittest.TestCase):
             patch.object(windows_sdk, "git", return_value=b"source"),
             patch.object(windows_sdk, "verify_snapshot"),
             patch.object(windows_sdk, "snapshot"),
+            patch.object(windows_sdk, "support_inputs", return_value={}),
             patch.object(
                 windows_sdk.subprocess, "run", side_effect=OSError("stop at fetch")
             ) as run,
@@ -151,8 +152,6 @@ class NativeFixtureTests(unittest.TestCase):
             with self.assertRaisesRegex(OSError, "stop at fetch"):
                 windows_sdk.accept(
                     Path(temporary),
-                    "approved",
-                    "revision",
                     environment,
                     "arm64",
                     "tools",
@@ -278,7 +277,7 @@ class AcceptancePublicationTests(unittest.TestCase):
         self.artifacts.write_json(stage / windows_sdk.RECEIPT, receipt)
         return stage, receipt
 
-    def test_pinned_publisher_verifies_the_moved_receipt(self):
+    def test_publisher_verifies_the_moved_receipt(self):
         stage, receipt = self.stage("first", b"first candidate")
         windows_sdk.publish_acceptance(stage, self.destination, self.artifacts, receipt)
         self.assertFalse(stage.exists())
