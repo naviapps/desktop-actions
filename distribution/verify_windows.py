@@ -9,7 +9,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
@@ -17,12 +16,17 @@ from sdk_tooling.adapters import git, load, support_inputs
 from sdk_tooling.native_plan import ffi_product
 from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetch_args
 
-from distribution.nuget import pack_sdk
+from distribution.nuget import (
+    WINDOW_MANAGEMENT,
+    WINDOW_MANAGEMENT_URL,
+    check_dependency_version,
+    pack_sdk,
+    snapshot,
+    verify_snapshot,
+    window_management_package,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
-REPOSITORY = "naviapps/window-management"
-URL = f"https://github.com/{REPOSITORY}.git"
-SOURCE = re.compile(rf"git\+{re.escape(URL)}\?rev=([a-f0-9]{{40}})#\1")
 DESKTOP = Path("fixtures/acceptance/windows/host/DesktopActions.WindowsAcceptance.csproj")
 DESKTOP_TARGET = "test_owned_input_target"
 NUGET_CONFIG = Path("bindings/dotnet/NuGet.Config")
@@ -34,56 +38,20 @@ def sha256(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def snapshot(source, revision, destination):
-    """Detach exact Git objects in a private build directory."""
-    try:
-        actual = git(source, "rev-parse", revision + "^{commit}").decode().strip()
-    except RuntimeError as error:
-        raise ValueError("The SDK source differs from its immutable revision") from error
-    if actual != revision:
-        raise ValueError("The SDK source differs from its immutable revision")
-    git(
-        None,
-        "clone",
-        "--no-local",
-        "--no-checkout",
-        "--config",
-        "core.autocrlf=false",
-        "--config",
-        "core.longpaths=true",
-        "--",
-        str(source),
-        str(destination),
-    )
-    git(destination, "checkout", "--detach", revision)
-    verify_snapshot(destination, revision)
-
-
-def verify_snapshot(root, revision):
-    if (
-        git(root, "rev-parse", "HEAD^{commit}").decode().strip() != revision
-        or git(root, "status", "--porcelain=v1", "--untracked-files=all").strip()
-    ):
-        raise ValueError("The SDK checkout differs from its accepted revision")
-
-
 def dependency_source(metadata, environment):
-    packages = [p for p in metadata["packages"] if p["name"] == "window-management"]
-    if len(packages) != 1 or not (match := SOURCE.fullmatch(packages[0].get("source") or "")):
-        raise ValueError("Exactly one immutable WindowManagement dependency is required")
-    revision = match[1]
+    package, revision = window_management_package(metadata["packages"])
     if (manifest := vm.source_manifest(environment)) is None:
-        return Path(packages[0]["manifest_path"]).resolve().parents[2], revision
+        return Path(package["manifest_path"]).resolve().parents[2], revision
 
     if manifest.is_symlink() or not manifest.is_file():
         raise ValueError("The captured source manifest must be a local file")
-    entries = [e for e in json.loads(manifest.read_bytes()) if e["repository"] == REPOSITORY]
+    entries = [e for e in json.loads(manifest.read_bytes()) if e["repository"] == WINDOW_MANAGEMENT]
     if len(entries) != 1:
         raise ValueError("Expected one captured WindowManagement source")
     entry = entries[0]
     if (
         entry["revision"] != revision
-        or entry["url"] != URL
+        or entry["url"] != WINDOW_MANAGEMENT_URL
         or not re.fullmatch(r"[0-9]+\.bundle", entry["bundle"])
     ):
         raise ValueError("Captured WindowManagement source differs from the Cargo lock")
@@ -99,18 +67,6 @@ def dependency_source(metadata, environment):
     ):
         raise ValueError("Captured WindowManagement bundle or mirror differs from its receipt")
     return mirror, revision
-
-
-def check_dependency_version(root, dependency):
-    project = root / "bindings/dotnet/src/NaviApps.DesktopActions/NaviApps.DesktopActions.csproj"
-    tree = ET.parse(project)
-    requirements = [
-        ref.get("Version")
-        for ref in tree.findall(".//PackageReference")
-        if ref.get("Include") == "NaviApps.WindowManagement"
-    ]
-    if requirements != [f"[{dependency.version}]"]:
-        raise ValueError("Managed WindowManagement version differs from the locked Rust SDK")
 
 
 def build_sdk(native, selected, tools, environment, host):

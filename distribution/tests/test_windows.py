@@ -10,6 +10,7 @@ from unittest.mock import Mock, call, patch
 
 from sdk_tooling.adapters import load
 
+from distribution import nuget
 from distribution import verify_windows as windows_sdk
 
 
@@ -32,8 +33,8 @@ class LockedDependencyTests(unittest.TestCase):
         self.mirror = self.bundle.with_suffix(".git")
         self.git(self.source, "clone", "-q", "--mirror", str(self.bundle), str(self.mirror))
         self.entry = {
-            "repository": windows_sdk.REPOSITORY,
-            "url": windows_sdk.URL,
+            "repository": nuget.WINDOW_MANAGEMENT,
+            "url": nuget.WINDOW_MANAGEMENT_URL,
             "revision": self.revision,
             "bundle": self.bundle.name,
             "sha256": windows_sdk.sha256(self.bundle),
@@ -41,7 +42,7 @@ class LockedDependencyTests(unittest.TestCase):
         self.manifest = self.root / "manifest.json"
         self.manifest.write_text(json.dumps([self.entry]), encoding="utf-8")
         self.environment = {"VM_RUNNER_SOURCE_MANIFEST": str(self.manifest)}
-        self.source_uri = f"git+{windows_sdk.URL}?rev={self.revision}#{self.revision}"
+        self.source_uri = f"git+{nuget.WINDOW_MANAGEMENT_URL}?rev={self.revision}#{self.revision}"
         self.metadata = {
             "packages": [
                 {
@@ -80,12 +81,12 @@ class LockedDependencyTests(unittest.TestCase):
         mirror, revision = windows_sdk.dependency_source(self.metadata, self.environment)
         self.assertEqual((mirror, revision), (self.mirror, self.revision))
         checkout = self.root / "detached"
-        windows_sdk.snapshot(mirror, revision, checkout)
+        nuget.snapshot(mirror, revision, checkout)
         self.assertEqual((checkout / "Cargo.toml").read_text(encoding="utf-8"), "first")
         self.assertEqual(self.contract.read_text(encoding="utf-8"), "uncommitted local edit")
         (checkout / "Cargo.toml").write_text("altered", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "differs from its accepted revision"):
-            windows_sdk.verify_snapshot(checkout, revision)
+            nuget.verify_snapshot(checkout, revision)
 
     def test_bundle_bytes_must_match_capture(self):
         self.bundle.write_bytes(b"changed")
@@ -98,7 +99,10 @@ class LockedDependencyTests(unittest.TestCase):
             windows_sdk.dependency_source(self.metadata, self.environment)
 
     def test_lock_cannot_be_replaced_by_workspace_or_mismatched_source(self):
-        for bad in (None, f"git+{windows_sdk.URL}?rev={self.revision}#{self.newer_revision}"):
+        for bad in (
+            None,
+            f"git+{nuget.WINDOW_MANAGEMENT_URL}?rev={self.revision}#{self.newer_revision}",
+        ):
             self.metadata["packages"][0]["source"] = bad
             with self.assertRaisesRegex(ValueError, "one immutable WindowManagement"):
                 windows_sdk.dependency_source(self.metadata, self.environment)
@@ -108,7 +112,7 @@ class LockedDependencyTests(unittest.TestCase):
         self.assertEqual(source, self.source)
         self.assertEqual(revision, self.revision)
         with self.assertRaisesRegex(ValueError, "differs from its immutable revision"):
-            windows_sdk.snapshot(source, "1" * 40, self.root / "invalid")
+            nuget.snapshot(source, "1" * 40, self.root / "invalid")
 
     def test_managed_package_version_is_bound_to_rust_dependency(self):
         project = (
@@ -120,9 +124,9 @@ class LockedDependencyTests(unittest.TestCase):
             'Version="[0.1.0]" /></ItemGroup></Project>',
             encoding="utf-8",
         )
-        windows_sdk.check_dependency_version(self.root, SimpleNamespace(version="0.1.0"))
+        nuget.check_dependency_version(self.root, SimpleNamespace(version="0.1.0"))
         with self.assertRaisesRegex(ValueError, "version differs from the locked Rust SDK"):
-            windows_sdk.check_dependency_version(self.root, SimpleNamespace(version="0.2.0"))
+            nuget.check_dependency_version(self.root, SimpleNamespace(version="0.2.0"))
 
 
 class NativeFixtureTests(unittest.TestCase):

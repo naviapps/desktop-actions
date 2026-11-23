@@ -136,8 +136,12 @@ dotnet add ActionClient/ActionClient.csproj package NaviApps.DesktopActions \
   --version 0.1.0 --source /path/to/private-feed
 ```
 
-The selected feed must contain both packages. `WindowsActionExecutor` performs live
-effects on Windows only; use `DesktopActionsMacOS` for the default Swift macOS executor.
+The selected feed must contain both packages. Record the feed in the client's
+`NuGet.Config` so a later restore can find it with an empty package cache. The
+shared model and runner support Windows x64 and macOS arm64/x64 when their RIDs
+are present in both packages.
+`WindowsActionExecutor` performs live effects on Windows. Use `DesktopActionsMacOS`
+from Swift for native macOS effects.
 
 ## Inspect an action
 
@@ -274,8 +278,9 @@ The independent clients use injected desktop effects.
 | `mise run sdk-tooling -- rust-c-consumers` | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
 | `mise exec -- make test-installed-c`       | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
 
-For both Rust/C clients outside CI, supply a complete local WindowManagement mirror
-or bundle containing its pinned revision.
+For the Rust consumer outside CI, supply a complete local WindowManagement mirror
+or bundle containing its pinned revision. The C-only target uses the tracked
+framework.
 
 ```sh
 mise run sdk-tooling -- rust-c-consumers \
@@ -331,8 +336,19 @@ mise run sdk-tooling -- check-binding dotnet --package-source /path/to/private-f
 `DOTNET_BIN` selects an existing .NET executable. Follow the
 [Windows acceptance guide](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 to build and verify both DesktopActions and its fixed WindowManagement dependency
-on an owned Windows worker. The manual macOS package route uses the tracked
-framework and tests a fresh local-feed client.
+on an owned Windows worker. On macOS, the distribution workflow packs both
+tracked frameworks and runs the independent .NET consumers. To run the same
+verification locally, pass a WindowManagement repository containing the revision
+in DesktopActions' `Cargo.lock`. It can be your existing checkout.
+
+```sh
+mise run sdk-tooling -- python -m distribution.verify_macos /path/to/window-management
+```
+
+The verifier checks out the exact dependency in a temporary directory. Each SDK
+uses the Tooling revision recorded with its own framework. The check audits both
+macOS RIDs, then runs the consumers with the host .NET architecture and a fresh
+package cache. For separate packing and verification with an existing private feed:
 
 ```sh
 mise run sdk-tooling -- python -m distribution.pack_nuget --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
