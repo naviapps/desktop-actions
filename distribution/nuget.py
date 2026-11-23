@@ -107,15 +107,13 @@ def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):
                 "distribution/verify_windows.py",
             )
         )
-    files = {"LICENSE": root / "LICENSE", "README.md": root / "README.md"}
-    files.update(
-        {
-            path.relative_to(root).as_posix(): path
-            for path in selected("artifacts").files(root / "ThirdParty")
-            if path.name not in (".DS_Store", "registry-notices.json")
-        }
-    )
-    return selected("nuget").pack_native(
+    nuget = selected("nuget")
+    files = {
+        "LICENSE": root / "LICENSE",
+        "README.md": root / "README.md",
+        **nuget.retained_notice_files(root / "ThirdParty", "ThirdParty"),
+    }
+    return nuget.pack_native(
         native,
         project=root / "bindings/dotnet/src" / basename / (basename + ".csproj"),
         package_files=files,

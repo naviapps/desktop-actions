@@ -8,4 +8,4 @@ publish = false
 
 [dependencies]
 desktop-actions = { git = "https://github.com/naviapps/desktop-actions.git", rev = "@SDK_REVISION@" }
-window-management = { git = "https://github.com/naviapps/window-management.git", rev = "5c9710417d3b6597df7a6bcc94b6bb82008da96a" }
+window-management = { git = "https://github.com/naviapps/window-management.git", rev = "06463118a74029a57038c4e614e36a429b2516ae" }
