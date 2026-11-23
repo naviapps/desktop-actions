@@ -43,7 +43,7 @@ dependencies = [
 [[package]]
 name = "desktop-applications"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/desktop-applications.git?rev=4ea3b7ed9d22adcfac05a42fc98e826467dbea90#4ea3b7ed9d22adcfac05a42fc98e826467dbea90"
+source = "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5"
 dependencies = [
  "serde",
 ]
@@ -51,7 +51,7 @@ dependencies = [
 [[package]]
 name = "desktop-applications-windows"
 version = "0.1.0"
-source = "git+https://github.com/naviapps/desktop-applications.git?rev=4ea3b7ed9d22adcfac05a42fc98e826467dbea90#4ea3b7ed9d22adcfac05a42fc98e826467dbea90"
+source = "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5"
 dependencies = [
  "desktop-applications",
  "serde",

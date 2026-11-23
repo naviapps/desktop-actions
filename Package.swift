@@ -25,7 +25,7 @@ let package = Package(
   dependencies: [
     dependency(
       "desktop-applications", environment: "DESKTOP_APPLICATIONS_PACKAGE_PATH",
-      revision: "4ea3b7ed9d22adcfac05a42fc98e826467dbea90"),
+      revision: "1ddfee787a940ee6ca964ec28922868910b90ac5"),
     .package(
       url: "https://github.com/swiftlang/swift-subprocess.git",
       .upToNextMinor(from: "1.0.2")
