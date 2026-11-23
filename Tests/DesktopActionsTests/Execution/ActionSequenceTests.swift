@@ -43,11 +43,11 @@ final class ActionSequenceTests: XCTestCase {
 
   func testAlreadyCancelledSequenceDoesNotInvokeWork() async throws {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(2))
-    let task = Task {
+    let task = Task { @Sendable in
       withUnsafeCurrentTask { $0?.cancel() }
       return await runner.runSequence([.copy, .paste], failureBehavior: .continue) { _ in
         XCTFail("Cancelled sequence invoked an action")
-        return Self.success
+        return ActionSequenceTests.success
       }
     }
     let report = await task.value
@@ -73,12 +73,12 @@ final class ActionSequenceTests: XCTestCase {
     let operationReturned = expectation(description: "cancelled worker observed the signal")
     let gate = Gate()
     let calls = Calls()
-    let claims = Mutex<[ActionRequest]>([])
-    let sequence = Task {
+    let claims = Claims()
+    let sequence = Task { @Sendable in
       let report = await runner.runSequence(
         [.copy, .paste, .cut], failureBehavior: .continue,
         exemptFromTimeout: { action in
-          claims.withLock { $0.append(action) }
+          claims.append(action)
           return true
         },
         operation: { action in
@@ -88,9 +88,9 @@ final class ActionSequenceTests: XCTestCase {
             await gate.wait()
             XCTAssertTrue(Task.isCancelled)
             operationReturned.fulfill()
-            return Self.failure
+            return ActionSequenceTests.failure
           }
-          return Self.success
+          return ActionSequenceTests.success
         })
       delivered.fulfill()
       return report
@@ -109,7 +109,7 @@ final class ActionSequenceTests: XCTestCase {
     XCTAssertEqual(report.status, .cancelled)
     XCTAssertEqual(report.results, [.completed(Self.success), .cancelled])
     XCTAssertFalse(report.allActionsSucceeded)
-    XCTAssertEqual(claims.withLock { $0 }, [.copy, .paste])
+    XCTAssertEqual(claims.actions, [.copy, .paste])
     let observed = await calls.actions
     XCTAssertEqual(observed, [.copy, .paste])
     await ActionTestFixtures.assertExecutionCapacityReleased(runner, report: Self.success)
@@ -118,25 +118,25 @@ final class ActionSequenceTests: XCTestCase {
   func testCancellationInTheTimeoutSelectorKeepsProgressAndSkipsTheSecondEffect() async throws {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(5))
     let calls = Calls()
-    let claims = Mutex<[ActionRequest]>([])
-    let caller = Task {
+    let claims = Claims()
+    let caller = Task { @Sendable in
       await runner.runSequence(
         [.copy, .paste, .cut], failureBehavior: .continue,
         exemptFromTimeout: { action in
-          claims.withLock { $0.append(action) }
+          claims.append(action)
           if action == .paste { withUnsafeCurrentTask { $0?.cancel() } }
           return true
         },
         operation: { action in
           await calls.append(action)
-          return Self.success
+          return ActionSequenceTests.success
         })
     }
     let report = await caller.value
     XCTAssertEqual(report.status, .cancelled)
     XCTAssertEqual(report.results, [.completed(Self.success), .cancelled])
     XCTAssertFalse(report.allActionsSucceeded)
-    XCTAssertEqual(claims.withLock { $0 }, [.copy, .paste])
+    XCTAssertEqual(claims.actions, [.copy, .paste])
     let observed = await calls.actions
     XCTAssertEqual(observed, [.copy])
     let next = await runner.run(.cut) { _ in Self.success }
@@ -147,11 +147,11 @@ final class ActionSequenceTests: XCTestCase {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(1))
     let gate = Gate()
     let calls = Calls()
-    let claims = Mutex<[ActionRequest]>([])
+    let claims = Claims()
     let report = await runner.runSequence(
       [.copy, .paste], failureBehavior: .continue,
       exemptFromTimeout: { action in
-        claims.withLock { $0.append(action) }
+        claims.append(action)
         return false
       },
       operation: { action in
@@ -163,7 +163,7 @@ final class ActionSequenceTests: XCTestCase {
     XCTAssertEqual(report.status, .timedOut)
     XCTAssertEqual(report.results, [.timedOut])
     XCTAssertFalse(report.allActionsSucceeded)
-    XCTAssertEqual(claims.withLock { $0 }, [.copy])
+    XCTAssertEqual(claims.actions, [.copy])
     let observed = await calls.actions
     XCTAssertEqual(observed, [.copy])
     let busy = await runner.run(.paste) { _ in
@@ -172,6 +172,14 @@ final class ActionSequenceTests: XCTestCase {
     }
     XCTAssertEqual(busy, .busy)
     await gate.open()
+  }
+
+  private final class Claims: Sendable {
+    private let recorded = Mutex<[ActionRequest]>([])
+
+    var actions: [ActionRequest] { recorded.withLock { $0 } }
+
+    func append(_ action: ActionRequest) { recorded.withLock { $0.append(action) } }
   }
 
   private actor Calls {

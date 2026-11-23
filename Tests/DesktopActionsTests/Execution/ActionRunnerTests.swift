@@ -27,11 +27,11 @@ final class ActionRunnerTests: XCTestCase {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .milliseconds(200))
     let started = expectation(description: "worker started")
     let gate = Gate()
-    let first = Task {
+    let first = Task { @Sendable in
       await runner.run(.copy) { _ in
         started.fulfill()
         await gate.wait()
-        return Self.success
+        return ActionRunnerTests.success
       }
     }
     await fulfillment(of: [started], timeout: 2)
@@ -50,11 +50,11 @@ final class ActionRunnerTests: XCTestCase {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(10))
     let started = expectation(description: "worker started")
     let gate = Gate()
-    let first = Task {
+    let first = Task { @Sendable in
       await runner.run(.copy) { _ in
         started.fulfill()
         await gate.wait()
-        return Self.success
+        return ActionRunnerTests.success
       }
     }
     await fulfillment(of: [started], timeout: 2)
@@ -79,7 +79,7 @@ final class ActionRunnerTests: XCTestCase {
     let workerGate = Gate()
     let handlerGate = DispatchSemaphore(value: 0)
 
-    let caller = Task {
+    let caller = Task { @Sendable in
       let outcome = await runner.run(.copy, exemptFromTimeout: true) { _ in
         await withTaskCancellationHandler {
           started.fulfill()
@@ -88,7 +88,7 @@ final class ActionRunnerTests: XCTestCase {
           handlerEntered.fulfill()
           handlerGate.wait()
         }
-        return Self.success
+        return ActionRunnerTests.success
       }
       deliveryReturned.fulfill()
       return outcome
@@ -115,7 +115,7 @@ final class ActionRunnerTests: XCTestCase {
 
   func testCancellationBeforeWorkerHandleRegistrationPreventsAction() async throws {
     let cancelDuringFirstLaunch = Mutex(true)
-    let operationRan = Mutex(false)
+    let operationRan = OperationProbe()
     let finishOperation = Gate()
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(10)) {
       priority, operation in
@@ -130,29 +130,29 @@ final class ActionRunnerTests: XCTestCase {
       return worker
     }
 
-    let caller = Task {
+    let caller = Task { @Sendable in
       await runner.run(.copy) { _ in
-        operationRan.withLock { $0 = true }
+        operationRan.record()
         await finishOperation.wait()
-        return Self.success
+        return ActionRunnerTests.success
       }
     }
     let outcome = await caller.value
     await finishOperation.open()
     XCTAssertEqual(outcome, .cancelled)
     XCTAssertFalse(
-      operationRan.withLock { $0 },
+      operationRan.didRun,
       "An action must not run before its worker can receive cancellation.")
     await ActionTestFixtures.assertExecutionCapacityReleased(runner, report: Self.success)
   }
 
   func testAlreadyCancelledCallerNeverEntersNativeOperation() async throws {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .seconds(1))
-    let task = Task {
+    let task = Task { @Sendable in
       withUnsafeCurrentTask { $0?.cancel() }
       return await runner.run(.copy) { _ in
         XCTFail("Cancelled caller executed an action")
-        return Self.success
+        return ActionRunnerTests.success
       }
     }
     let outcome = await task.value
@@ -164,11 +164,11 @@ final class ActionRunnerTests: XCTestCase {
     let runner = try ActionRunner(maximumConcurrentExecutions: 1, timeout: .milliseconds(10))
     let gate = Gate()
     let started = expectation(description: "interactive worker started")
-    let task = Task {
+    let task = Task { @Sendable in
       await runner.run(.captureScreenSelection, exemptFromTimeout: true) { _ in
         started.fulfill()
         await gate.wait()
-        return Self.success
+        return ActionRunnerTests.success
       }
     }
     await fulfillment(of: [started], timeout: 2)
@@ -181,7 +181,9 @@ final class ActionRunnerTests: XCTestCase {
   func testCancellationAndImmediateCompletionDoNotLoseOrRepeatDelivery() async throws {
     let runner = try ActionRunner(maximumConcurrentExecutions: 32, timeout: .seconds(2))
     for _ in 0..<32 {
-      let task = Task { await runner.run(.copy) { _ in Self.success } }
+      let task = Task { @Sendable in
+        await runner.run(.copy) { _ in ActionRunnerTests.success }
+      }
       task.cancel()
       let outcome = await task.value
       switch outcome {
@@ -189,6 +191,14 @@ final class ActionRunnerTests: XCTestCase {
       default: XCTFail("Unexpected terminal delivery: \(outcome)")
       }
     }
+  }
+
+  private final class OperationProbe: Sendable {
+    private let ran = Mutex(false)
+
+    var didRun: Bool { ran.withLock { $0 } }
+
+    func record() { ran.withLock { $0 = true } }
   }
 
   /// A deliberately uncooperative worker fixture: cancellation does not resume it.

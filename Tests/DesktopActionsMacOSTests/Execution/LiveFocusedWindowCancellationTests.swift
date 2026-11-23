@@ -42,13 +42,15 @@ final class LiveFocusedWindowCancellationTests: XCTestCase {
   func testAlreadyCancelledAdapterSkipsEveryNativeOperation() async throws {
     let effects = InvocationRecorder()
     let controller = Self.controller(recording: effects)
-    let task = Task.detached {
+    let placement = Self.placement
+    let move = Self.move
+    let task = Task.detached { @Sendable in
       withUnsafeCurrentTask { $0?.cancel() }
       try await controller.requestClose()
       try await controller.minimize()
       try await controller.toggleFullScreen()
-      try await controller.place(Self.placement)
-      try await controller.moveToAdjacentDisplay(Self.move)
+      try await controller.place(placement)
+      try await controller.moveToAdjacentDisplay(move)
     }
 
     try await task.value
@@ -73,7 +75,8 @@ final class LiveFocusedWindowCancellationTests: XCTestCase {
           leavingFactory.signal()
           return controller
         })
-      let task = Task.detached { try await executor.execute(plan: Self.plan(operation)) }
+      let plan = Self.plan(operation)
+      let task = Task.detached { @Sendable in try await executor.execute(plan: plan) }
       await fulfillment(of: [reachedController], timeout: 2)
       await MainActor.run {
         // Permission callbacks have finished. Hold MainActor while the controller is returned.
@@ -102,7 +105,8 @@ final class LiveFocusedWindowCancellationTests: XCTestCase {
         moveToAdjacentDisplay: { _ in try Self.cancelAndFail() })
       let executor = Self.executor(
         logs: logs, keys: keys, makeController: { controller })
-      let task = Task { try await executor.execute(plan: Self.plan(operation)) }
+      let plan = Self.plan(operation)
+      let task = Task { @Sendable in try await executor.execute(plan: plan) }
 
       await Self.assertCancelled(task)
 
