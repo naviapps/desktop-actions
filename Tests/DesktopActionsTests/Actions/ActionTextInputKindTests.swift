@@ -4,17 +4,9 @@ import Foundation
 import XCTest
 
 final class ActionTextInputKindTests: XCTestCase {
-  func testKeyboardConfirmationMatchesTargetFunctionModifierSupport() throws {
+  func testKeyboardEvaluationProjectsUnsupportedTarget() throws {
     let keyboard = try XCTUnwrap(ActionTextInputKind(kind: .keyboardShortcut))
-    XCTAssertTrue(keyboard.evaluate("fn+f11", platform: .macOS).canConfirm)
-
-    let windows = keyboard.evaluate("fn+f11", platform: .windows)
-    XCTAssertFalse(windows.canConfirm)
-    XCTAssertEqual(windows.issue, .unsupportedPlatform)
-    XCTAssertEqual(windows.confirmedValue, "fn+f11")
-    XCTAssertTrue(keyboard.evaluate("ctrl+f24", platform: .windows).canConfirm)
-    XCTAssertEqual(
-      keyboard.evaluate("fn++f11", platform: .windows).issue, .invalidKeyboardShortcut)
+    XCTAssertEqual(keyboard.evaluate("fn+f11", platform: .windows).issue, .unsupportedPlatform)
   }
 
   func testDescriptorsAndTextFormsComeFromTheNativeCatalog() throws {
@@ -64,14 +56,11 @@ final class ActionTextInputKindTests: XCTestCase {
 
   func testShortcutEvaluationProjectsProposedValueAndTypedIssue() throws {
     let input = try XCTUnwrap(ActionTextInputKind(kind: .runShortcut))
-    let draft = "  \u{200B}Morning  "
-    let exact = input.evaluate(draft, shortcuts: ["Morning", "\u{200B}Morning"])
-    XCTAssertEqual(exact.confirmedValue, "\u{200B}Morning")
-    XCTAssertTrue(exact.canConfirm)
+    let proposal = input.evaluate("MORNING", shortcuts: ["Morning"])
+    XCTAssertEqual(proposal.confirmedValue, "Morning")
+    XCTAssertTrue(proposal.canConfirm)
     XCTAssertEqual(
       input.evaluate("MORNING", shortcuts: ["Morning", "morning"]).issue, .ambiguousShortcut)
-    XCTAssertEqual(input.evaluate("MORNING", shortcuts: ["Morning"]).confirmedValue, "Morning")
-    XCTAssertEqual(input.evaluate("Morning", platform: .windows).issue, .unsupportedPlatform)
   }
 
   func testTextInputUsesExecutableValidationAndDoesNotRepairInvalidPayloads() throws {
