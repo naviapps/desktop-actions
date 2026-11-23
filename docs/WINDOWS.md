@@ -143,10 +143,9 @@ embedded controls or backslash repair.
 
 ## Windows CI and owned acceptance
 
-GitHub Actions uses a Windows x64 runner. The full gate runs once the exact
-SDK dependencies and the selected tooling commit are publicly accessible.
-Until then the workflow runs independent tool tests. For native desktop effects
-or x64 emulation on ARM64, use the local command in an owned desktop.
+GitHub Actions uses a Windows x64 runner to validate Rust, C, .NET and installed
+NuGet consumers against the pinned SDK and tooling revisions. For native desktop
+effects or x64 emulation on ARM64, use the local command in an owned desktop.
 
 Run the same acceptance on an owned worker from a clean DesktopActions
 checkout. Set `DOTNET_BIN` to the absolute path of .NET 10.0.403 for x64

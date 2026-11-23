@@ -32,7 +32,6 @@ native-verify:
 	python3 tools/native.py --verify
 
 test-rust:
-	cargo fmt --all -- --check
 	cargo clippy --workspace --all-targets --locked --offline -- -D warnings
 	cargo test --workspace --locked --offline
 

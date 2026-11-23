@@ -1,6 +1,6 @@
 # DesktopActions
 
-Private desktop action SDK with shared Rust semantics and Swift, C and .NET interfaces.
+Desktop action SDK with shared Rust semantics and Swift, C and .NET interfaces.
 The macOS adapter uses AppKit and Accessibility. The Rust Windows adapter performs
 native effects through the same plans and result reducer. Catalog presence alone
 does not mean that an operation is available on a particular OS. Native runtime
@@ -49,8 +49,6 @@ framework needs no Rust build on the consumer's machine. Consumers that use wind
 request types directly also declare the `WindowManagement` product from the pinned
 `window-management` dependency. The macOS adapter also consumes the pinned
 `DesktopApplications` / `DesktopApplicationsMacOS` products from `desktop-applications`.
-Configure authenticated Git access to all private dependencies before resolution;
-the SDK contains no credentials.
 
 For example, this complete client manifest selects all three public products.
 Replace the revision placeholder with the published 40-character commit ID of
@@ -91,7 +89,7 @@ without the SDK's developer tooling or package-path overrides.
 
 The public `desktop-actions` Rust crate requires Rust 1.99 or later and the target
 platform linker. It performs deterministic planning without linking a native
-desktop adapter. Configure Git access to both private repositories. Select a full
+desktop adapter. Select a full
 published DesktopActions commit and copy its exact `window-management` revision
 from that commit's `Cargo.toml` into the second placeholder:
 
@@ -263,9 +261,8 @@ Keep the Rust and Swift WindowManagement revisions aligned.
 ### Consumer installation checks
 
 The GitHub-hosted macOS workflow runs the shared Rust action contracts, strict
-Swift tests and three independent clients once the pinned dependencies are
-publicly accessible. Until then, the workflow can run the standalone fixture
-test. The independent clients use injected desktop effects:
+Swift tests and three independent clients against the pinned dependencies.
+The independent clients use injected desktop effects:
 
 | Command                              | Coverage                                                                                                                                                                                              |
 | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -282,8 +279,8 @@ mise exec -- python3 -B tools/install-consumers.py \
 ```
 
 Run from a clean committed checkout. Shallow producer checkouts also need a complete
-mirror or bundle via `--git-source`; CI supplies dependency bundles automatically.
-Private Git resolution stays local, while a fresh Cargo cache may fetch public crates.
+mirror or bundle via `--git-source`. CI clones WindowManagement for the local
+delivery check, while a fresh Cargo cache may fetch public crates.
 See [shared consumer mechanisms](https://github.com/naviapps/sdk-tooling/blob/main/docs/REFERENCE.md#consumer-verification)
 for isolation and evidence formats. These checks prove local installation, not remote
 Git installation or native desktop acceptance.
