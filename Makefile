@@ -3,9 +3,11 @@ SWIFT_STRICT_FLAGS := -Xswiftc -strict-concurrency=complete -Xswiftc -warnings-a
 
 .DEFAULT_GOAL := check
 
-.PHONY: check check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-tools
+.PHONY: check check-source check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-tools
 
-check: check-distribution test test-consumer
+check: check-source test test-consumer
+
+check-source: lint test-rust
 
 check-distribution: lint native-verify build-release test-rust test-docs test-tools
 

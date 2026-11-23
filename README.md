@@ -257,22 +257,24 @@ mise exec -- make check
 same checkouts declared by that host. Without overrides SwiftPM uses immutable pins.
 Keep the Rust and Swift revisions aligned for DesktopApplications and WindowManagement.
 
+`make check` runs the source checks, Rust workspace tests and Clippy, strict
+Swift tests, and the standalone Swift consumer from this checkout. GitHub Actions
+runs the Swift tests and consumer on macOS 26 with Xcode 26.6 and macOS 27 with
+Xcode 27.2. Public Windows CI runs the Rust workspace tests on x64.
+
 ### Consumer installation checks
 
-GitHub Actions runs the same strict Swift tests and standalone Swift consumer
-on macOS 26 with Xcode 26.6 and macOS 27 with Xcode 27.2. The distribution job
-runs the shared Rust action contracts and validates the installed Rust and C
-clients against the pinned dependencies.
-The independent clients use injected desktop effects:
+The independent clients use injected desktop effects.
 
-| Command                              | Coverage                                                                                                                                                                                              |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mise exec -- make test-consumer`    | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner; permission hooks are consumer-owned. Uses root `Package.resolved` when available. |
-| `tools/install-consumers.py`         | Rust Git client checks placement requests and Accessibility metadata against the exact WindowManagement revision; retains fresh dependency evidence.                                                  |
-| `mise exec -- make test-installed-c` | C client checks the copied framework, public header, notices and the same placement/permission metadata; retains header evidence.                                                                     |
+| Command                              | Coverage                                                                                                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mise exec -- make test-consumer`    | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner with consumer-owned permission hooks. |
+| `tools/install-consumers.py`         | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
+| `mise exec -- make test-installed-c` | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
 
-For both Rust/C clients outside CI, supply a complete local WindowManagement mirror
-or bundle containing its pinned revision:
+For both Rust/C clients outside CI, set up
+[distribution verification](#distribution-verification) and supply a complete local
+WindowManagement mirror or bundle containing its pinned revision.
 
 ```sh
 mise exec -- python3 -B tools/install-consumers.py \
@@ -280,21 +282,45 @@ mise exec -- python3 -B tools/install-consumers.py \
 ```
 
 Run from a clean committed checkout. Shallow producer checkouts also need a complete
-mirror or bundle via `--git-source`. CI clones WindowManagement for the local
-delivery check, while a fresh Cargo cache may fetch public crates.
+mirror or bundle via `--git-source`. The distribution workflow clones
+WindowManagement for the local delivery check. A fresh Cargo cache may fetch public crates.
 These checks verify installation from isolated local sources. The
 [Windows desktop fixture](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 verifies native effects on an owned worker.
+
+### Distribution verification
+
+Maintainers dispatch the detailed macOS and Windows checks in the private
+`naviapps/sdk-tooling` repository with the full SDK commit SHA from `main`.
+
+```sh
+gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
+  -f sdk=desktop-actions -f revision="$(git rev-parse HEAD)"
+```
+
+For local distribution checks, prepare a clean SDK Tooling checkout at the exact
+revision in [tools/tooling-sources.json](tools/tooling-sources.json). Point
+`NAVI_SDK_TOOLING_SOURCE` to that checkout before running the detailed targets.
+
+```sh
+export NAVI_SDK_TOOLING_SOURCE=/path/to/sdk-tooling
+mise exec -- make check-distribution
+```
+
+Use that same checkout for native artifact verification and rebuilds, DocC, C and
+.NET package checks, and the standalone Swift consumer's detailed
+`tools/consumer.py --distribution` mode.
 
 ### Native artifacts and package checks
 
 A clean clone uses the tracked framework. Rebuild it after production Rust/C/input
 changes with `mise exec -- make native`; test-only edits do not require a rebuild.
-`make check` verifies that framework and runs Swift, Rust, tooling and DocC checks.
+`make check-distribution` verifies that framework and runs the release build,
+shared Rust action contracts, distribution tooling tests and DocC checks.
 The Rust tests cover the input codec, metadata invariants, and platform plan
 matrix. The binding tests exercise typed projections, error mapping, ownership,
 and native adapter behavior.
-The strict Swift tests compile all library products in debug mode after the release build.
+The strict Swift tests compile all library products in debug mode.
 Run the C and .NET fixtures separately without rebuilding it:
 
 ```sh
@@ -303,7 +329,7 @@ mise exec -- python3 tools/test-dotnet.py --package-source /path/to/private-feed
 ```
 
 `DOTNET_BIN` selects an existing .NET executable. Follow the
-[Windows x64 workflow](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md#windows-ci-and-owned-acceptance)
+[Windows acceptance guide](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 to build and verify both DesktopActions and its fixed WindowManagement dependency
 on an owned Windows worker. The manual macOS package route uses the tracked
 framework and tests a fresh local-feed client.

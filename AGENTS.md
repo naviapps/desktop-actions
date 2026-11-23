@@ -6,6 +6,6 @@ Use Git on main. Preserve published commits and pinned dependencies; keep unfini
 
 Swift consumers install through Package.swift and tracked native frameworks. Rebuild native artifacts after Rust/C/input changes; maintain their provenance and runtime notices. Keep C ownership explicit and copy foreign views before invoking host callbacks. Test OS effects only in owned isolated fixtures and report actual runtime coverage separately from compilation.
 
-Automatic macOS source checks run the shared Rust action contracts and strict Swift tests against the tracked framework with default pinned dependencies. Keep Rust and Swift WindowManagement pins aligned so the controller's captured private Git bundles resolve both. Native OS acceptance remains separate.
+Public source checks use SDK-local tools and fixtures. Strict Swift tests use the tracked framework and default pinned dependencies. Keep Rust and Swift WindowManagement pins aligned. Use the pinned SDK Tooling checkout for maintainer distribution checks and run native desktop acceptance on an owned worker.
 
 Use English documentation/comments. Use GitHub-hosted CI without private dependency credentials. Human QA/data and existing VM/security/sharing settings are protected. Read README.md and the affected API catalog before changing a contract. Contributor commands and validation live in README.md#development-and-validation.
