@@ -170,7 +170,7 @@ use an isolated package cache and the WindowManagement NuGet package produced
 in the same run. The Windows producer leaves both SDK pins intact.
 
 The accepted package pair, native receipts and coverage record stay below
-`NAVI_CI_ARTIFACTS/desktop-actions-win-x64` in CI or
+`VM_RUNNER_ARTIFACTS_DIR/desktop-actions-win-x64` in CI or
 `.native-build/desktop-actions-win-x64` locally. The record identifies the
 DesktopActions and WindowManagement source revisions, SDK-owned tool
 and pinned shared-tool digests, host and execution mode, and retained file digests.

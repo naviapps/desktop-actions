@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from types import SimpleNamespace
 
+from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
 from sdk_tooling.native_plan import builder
 
@@ -74,11 +75,10 @@ def dependency_source(metadata, environment):
     if len(packages) != 1 or not (match := SOURCE.fullmatch(packages[0].get("source") or "")):
         raise ValueError("Exactly one immutable WindowManagement dependency is required")
     revision = match[1]
-    if not (manifest := environment.get("NAVI_CI_SOURCES")):
+    if (manifest := vm.source_manifest(environment)) is None:
         return Path(packages[0]["manifest_path"]).resolve().parents[2], revision
 
-    manifest = Path(manifest)
-    if not manifest.is_absolute() or manifest.is_symlink() or not manifest.is_file():
+    if manifest.is_symlink() or not manifest.is_file():
         raise ValueError("The captured source manifest must be a local file")
     entries = [e for e in json.loads(manifest.read_bytes()) if e["repository"] == REPOSITORY]
     if len(entries) != 1:
@@ -264,11 +264,8 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
     base.mkdir(exist_ok=True)
     if base.is_symlink():
         raise ValueError("The native build directory must not be a symlink")
-    if (artifacts_path := environment.get("NAVI_CI_ARTIFACTS")) and not Path(
-        artifacts_path
-    ).is_absolute():
-        raise ValueError("The worker artifact root must be absolute")
-    result = Path(artifacts_path or base) / "desktop-actions-win-x64"
+    artifact_root = vm.artifacts_dir(environment)
+    result = (artifact_root or base) / "desktop-actions-win-x64"
     commit = git(root, "rev-parse", "HEAD^{commit}").decode().strip()
     verify_snapshot(root, commit)
     tool_inputs = support_inputs(root)
@@ -357,7 +354,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                         desktop_output,
                     )
                 except subprocess.CalledProcessError:
-                    if desktop_output.is_dir() and artifacts_path:
+                    if desktop_output.is_dir() and artifact_root is not None:
                         diagnostics = Path(
                             tempfile.mkdtemp(
                                 prefix="desktop-actions-x64-failure-", dir=result.parent

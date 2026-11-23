@@ -298,7 +298,7 @@ the commands for each platform.
 
 ```sh
 gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
-  -f sdk=desktop-actions -f revision="$(git rev-parse HEAD)"
+  -f sdk=desktop-actions -f "revision=$(git rev-parse HEAD)"
 ```
 
 For local macOS distribution checks, run `mise exec -- make check-distribution`.

@@ -44,7 +44,7 @@ class LockedDependencyTests(unittest.TestCase):
         }
         self.manifest = self.root / "manifest.json"
         self.manifest.write_text(json.dumps([self.entry]), encoding="utf-8")
-        self.environment = {"NAVI_CI_SOURCES": str(self.manifest)}
+        self.environment = {"VM_RUNNER_SOURCE_MANIFEST": str(self.manifest)}
         self.source_uri = f"git+{windows_sdk.URL}?rev={self.revision}#{self.revision}"
         self.metadata = {
             "packages": [

@@ -17,14 +17,8 @@ jobs:
     timeout-minutes: 30
     env:
       GIT_TERMINAL_PROMPT: "0"
-      RUST_TARGET: "x86_64-pc-windows-msvc"
     steps:
       - uses: actions/checkout@v6.1.0
         with:
           persist-credentials: false
-      - name: Install pinned Rust toolchain
-        run: rustup install --no-self-update
-      - name: Check Rust formatting
-        run: cargo fmt --all -- --check
-      - name: Test Rust workspace
-        run: cargo test --workspace --locked --target $env:RUST_TARGET
+      - uses: naviapps/sdk-tooling/.github/actions/test-rust-windows@0b6738f73b1b7081f75c212a79efeaf5ee62a92c

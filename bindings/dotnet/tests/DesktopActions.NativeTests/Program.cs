@@ -55,10 +55,17 @@ internal static class Program
     {
         if (args.Length == 3 && args[0] == "--protocol") { File.WriteAllText(args[1], args[2]); return 0; }
         if (args.Length != 1) throw new ArgumentException("Provide an owned output directory.");
-        Run(Path.GetFullPath(args[0])).GetAwaiter().GetResult();
+        var artifacts = Environment.GetEnvironmentVariable("VM_RUNNER_ARTIFACTS_DIR");
+        var legacyArtifacts = Environment.GetEnvironmentVariable("NAVI_CI_ARTIFACTS");
+        if (artifacts is not null && legacyArtifacts is not null && artifacts != legacyArtifacts)
+            throw new InvalidOperationException("Conflicting VM Runner artifact directories.");
+        artifacts ??= legacyArtifacts;
+        if (!string.IsNullOrEmpty(artifacts) && !Path.IsPathFullyQualified(artifacts))
+            throw new InvalidOperationException("VM_RUNNER_ARTIFACTS_DIR must be an absolute path.");
+        Run(Path.GetFullPath(args[0]), !string.IsNullOrEmpty(artifacts)).GetAwaiter().GetResult();
         return 0;
     }
-    private static async Task Run(string output)
+    private static async Task Run(string output, bool captureDesktopOnFailure)
     {
         Directory.CreateDirectory(output);
         var executable = Path.Combine(AppContext.BaseDirectory, "test_owned_input_target.exe");
@@ -450,7 +457,7 @@ internal static class Program
                     : Observe(new(failure.Handle, failure.Process, failure.Thread), "failure");
                 File.WriteAllText(Path.Combine(output, "failure.json"), JsonSerializer.Serialize(new { error = error.GetType().Name, message = error.Message, target = failure, shellTransitions, current }));
                 // Whole-desktop failure images belong only to the explicitly owned CI guest.
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("NAVI_CI_ARTIFACTS")))
+                if (captureDesktopOnFailure)
                 {
                     try
                     {

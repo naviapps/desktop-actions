@@ -91,7 +91,12 @@ final class SystemEventsLaunchCoordinatorTests: XCTestCase {
     guard let lease = environment["NAVI_DESKTOP_ACTIONS_OWNED_SYSTEM_EVENTS"] else {
       throw XCTSkip("Owned native System Events probe not selected")
     }
-    let selectionPath = try XCTUnwrap(environment["NAVI_CI_SOURCE_FILES"])
+    let selectedPath = environment["VM_RUNNER_SOURCE_FILES"]
+    let legacyPath = environment["NAVI_CI_SOURCE_FILES"]
+    if let selectedPath, let legacyPath, selectedPath != legacyPath {
+      return XCTFail("Conflicting VM Runner source inventory paths")
+    }
+    let selectionPath = try XCTUnwrap(selectedPath ?? legacyPath)
     let selection = URL(fileURLWithPath: selectionPath).resolvingSymlinksInPath()
     let source = selection.deletingLastPathComponent()
     let workspace = source.deletingLastPathComponent()
