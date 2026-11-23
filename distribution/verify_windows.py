@@ -9,19 +9,17 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import tomllib
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
 from sdk_tooling.native_plan import ffi_product
+from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance
 
 from distribution.nuget import pack_sdk
 
 ROOT = Path(__file__).resolve().parents[1]
-TARGET = "x86_64-pc-windows-msvc"
-RID = "win-x64"
 REPOSITORY = "naviapps/window-management"
 URL = f"https://github.com/{REPOSITORY}.git"
 SOURCE = re.compile(rf"git\+{re.escape(URL)}\?rev=([a-f0-9]{{40}})#\1")
@@ -435,16 +433,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if sys.platform != "win32":
         raise SystemExit("An owned Windows worker is required for runtime acceptance")
-    windows = load("windows")
-    host = windows.host_architecture()
-    env, tools, dotnet = windows.native_environment(host, target_architecture="x64")
-    expected = tomllib.loads((ROOT / "mise.toml").read_text())["tools"]["dotnet"]
-    if (
-        subprocess.check_output([dotnet, "--version"], env=env, cwd=ROOT, text=True).strip()
-        != expected
-    ):
-        raise ValueError("Use the pinned x64 .NET SDK from mise.toml")
-    accept(ROOT, env, host, tools, dotnet, load, args.desktop)
+    worker = X64Acceptance(ROOT)
+    accept(ROOT, worker.env, worker.host, worker.tools, worker.dotnet, load, args.desktop)
     print("Windows x64 SDK package and runtime acceptance passed.")
 
 

@@ -1,7 +1,8 @@
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
+
+[assembly: DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
 
 namespace NaviApps.DesktopActions;
 
@@ -38,21 +39,6 @@ internal static unsafe partial class Native
     private static ActionDataException InvalidUnicode() =>
         new(ActionDataError.InvalidData, "Action data contains an unpaired Unicode surrogate.", null);
 
-    static Native()
-    {
-        if (OperatingSystem.IsWindows()) NativeLibrary.SetDllImportResolver(typeof(Native).Assembly, Resolve);
-    }
-    private static nint Resolve(string name, Assembly assembly, DllImportSearchPath? search)
-    {
-        if (name != Library) return 0;
-        // Windows runtime assets and the managed assembly directory only; no PATH/CWD search.
-        var directories = (AppContext.GetData("NATIVE_DLL_SEARCH_DIRECTORIES") as string ?? "")
-            .Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
-            .Append(Path.GetDirectoryName(assembly.Location)!);
-        foreach (var directory in directories)
-            if (!string.IsNullOrEmpty(directory) && NativeLibrary.TryLoad(Path.Combine(directory, Library + ".dll"), out var handle)) return handle;
-        throw new DllNotFoundException("Place the native DesktopActions library beside its assembly or install a native runtime asset.");
-    }
     private static void EnsureAbi()
     {
         if (Version() != 6) throw new InvalidOperationException("Unsupported native DesktopActions ABI.");
