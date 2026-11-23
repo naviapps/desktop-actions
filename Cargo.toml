@@ -14,8 +14,8 @@ desktop-applications = { git = "https://github.com/naviapps/desktop-applications
 desktop-applications-windows = { git = "https://github.com/naviapps/desktop-applications.git", rev = "1ddfee787a940ee6ca964ec28922868910b90ac5" }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["raw_value", "float_roundtrip"] }
-window-management = { git = "https://github.com/naviapps/window-management.git", rev = "34bf9d3bc5c7079b283f763296fea9bc0eed020b" }
-window-management-windows = { git = "https://github.com/naviapps/window-management.git", rev = "34bf9d3bc5c7079b283f763296fea9bc0eed020b" }
+window-management = { git = "https://github.com/naviapps/window-management.git", rev = "89ab9eb2b040be2981bafdf416e997f393df3d34" }
+window-management-windows = { git = "https://github.com/naviapps/window-management.git", rev = "89ab9eb2b040be2981bafdf416e997f393df3d34" }
 
 [profile.release]
 lto = "thin"

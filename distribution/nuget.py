@@ -1,13 +1,15 @@
 """Select the managed project and retained files for the SDK package driver."""
 
 
-def pack_sdk(native, selected, runtimes, *, sources=(), pack_targets=None, environment=None):
+def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):
     root = native.root
     basename = {
         "desktop-actions-ffi": "NaviApps.DesktopActions",
         "window-management-ffi": "NaviApps.WindowManagement",
     }[native.package]
-    pinned_window = basename == "NaviApps.WindowManagement"
+    inputs = ["mise.toml", "native.toml", "distribution/pack_nuget.py"]
+    if basename == "NaviApps.DesktopActions":
+        inputs.extend(("distribution/nuget.py", "distribution/verify_windows.py"))
     files = {"LICENSE": root / "LICENSE", "README.md": root / "README.md"}
     files.update(
         {
@@ -21,21 +23,8 @@ def pack_sdk(native, selected, runtimes, *, sources=(), pack_targets=None, envir
         project=root / "bindings/dotnet/src" / basename / (basename + ".csproj"),
         package_files=files,
         nuget_config=root / "bindings/dotnet/NuGet.Config",
-        input_files=(
-            [
-                root / path
-                for path in (
-                    "mise.toml",
-                    "distribution/pack_nuget.py",
-                    "distribution/verify_windows.py",
-                    "distribution/nuget.py",
-                )
-            ]
-            if not pinned_window
-            else []
-        ),
+        input_files=[root / path for path in inputs],
         runtimes=runtimes,
         sources=sources,
-        pack_targets=pack_targets,
         environment=environment,
     )

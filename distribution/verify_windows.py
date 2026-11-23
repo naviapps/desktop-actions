@@ -297,19 +297,11 @@ def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_
         dependency, dependency_revision = dependency_source(metadata, env)
         snapshot(dependency, dependency_revision, child)
         actions = ffi_product(parent, factory=WindowsSdk)
-        window = WindowsSdk(
-            child, symbol_prefix="window_management_", specification="tools/native.py"
-        )
+        window = ffi_product(child, factory=WindowsSdk)
         check_dependency_version(parent, window)
         window_binary = build_sdk(window, selected, tools, env, host)
         check_c_fixture(window, selected, window_binary)
-        window_package = pack_sdk(
-            window,
-            selected,
-            [RID],
-            pack_targets=parent / "distribution/window-management-pack.targets",
-            environment=env,
-        )
+        window_package = pack_sdk(window, selected, [RID], environment=env)
         check_installed_package(
             selected,
             dotnet,
@@ -317,8 +309,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_
             window,
             "NaviApps.WindowManagement",
             window_package,
-            # The immutable WindowManagement revision predates SDK check declarations.
-            child / "bindings/dotnet/tests/PackageConsumer/Program.cs",
+            child / "fixtures/consumers/dotnet/Program.cs",
         )
         feed = window_package.parent
         actions_binary = build_sdk(actions, selected, tools, env, host)
