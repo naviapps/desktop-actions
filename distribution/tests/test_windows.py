@@ -131,7 +131,7 @@ class NativeFixtureTests(unittest.TestCase):
         selected = {
             "artifacts": Mock(),
             "windows": Mock(),
-            "native": SimpleNamespace(NativeBuilder=object),
+            "ffi": SimpleNamespace(FfiProduct=object),
             "cargo": Mock(),
         }.__getitem__
         with (

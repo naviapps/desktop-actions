@@ -12,11 +12,10 @@ import tempfile
 import tomllib
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from types import SimpleNamespace
 
 from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
-from sdk_tooling.native_plan import builder
+from sdk_tooling.native_plan import ffi_product
 
 from distribution.nuget import pack_sdk
 
@@ -147,7 +146,7 @@ def build_sdk(native, selected, tools, environment, host):
 
 
 def check_c_fixture(native, selected, directory):
-    selected("consumers").check_c(
+    selected("binding_checks").check_c(
         source=native.root / "crates/ffi/tests/c/abi.c",
         include_dirs=(native.ffi / "include",),
         library=directory / (native.library + ".dll"),
@@ -253,14 +252,14 @@ def publish_acceptance(stage, destination, artifacts, receipt):
 def accept(root, environment, host, tools, dotnet, selected, desktop):
     artifacts = selected("artifacts")
     windows = selected("windows")
-    sdk_tools = selected("native")
+    ffi = selected("ffi")
     cargo = selected("cargo")
 
-    class WindowsSdk(sdk_tools.NativeBuilder):
+    class WindowsSdk(ffi.FfiProduct):
         def retain_notices(self, env=None):
             cargo.runtime_notices(self.root, env)
             cargo.CargoDependencies(
-                self.root, self.notice_packages, (*sdk_tools.DARWIN_TARGETS, TARGET), env
+                self.root, self.notice_packages, (*ffi.DARWIN_TARGETS, TARGET), env
             ).retain_notices()
 
     base = root / ".native-build"
@@ -304,8 +303,10 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
         )
         dependency, dependency_revision = dependency_source(metadata, env)
         snapshot(dependency, dependency_revision, child)
-        actions = builder(parent, tooling=lambda _: SimpleNamespace(NativeBuilder=WindowsSdk))
-        window = WindowsSdk(child, symbol_prefix="window_management_", minimum_macos="26.0")
+        actions = ffi_product(parent, factory=WindowsSdk)
+        window = WindowsSdk(
+            child, symbol_prefix="window_management_", specification="tools/native.py"
+        )
         check_dependency_version(parent, window)
         window_binary = build_sdk(window, selected, tools, env, host)
         check_c_fixture(window, selected, window_binary)

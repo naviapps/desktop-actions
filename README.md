@@ -268,17 +268,17 @@ Xcode 27.2. Public Windows CI runs the Rust workspace tests on x64.
 
 The independent clients use injected desktop effects.
 
-| Command                                       | Coverage                                                                                                                                                 |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mise exec -- make test-consumer`             | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner with consumer-owned permission hooks. |
-| `mise run sdk-tooling -- installed-consumers` | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
-| `mise exec -- make test-installed-c`          | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
+| Command                                    | Coverage                                                                                                                                                 |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mise exec -- make test-consumer`          | Swift fixture imports every public product and checks codecs, validation, platform planning and an injected runner with consumer-owned permission hooks. |
+| `mise run sdk-tooling -- rust-c-consumers` | Rust Git client checks placement requests and Accessibility metadata and records the exact WindowManagement revision.                                    |
+| `mise exec -- make test-installed-c`       | C client checks the copied framework, public header, notices and the same placement and permission metadata.                                             |
 
 For both Rust/C clients outside CI, supply a complete local WindowManagement mirror
 or bundle containing its pinned revision.
 
 ```sh
-mise run sdk-tooling -- installed-consumers \
+mise run sdk-tooling -- rust-c-consumers \
   --git-dependency-source naviapps/window-management=/path/to/window-management.bundle
 ```
 
@@ -325,7 +325,7 @@ Run the C and .NET fixtures separately without rebuilding it:
 
 ```sh
 mise exec -- make test-c
-mise run sdk-tooling -- binding-consumer dotnet --package-source /path/to/private-feed
+mise run sdk-tooling -- check-binding dotnet --package-source /path/to/private-feed
 ```
 
 `DOTNET_BIN` selects an existing .NET executable. Follow the
@@ -336,7 +336,7 @@ framework and tests a fresh local-feed client.
 
 ```sh
 mise run sdk-tooling -- python -m distribution.pack_nuget --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
-mise run sdk-tooling -- binding-consumer nuget .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
+mise run sdk-tooling -- nuget-consumer .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
 ```
 
 The package fixture checks codecs, platform planning, shared window requests/runtime and bounded execution

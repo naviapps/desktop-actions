@@ -31,23 +31,23 @@ test-consumer:
 	$(SDK_TOOLING) swift-consumer
 
 native:
-	$(SDK_TOOLING) native
+	$(SDK_TOOLING) xcframework
 
 native-verify:
-	$(SDK_TOOLING) native --verify
+	$(SDK_TOOLING) xcframework --verify
 
 test-rust:
 	cargo clippy --workspace --all-targets --locked --offline -- -D warnings
 	cargo test --workspace --locked --offline
 
 test-dotnet:
-	$(SDK_TOOLING) binding-consumer dotnet $(DOTNET_TEST_FLAGS)
+	$(SDK_TOOLING) check-binding dotnet $(DOTNET_TEST_FLAGS)
 
 test-c:
-	$(SDK_TOOLING) binding-consumer c
+	$(SDK_TOOLING) check-binding c
 
 test-installed-c:
-	$(SDK_TOOLING) installed-consumers --language c
+	$(SDK_TOOLING) rust-c-consumers --language c
 
 test-docs:
 	$(SDK_TOOLING) docs

@@ -6,7 +6,7 @@ commands = [
   ["git", "clone", "https://github.com/naviapps/window-management.git", "{temp}/window-management"],
   [
     "sdk-tooling",
-    "installed-consumers",
+    "rust-c-consumers",
     "--git-dependency-source",
     "naviapps/window-management={temp}/window-management",
   ],

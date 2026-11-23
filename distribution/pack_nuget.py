@@ -4,7 +4,7 @@
 import argparse
 
 from sdk_tooling.adapters import load
-from sdk_tooling.native_plan import builder
+from sdk_tooling.xcframework import xcframework
 
 from distribution.nuget import pack_sdk
 
@@ -20,7 +20,7 @@ def main():
     arguments += [
         value for source in options.package_source for value in ("--package-source", source)
     ]
-    pack_sdk(builder(), load, arguments)
+    pack_sdk(xcframework(), load, arguments)
 
 
 if __name__ == "__main__":
