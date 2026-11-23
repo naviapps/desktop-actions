@@ -10,7 +10,6 @@ commands = [
     "--git-dependency-source",
     "naviapps/window-management={temp}/window-management",
   ],
-  ["sdk-tooling", "python", "-m", "distribution.verify_macos", "{temp}/window-management"],
 ]
 
 [windows]
@@ -18,5 +17,15 @@ commands = [
   ["rustup", "install", "--no-self-update"],
   ["cargo", "fmt", "--all", "--", "--check"],
   ["sdk-tooling", "python", "-m", "unittest", "discover", "-s", "distribution/tests"],
-  ["sdk-tooling", "windows", "-m", "distribution.verify_windows", "--native-aot"],
+  [
+    "sdk-tooling",
+    "windows",
+    "-m",
+    "distribution.verify_windows",
+    "--native-aot",
+    "--export-native",
+  ],
 ]
+
+[nuget]
+pack = "distribution/pack_nuget.py"

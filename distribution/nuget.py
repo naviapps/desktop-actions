@@ -1,5 +1,6 @@
 """Select the managed project and retained files for the SDK package driver."""
 
+import json
 import re
 import xml.etree.ElementTree as ET
 
@@ -10,16 +11,14 @@ WINDOW_MANAGEMENT_URL = f"https://github.com/{WINDOW_MANAGEMENT}.git"
 WINDOW_MANAGEMENT_SOURCE = re.compile(
     rf"git\+{re.escape(WINDOW_MANAGEMENT_URL)}\?rev=([a-f0-9]{{40}})#\1"
 )
+WINDOWS_RECEIPT = "acceptance.json"
+WINDOWS_DEPENDENCY = "dependencies/window-management"
 
 
 def snapshot(source, revision, destination):
     """Detach exact Git objects in a private build directory."""
-    try:
-        actual = git(source, "rev-parse", revision + "^{commit}").decode().strip()
-    except RuntimeError as error:
-        raise ValueError("The SDK source differs from its immutable revision") from error
-    if actual != revision:
-        raise ValueError("The SDK source differs from its immutable revision")
+    if source != WINDOW_MANAGEMENT_URL:
+        require_revision(source, revision)
     git(
         None,
         "clone",
@@ -33,8 +32,18 @@ def snapshot(source, revision, destination):
         str(source),
         str(destination),
     )
+    require_revision(destination, revision)
     git(destination, "checkout", "--detach", revision)
     verify_snapshot(destination, revision)
+
+
+def require_revision(source, revision):
+    try:
+        actual = git(source, "rev-parse", revision + "^{commit}").decode().strip()
+    except RuntimeError as error:
+        raise ValueError("The SDK source differs from its immutable revision") from error
+    if actual != revision:
+        raise ValueError("The SDK source differs from its immutable revision")
 
 
 def verify_snapshot(root, revision):
@@ -63,6 +72,24 @@ def check_dependency_version(root, dependency):
     ]
     if requirements != [f"[{dependency.version}]"]:
         raise ValueError("Managed WindowManagement version differs from the locked Rust SDK")
+
+
+def verify_acceptance(directory, artifacts, expected=None):
+    receipt_path = directory / WINDOWS_RECEIPT
+    if directory.is_symlink() or receipt_path.is_symlink():
+        raise ValueError("Use an ordinary Windows acceptance destination")
+    record = json.loads(receipt_path.read_bytes())
+    inputs = artifacts.hashes(
+        [p for p in artifacts.files(directory) if p != receipt_path], directory
+    )
+    if (
+        record.get("schema") != 1
+        or record.get("runtime") != "win-x64"
+        or record.get("outputs") != inputs
+        or (expected is not None and expected != record)
+    ):
+        raise ValueError("Windows x64 acceptance output differs from its receipt")
+    return record
 
 
 def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):

@@ -125,8 +125,10 @@ Rust nor the SDK sources. Copy each `desktop_actions_json_view` result before ca
 ### .NET
 
 .NET consumers use `NaviApps.DesktopActions` and its exact
-`NaviApps.WindowManagement` dependency from a private/local NuGet feed. The packages
-carry their selected native runtimes; consumers need neither Rust nor MSVC.
+`NaviApps.WindowManagement` dependency. Put both packages from one successful
+[SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
+in a local NuGet feed. The pair carries the native runtimes for macOS ARM64,
+macOS x64 and Windows x64. Consumers need only .NET and the packages.
 No package source is added globally. For a .NET 10 client, select the package version
 provided by that feed (currently `0.1.0` in this repository):
 
@@ -303,8 +305,15 @@ the commands for each platform.
 
 ```sh
 gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
-  -f sdk=desktop-actions -f "revision=$(git rev-parse HEAD)"
+  -f sdk=desktop-actions -f "revision=$(git rev-parse HEAD)" -f windows-on-arm=true
 ```
+
+The Windows job verifies both x64 builds and runs the Native AOT consumer.
+The macOS job combines the accepted DLLs with both macOS architectures in each
+package. The workflow verifies the same primary package and exact dependency
+on macOS ARM64, macOS x64 through Rosetta and Windows x64, including emulation
+on Windows 11 ARM64 when requested. Download `desktop-actions-nuget-<revision>-<attempt>`
+and place its main package and the package in `dependencies/` in the same feed.
 
 For local macOS distribution checks, run `mise exec -- make check-distribution`.
 It uses the revision in the `sdk-tooling` task in [`mise.toml`](mise.toml).
@@ -336,23 +345,22 @@ mise run sdk-tooling -- check-binding dotnet --package-source /path/to/private-f
 `DOTNET_BIN` selects an existing .NET executable. Follow the
 [Windows acceptance guide](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 to build and verify both DesktopActions and its fixed WindowManagement dependency
-on an owned Windows worker. On macOS, the distribution workflow packs both
-tracked frameworks and runs the independent .NET consumers. To run the same
-verification locally, pass a WindowManagement repository containing the revision
+on an owned Windows worker. For a local macOS-only package check, pass a
+WindowManagement repository containing the revision
 in DesktopActions' `Cargo.lock`. It can be your existing checkout.
 
 ```sh
 mise run sdk-tooling -- python -m distribution.verify_macos /path/to/window-management
 ```
 
-The verifier checks out the exact dependency in a temporary directory. Each SDK
-uses the Tooling revision recorded with its own framework. The check audits both
-macOS RIDs, then runs the consumers with the host .NET architecture and a fresh
-package cache. For separate packing and verification with an existing private feed:
+The verifier uses temporary snapshots of the current DesktopActions commit and
+the exact WindowManagement dependency. Each SDK uses the Tooling revision
+recorded with its own framework. The check audits both macOS RIDs, then runs the
+consumers with the host .NET architecture and a fresh package cache. It
+discards the macOS-only candidates. To check an existing package pair:
 
 ```sh
-mise run sdk-tooling -- python -m distribution.pack_nuget --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
-mise run sdk-tooling -- nuget-consumer .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
+mise run sdk-tooling -- nuget-consumer /path/to/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
 ```
 
 The package fixture checks codecs, platform planning, shared window requests/runtime and bounded execution

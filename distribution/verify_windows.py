@@ -19,9 +19,12 @@ from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetc
 from distribution.nuget import (
     WINDOW_MANAGEMENT,
     WINDOW_MANAGEMENT_URL,
+    WINDOWS_DEPENDENCY,
+    WINDOWS_RECEIPT,
     check_dependency_version,
     pack_sdk,
     snapshot,
+    verify_acceptance,
     verify_snapshot,
     window_management_package,
 )
@@ -30,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DESKTOP = Path("fixtures/acceptance/windows/host/DesktopActions.WindowsAcceptance.csproj")
 DESKTOP_TARGET = "test_owned_input_target"
 NUGET_CONFIG = Path("bindings/dotnet/NuGet.Config")
-RECEIPT = "acceptance.json"
+RECEIPT = WINDOWS_RECEIPT
 
 
 def sha256(path):
@@ -172,23 +175,6 @@ def check_installed_package(
     )
 
 
-def verify_acceptance(directory, artifacts, expected=None):
-    receipt_path = directory / RECEIPT
-    if directory.is_symlink() or receipt_path.is_symlink():
-        raise ValueError("Use an ordinary Windows acceptance destination")
-    record = json.loads(receipt_path.read_bytes())
-    inputs = artifacts.hashes(
-        [p for p in artifacts.files(directory) if p != receipt_path], directory
-    )
-    if (
-        record.get("schema") != 1
-        or record.get("runtime") != RID
-        or record.get("outputs") != inputs
-        or (expected is not None and expected != record)
-    ):
-        raise ValueError("Windows x64 acceptance output differs from its receipt")
-
-
 def publish_acceptance(stage, destination, artifacts, receipt):
     verify_acceptance(stage, artifacts, receipt)
     with artifacts.build_lock(destination.parent):
@@ -199,7 +185,18 @@ def publish_acceptance(stage, destination, artifacts, receipt):
         )
 
 
-def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_aot=False):
+def accept(
+    root,
+    environment,
+    host,
+    tools,
+    dotnet,
+    selected,
+    desktop,
+    *,
+    native_aot=False,
+    export_native=False,
+):
     artifacts = selected("artifacts")
     windows = selected("windows")
     base = root / ".native-build"
@@ -207,7 +204,13 @@ def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_
     if base.is_symlink():
         raise ValueError("The native build directory must not be a symlink")
     artifact_root = vm.artifacts_dir(environment)
-    result = (artifact_root or base) / "desktop-actions-win-x64"
+    if export_native and (artifact_root is None or desktop or not native_aot):
+        raise ValueError(
+            "Combined native export requires an owned artifact root and the Native AOT fixture"
+        )
+    result = (artifact_root or base) / (
+        "sdk-windows" if export_native else "desktop-actions-win-x64"
+    )
     commit = git(root, "rev-parse", "HEAD^{commit}").decode().strip()
     verify_snapshot(root, commit)
     tool_inputs = support_inputs(root)
@@ -328,23 +331,32 @@ def accept(root, environment, host, tools, dotnet, selected, desktop, *, native_
                 ("window-dependency", window, dependency_revision, window_binary, window_package),
             ):
                 verify_snapshot(sdk.root, source)
-                windows.verify_artifact(sdk, "x64", environment=env)
+                _, native_receipt = windows.verify_artifact(sdk, "x64", environment=env)
+                receipt_digest = sha256(binary / "native-build.json")
                 package_receipt = package.with_suffix(".nupkg.json")
                 packed = json.loads(package_receipt.read_bytes())
                 if (
                     packed.get("runtimes") != [RID]
                     or packed.get("sha256") != sha256(package)
-                    or packed.get("nativeReceipts", {}).get(RID)
-                    != sha256(binary / "native-build.json")
+                    or packed.get("nativeReceipts", {}).get(RID) != receipt_digest
                 ):
                     raise ValueError(
                         "Windows x64 package differs from its accepted native artifact"
                     )
-                shutil.copytree(binary, stage / (label + "-windows") / RID)
-                for filename in (package, package_receipt):
-                    target = stage / (label + "-packages") / filename.name
-                    target.parent.mkdir(exist_ok=True)
-                    shutil.copyfile(filename, target)
+                if export_native:
+                    native_destination = stage if label == "sdk" else stage / WINDOWS_DEPENDENCY
+                else:
+                    native_destination = stage / (label + "-windows")
+                    for filename in (package, package_receipt):
+                        target = stage / (label + "-packages") / filename.name
+                        target.parent.mkdir(exist_ok=True)
+                        shutil.copyfile(filename, target)
+                staged_binary = native_destination / RID
+                shutil.copytree(binary, staged_binary)
+                if artifacts.hashes(artifacts.files(staged_binary), staged_binary) != (
+                    native_receipt["outputs"] | {"native-build.json": receipt_digest}
+                ):
+                    raise ValueError("Export changed the accepted Windows native build")
 
             receipt = {
                 "schema": 1,
@@ -372,6 +384,9 @@ def main(argv=None):
     parser.add_argument(
         "--native-aot", action="store_true", help="Publish and run the win-x64 Native AOT consumer"
     )
+    parser.add_argument(
+        "--export-native", action="store_true", help="Export both accepted native builds for NuGet"
+    )
     args = parser.parse_args(argv)
     if sys.platform != "win32":
         raise SystemExit("An owned Windows worker is required for runtime acceptance")
@@ -385,6 +400,7 @@ def main(argv=None):
         load,
         args.desktop,
         native_aot=args.native_aot,
+        export_native=args.export_native,
     )
     print("Windows x64 SDK package and runtime acceptance passed.")
 

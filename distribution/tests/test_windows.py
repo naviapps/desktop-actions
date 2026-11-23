@@ -10,7 +10,7 @@ from unittest.mock import Mock, call, patch
 
 from sdk_tooling.adapters import load
 
-from distribution import nuget
+from distribution import nuget, verify_macos
 from distribution import verify_windows as windows_sdk
 
 
@@ -127,6 +127,43 @@ class LockedDependencyTests(unittest.TestCase):
         nuget.check_dependency_version(self.root, SimpleNamespace(version="0.1.0"))
         with self.assertRaisesRegex(ValueError, "version differs from the locked Rust SDK"):
             nuget.check_dependency_version(self.root, SimpleNamespace(version="0.2.0"))
+
+    def test_combined_pack_requires_both_locked_sources_and_accepted_native_aot(self):
+        (self.source / "Cargo.lock").write_text(
+            f'[[package]]\nname = "window-management"\nsource = "{self.source_uri}"\n',
+            encoding="utf-8",
+        )
+        handoff = self.source / ".native-build/windows"
+        handoff.mkdir(parents=True)
+        receipt = {
+            "schema": 1,
+            "runtime": "win-x64",
+            "source": self.revision,
+            "windowManagementSource": self.revision,
+            "nativeAotFixtureExecuted": True,
+            "outputs": {},
+        }
+        for changed, value, message in (
+            ("source", self.newer_revision, "locked SDK revisions"),
+            ("windowManagementSource", self.newer_revision, "locked SDK revisions"),
+            ("nativeAotFixtureExecuted", False, "successful Native AOT fixture"),
+        ):
+            with (
+                self.subTest(changed=changed),
+                tempfile.TemporaryDirectory() as work,
+                patch.object(verify_macos, "ffi_product"),
+                patch.object(verify_macos, "check_dependency_version"),
+            ):
+                load("artifacts").write_json(
+                    handoff / nuget.WINDOWS_RECEIPT, receipt | {changed: value}
+                )
+                with self.assertRaisesRegex(ValueError, message):
+                    verify_macos.pack_pair(
+                        self.source,
+                        self.source,
+                        (*verify_macos.MACOS_RUNTIMES, "win-x64"),
+                        Path(work),
+                    )
 
 
 class NativeFixtureTests(unittest.TestCase):
