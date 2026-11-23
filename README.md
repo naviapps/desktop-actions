@@ -260,9 +260,10 @@ Keep the Rust and Swift revisions aligned for DesktopApplications and WindowMana
 
 ### Consumer installation checks
 
-The Xcode 27 job runs the shared Rust action contracts, strict Swift tests,
-and three independent clients against the pinned dependencies. The macOS 26
-job runs strict Swift tests and the standalone Swift consumer with Xcode 26.6.
+GitHub Actions runs the same strict Swift tests and standalone Swift consumer
+on macOS 26 with Xcode 26.6 and macOS 27 with Xcode 27.2. The distribution job
+runs the shared Rust action contracts and validates the installed Rust and C
+clients against the pinned dependencies.
 The independent clients use injected desktop effects:
 
 | Command                              | Coverage                                                                                                                                                                                              |
