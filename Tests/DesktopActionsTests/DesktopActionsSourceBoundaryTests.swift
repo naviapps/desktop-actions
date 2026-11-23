@@ -55,7 +55,9 @@ final class DesktopActionsSourceBoundaryTests: XCTestCase {
 
   func testInternalSourceTreesDoNotExposePublicDeclarations() throws {
     for relativeRoot in [
-      "Sources/DesktopActions/Planning", "Sources/DesktopActionsMacOS/Internal",
+      "Sources/DesktopActions/Planning",
+      "Sources/DesktopActionsMacOS/Execution/Dependencies",
+      "Sources/DesktopActionsMacOS/Execution/Adapters",
     ] {
       let sourceFiles = try swiftSourceFiles(under: relativeRoot)
 

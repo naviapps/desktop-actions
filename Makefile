@@ -4,13 +4,13 @@ SWIFT_STRICT_FLAGS := -Xswiftc -strict-concurrency=complete -Xswiftc -warnings-a
 
 .DEFAULT_GOAL := check
 
-.PHONY: check check-source check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-fixtures
+.PHONY: check check-source check-distribution build build-release format lint test test-consumer native native-verify test-rust test-c test-installed-c test-dotnet test-docs test-distribution-tools
 
 check: check-source test test-consumer
 
 check-source: lint test-rust
 
-check-distribution: native-verify build-release test-docs test-fixtures
+check-distribution: native-verify build-release test-docs test-distribution-tools
 
 build:
 	swift build $(SWIFT_STRICT_FLAGS)
@@ -52,5 +52,5 @@ test-installed-c:
 test-docs:
 	$(SDK_TOOLING) docs
 
-test-fixtures:
-	$(SDK_TOOLING) python -m unittest discover -s fixtures/distribution/tests -v
+test-distribution-tools:
+	$(SDK_TOOLING) python -m unittest discover -s distribution/tests -v

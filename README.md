@@ -307,12 +307,17 @@ It uses the revision in the `sdk-tooling` task in [`mise.toml`](mise.toml).
 build receipt. For a detailed Swift dependency-graph check, run
 `mise run sdk-tooling -- swift-consumer --distribution`.
 
+Independent package consumers live in [`fixtures/consumers/`](fixtures/consumers).
+The [owned Windows acceptance projects](fixtures/acceptance/windows) exercise
+live desktop behavior. [`distribution/`](distribution) contains the SDK's
+packaging and validation entry points.
+
 ### Native artifacts and package checks
 
 A clean clone uses the tracked framework. Rebuild it after production Rust/C/input
 changes with `mise exec -- make native`; test-only edits do not require a rebuild.
 `make check-distribution` verifies that framework and runs the release build,
-distribution fixture tests and DocC checks. The Rust tests in `make check` cover the input codec, metadata invariants, and platform plan
+distribution tool tests and DocC checks. The Rust tests in `make check` cover the input codec, metadata invariants, and platform plan
 matrix. The binding tests exercise typed projections, error mapping, ownership,
 and native adapter behavior.
 The strict Swift tests compile all library products in debug mode.
@@ -330,7 +335,7 @@ on an owned Windows worker. The manual macOS package route uses the tracked
 framework and tests a fresh local-feed client.
 
 ```sh
-mise run sdk-tooling -- python fixtures/distribution/pack-dotnet.py --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
+mise run sdk-tooling -- python -m distribution.pack_nuget --runtime osx-arm64 --runtime osx-x64 --package-source /path/to/private-feed
 mise run sdk-tooling -- binding-consumer nuget .native-build/packages/NaviApps.DesktopActions.0.1.0.nupkg --dependency /path/to/NaviApps.WindowManagement.0.1.0.nupkg
 ```
 

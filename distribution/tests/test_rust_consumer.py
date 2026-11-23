@@ -4,13 +4,13 @@ import tomllib
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class InstalledRustFixtureTests(unittest.TestCase):
     def test_public_dependency_sources_match_workspace_pins(self):
         workspace = tomllib.loads((ROOT / "Cargo.toml").read_text())["workspace"]
-        template = (ROOT / "fixtures/rust-consumer/Cargo.toml.in").read_text()
+        template = (ROOT / "fixtures/consumers/rust/Cargo.toml.in").read_text()
         revision = "0" * 40
         fixture = tomllib.loads(template.replace("@SDK_REVISION@", revision))
 

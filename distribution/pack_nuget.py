@@ -6,7 +6,7 @@ import argparse
 from sdk_tooling.adapters import load
 from sdk_tooling.native_plan import builder
 
-from fixtures.distribution.sdk_packages import pack_sdk
+from distribution.nuget import pack_sdk
 
 
 def main():

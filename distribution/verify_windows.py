@@ -18,15 +18,15 @@ from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
 from sdk_tooling.native_plan import builder
 
-from fixtures.distribution.sdk_packages import pack_sdk
+from distribution.nuget import pack_sdk
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 TARGET = "x86_64-pc-windows-msvc"
 RID = "win-x64"
 REPOSITORY = "naviapps/window-management"
 URL = f"https://github.com/{REPOSITORY}.git"
 SOURCE = re.compile(rf"git\+{re.escape(URL)}\?rev=([a-f0-9]{{40}})#\1")
-DESKTOP = Path("bindings/dotnet/tests/DesktopActions.NativeTests/DesktopActions.NativeTests.csproj")
+DESKTOP = Path("fixtures/acceptance/windows/host/DesktopActions.WindowsAcceptance.csproj")
 DESKTOP_TARGET = "test_owned_input_target"
 NUGET_CONFIG = Path("bindings/dotnet/NuGet.Config")
 RECEIPT = "acceptance.json"
@@ -157,9 +157,8 @@ def check_c_fixture(native, selected, directory):
 
 
 def run_managed_fixture(native, selected, dotnet, environment, directory, sources, project, *args):
-    bindings = selected("bindings")
     runtime = "net10.0-windows" if project == DESKTOP else "net10.0"
-    bindings.build_managed(
+    selected("dotnet").build_managed(
         dotnet,
         native.root / project,
         cwd=native.root,
@@ -175,7 +174,9 @@ def run_managed_fixture(native, selected, dotnet, environment, directory, source
     )
     # Use the SDK produced during this run, beside the matching target assembly.
     output = native.root / project.parent / "bin/Release" / runtime / RID
-    bindings.stage_native(directory / (native.library + ".dll"), output / (native.library + ".dll"))
+    selected("artifacts").stage_native(
+        directory / (native.library + ".dll"), output / (native.library + ".dll")
+    )
     if project == DESKTOP:
         target = native.root / "target"
         cargo = [
@@ -188,11 +189,13 @@ def run_managed_fixture(native, selected, dotnet, environment, directory, source
             "--target-dir",
             target,
         ]
-        cargo.extend(["--manifest-path", native.root / "fixtures/windows-target/Cargo.toml"])
+        cargo.extend(
+            ["--manifest-path", native.root / "fixtures/acceptance/windows/target-app/Cargo.toml"]
+        )
         subprocess.run(cargo, cwd=native.root, env=environment, check=True)
         executable = target / TARGET / "debug" / (DESKTOP_TARGET + ".exe")
         selected("windows").require_pe_machine(executable, "x64")
-        bindings.stage_native(executable, output / executable.name)
+        selected("artifacts").stage_native(executable, output / executable.name)
     subprocess.run(
         [dotnet, str(output / (project.stem + ".dll")), *map(str, args)],
         cwd=native.root,
@@ -204,7 +207,7 @@ def run_managed_fixture(native, selected, dotnet, environment, directory, source
 def check_installed_package(
     selected, dotnet, environment, native, name, package, fixture, *depends
 ):
-    selected("bindings").run_isolated_consumer(
+    selected("nuget").run_isolated_consumer(
         dotnet,
         packages=[package, *depends],
         references={name: native.version},
@@ -314,6 +317,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
             window,
             "NaviApps.WindowManagement",
             window_package,
+            # The immutable WindowManagement revision predates SDK check declarations.
             child / "bindings/dotnet/tests/PackageConsumer/Program.cs",
         )
         feed = window_package.parent
@@ -368,7 +372,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
             actions_package = pack_sdk(
                 actions, selected, ["--runtime", RID, "--package-source", str(feed)], env
             )
-            for fixture in ("PackageConsumer", "PackageReflectionFreeConsumer"):
+            for fixture in ("PackageConsumer.cs", "ReflectionFreeConsumer.cs"):
                 check_installed_package(
                     selected,
                     dotnet,
@@ -376,7 +380,7 @@ def accept(root, environment, host, tools, dotnet, selected, desktop):
                     actions,
                     "NaviApps.DesktopActions",
                     actions_package,
-                    parent / "bindings/dotnet/tests" / fixture / "Program.cs",
+                    parent / "fixtures/consumers/dotnet" / fixture,
                     window_package,
                 )
 

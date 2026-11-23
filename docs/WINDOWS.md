@@ -160,7 +160,7 @@ public SDK against a separate x64 Rust Win32 target with a native edit control.
 
 ```powershell
 $tooling = 'C:\src\sdk-tooling'
-python -I -B (Join-Path $tooling 'tasks/sdk') python fixtures/distribution/check-windows.py --desktop
+python -I -B (Join-Path $tooling 'ci/run_sdk_tooling.py') python -m distribution.verify_windows --desktop
 ```
 
 The producer builds the Cargo-locked WindowManagement revision in an exact,

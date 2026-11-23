@@ -19,6 +19,6 @@ abi_fixture = "crates/ffi/tests/c/abi.c"
 dotnet_project = "bindings/dotnet/tests/DesktopActions.Tests/DesktopActions.Tests.csproj"
 nuget_id = "NaviApps.DesktopActions"
 nuget_fixtures = [
-  "bindings/dotnet/tests/PackageConsumer/Program.cs",
-  "bindings/dotnet/tests/PackageReflectionFreeConsumer/Program.cs",
+  "fixtures/consumers/dotnet/PackageConsumer.cs",
+  "fixtures/consumers/dotnet/ReflectionFreeConsumer.cs",
 ]

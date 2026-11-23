@@ -15,7 +15,7 @@ def pack_sdk(native, selected, arguments, environment=None):
             if path.name not in (".DS_Store", "registry-notices.json")
         }
     )
-    return selected("bindings").pack_native(
+    return selected("nuget").pack_native(
         native,
         project=root / "bindings/dotnet/src" / basename / (basename + ".csproj"),
         version=native.version,
@@ -27,9 +27,9 @@ def pack_sdk(native, selected, arguments, environment=None):
                 root / path
                 for path in (
                     "mise.toml",
-                    "fixtures/distribution/pack-dotnet.py",
-                    "fixtures/distribution/check-windows.py",
-                    "fixtures/distribution/sdk_packages.py",
+                    "distribution/pack_nuget.py",
+                    "distribution/verify_windows.py",
+                    "distribution/nuget.py",
                 )
             ]
             if basename == "NaviApps.DesktopActions"

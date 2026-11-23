@@ -1,6 +1,5 @@
 """Windows x64 packaging inputs and native fixture selection."""
 
-import importlib.util
 import json
 import subprocess
 import tempfile
@@ -11,10 +10,7 @@ from unittest.mock import Mock, call, patch
 
 from sdk_tooling.adapters import load
 
-distribution = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("windows_sdk", distribution / "check-windows.py")
-windows_sdk = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(windows_sdk)
+from distribution import verify_windows as windows_sdk
 
 
 class LockedDependencyTests(unittest.TestCase):
@@ -166,9 +162,10 @@ class NativeFixtureTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary).resolve()
             native = SimpleNamespace(root=root, library="desktop_actions")
-            bindings = Mock()
+            dotnet = Mock()
+            artifacts = Mock()
             windows = Mock()
-            selected = {"bindings": bindings, "windows": windows}.__getitem__
+            selected = {"dotnet": dotnet, "artifacts": artifacts, "windows": windows}.__getitem__
             with patch.object(windows_sdk.subprocess, "run") as run:
                 windows_sdk.run_managed_fixture(
                     native,
@@ -180,14 +177,14 @@ class NativeFixtureTests(unittest.TestCase):
                     windows_sdk.DESKTOP,
                     root / "result",
                 )
-            properties = bindings.build_managed.call_args.kwargs["properties"]
+            properties = dotnet.build_managed.call_args.kwargs["properties"]
             self.assertEqual(properties["RuntimeIdentifier"], "win-x64")
             self.assertEqual(properties["UseAppHost"], "false")
             output = root / windows_sdk.DESKTOP.parent / "bin/Release/net10.0-windows/win-x64"
             target = root / "target/x86_64-pc-windows-msvc/debug/test_owned_input_target.exe"
             windows.require_pe_machine.assert_called_once_with(target, "x64")
             self.assertEqual(
-                bindings.stage_native.call_args_list,
+                artifacts.stage_native.call_args_list,
                 [
                     call(root / "accepted/desktop_actions.dll", output / "desktop_actions.dll"),
                     call(target, output / target.name),
@@ -202,11 +199,15 @@ class NativeFixtureTests(unittest.TestCase):
                 "x86_64-pc-windows-msvc",
             ]
             cargo.extend(["--target-dir", root / "target", "--manifest-path"])
-            cargo.append(root / "fixtures/windows-target/Cargo.toml")
+            cargo.append(root / "fixtures/acceptance/windows/target-app/Cargo.toml")
             self.assertEqual(run.call_args_list[0].args[0], cargo)
             self.assertEqual(
                 run.call_args.args[0],
-                ["dotnet", str(output / "DesktopActions.NativeTests.dll"), str(root / "result")],
+                [
+                    "dotnet",
+                    str(output / "DesktopActions.WindowsAcceptance.dll"),
+                    str(root / "result"),
+                ],
             )
 
     def test_windows_build_verifies_the_selected_target_toolchain(self):
