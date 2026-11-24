@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v6.1.0
         with:
           repository: naviapps/sdk-tooling
-          ref: cddddce6230566d52e6bf82f2b82796820a46bc2
+          ref: 399a0d28f2c4cc6c8a8893a815ef65a598254e16
           path: sdk-tooling
           persist-credentials: false
       - uses: actions/setup-python@v7.1.0

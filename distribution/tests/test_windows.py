@@ -267,10 +267,14 @@ class NativeFixtureTests(unittest.TestCase):
                     }
                 },
             )
-            with patch.object(windows_sdk.subprocess, "run") as run:
+            with (
+                patch.object(windows_sdk.subprocess, "run") as run,
+                patch.object(windows_sdk, "prepare_generated") as prepare,
+            ):
                 windows_sdk.build_sdk(native, lambda _: windows, "tools", {}, "arm64")
                 self.assertIn("x86_64-pc-windows-msvc", run.call_args.args[0])
                 self.assertNotIn("aarch64-pc-windows-msvc", run.call_args.args[0])
+            prepare.assert_called_once_with(root, env={})
             windows.build_library.assert_called_once_with(
                 native, {}, "tools", "x64", native_host="arm64"
             )

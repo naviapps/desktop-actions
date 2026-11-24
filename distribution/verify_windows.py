@@ -13,6 +13,7 @@ from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
 from sdk_tooling.adapters import git, load, support_inputs
+from sdk_tooling.c_headers import prepare_generated
 from sdk_tooling.native_plan import ffi_product
 from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetch_args
 
@@ -79,6 +80,7 @@ def build_sdk(native, selected, tools, environment, host):
         env=environment,
         check=True,
     )
+    prepare_generated(native.root, env=environment)
     windows = selected("windows")
     directory = windows.build_library(native, environment, tools, "x64", native_host=host)
     verified, receipt = windows.verify_artifact(native, "x64", environment=environment)

@@ -8,6 +8,7 @@ rust-version.workspace = true
 
 [package.metadata.c-bindings]
 module = "CDesktopActions"
+generated = true
 
 [lib]
 crate-type = ["cdylib"]

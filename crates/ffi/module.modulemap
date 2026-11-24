@@ -1,4 +1,0 @@
-framework module CDesktopActions {
-  umbrella header "desktop_actions.h"
-  export *
-}

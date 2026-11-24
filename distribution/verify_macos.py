@@ -9,6 +9,7 @@ import tomllib
 from pathlib import Path
 
 from sdk_tooling.adapters import git, load, tooling_command
+from sdk_tooling.c_headers import prepare_generated
 from sdk_tooling.dotnet import subprocess_environment
 from sdk_tooling.native_plan import ffi_product
 from sdk_tooling.workspaces import temporary_workspace
@@ -77,6 +78,7 @@ def pack_pair(root, dependency_source, runtimes, work):
     if result.read_text(encoding="utf-8") != name:
         raise ValueError("WindowManagement packer did not return the locked package filename")
     dependency_package = dependency / ".native-build/packages" / name
+    prepare_generated(root, env=environment)
     package = pack_sdk(
         xcframework(root),
         load,
