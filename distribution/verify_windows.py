@@ -12,7 +12,7 @@ import tempfile
 from pathlib import Path
 
 from sdk_tooling import vm_environment as vm
-from sdk_tooling.adapters import git, load, support_inputs
+from sdk_tooling.adapters import git, load, pinned_tooling, support_inputs
 from sdk_tooling.c_headers import prepare_generated
 from sdk_tooling.native_plan import ffi_product
 from sdk_tooling.windows_delivery import RID, TARGET, X64Acceptance, locked_fetch_args
@@ -200,7 +200,6 @@ def accept(
     export_native=False,
 ):
     artifacts = selected("artifacts")
-    windows = selected("windows")
     base = root / ".native-build"
     base.mkdir(exist_ok=True)
     if base.is_symlink():
@@ -247,13 +246,17 @@ def accept(
         dependency, dependency_revision = dependency_source(metadata, env)
         snapshot(dependency, dependency_revision, child)
         actions = ffi_product(parent)
-        window = ffi_product(child)
+        window_tooling = work / "window-tooling"
+        # The companion NuGet is later verified with the dependency SDK's own tooling.
+        window_selected = pinned_tooling(child, window_tooling)
+        window_tooling_revision = git(window_tooling, "rev-parse", "HEAD^{commit}").decode().strip()
+        window = window_selected("native_plan").ffi_product(child)
         check_dependency_version(parent, window)
-        window_binary = build_sdk(window, selected, tools, env, host)
-        check_c_fixture(window, selected, window_binary)
-        window_package = pack_sdk(window, selected, [RID], environment=env)
+        window_binary = build_sdk(window, window_selected, tools, env, host)
+        check_c_fixture(window, window_selected, window_binary)
+        window_package = pack_sdk(window, window_selected, [RID], environment=env)
         check_installed_package(
-            selected,
+            window_selected,
             dotnet,
             env,
             window,
@@ -326,14 +329,24 @@ def accept(
                 )
 
             verify_snapshot(root, commit)
+            verify_snapshot(window_tooling, window_tooling_revision)
             if support_inputs(root) != tool_inputs:
                 raise ValueError("The SDK build tools changed during Windows acceptance")
-            for label, sdk, source, binary, package in (
-                ("sdk", actions, commit, actions_binary, actions_package),
-                ("window-dependency", window, dependency_revision, window_binary, window_package),
+            for label, sdk, source, binary, package, load_tool in (
+                ("sdk", actions, commit, actions_binary, actions_package, selected),
+                (
+                    "window-dependency",
+                    window,
+                    dependency_revision,
+                    window_binary,
+                    window_package,
+                    window_selected,
+                ),
             ):
                 verify_snapshot(sdk.root, source)
-                _, native_receipt = windows.verify_artifact(sdk, "x64", environment=env)
+                _, native_receipt = load_tool("windows").verify_artifact(
+                    sdk, "x64", environment=env
+                )
                 receipt_digest = sha256(binary / "native-build.json")
                 package_receipt = package.with_suffix(".nupkg.json")
                 packed = json.loads(package_receipt.read_bytes())

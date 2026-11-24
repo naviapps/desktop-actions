@@ -167,6 +167,46 @@ class LockedDependencyTests(unittest.TestCase):
 
 
 class NativeFixtureTests(unittest.TestCase):
+    def test_window_management_uses_its_own_pinned_build_and_acceptance_tools(self):
+        actions, window = Mock(), Mock()
+        selected = Mock()
+        window_plan = Mock()
+        window_plan.ffi_product.return_value = window
+        window_selected = Mock(return_value=window_plan)
+        binary, package = Mock(), Mock()
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(windows_sdk, "git", return_value=b"source"),
+            patch.object(windows_sdk, "verify_snapshot"),
+            patch.object(windows_sdk, "snapshot"),
+            patch.object(windows_sdk, "support_inputs", return_value={}),
+            patch.object(windows_sdk.subprocess, "run"),
+            patch.object(windows_sdk.subprocess, "check_output", return_value=b"{}"),
+            patch.object(windows_sdk, "dependency_source", return_value=("mirror", "source")),
+            patch.object(windows_sdk, "ffi_product", return_value=actions),
+            patch.object(windows_sdk, "pinned_tooling", return_value=window_selected) as pin,
+            patch.object(windows_sdk, "check_dependency_version"),
+            patch.object(
+                windows_sdk, "build_sdk", side_effect=[binary, OSError("stop at primary build")]
+            ) as build,
+            patch.object(windows_sdk, "check_c_fixture") as check_c,
+            patch.object(windows_sdk, "pack_sdk", return_value=package) as pack,
+            patch.object(windows_sdk, "check_installed_package") as check_package,
+        ):
+            with self.assertRaisesRegex(OSError, "stop at primary build"):
+                windows_sdk.accept(Path(temporary), {}, "x64", "tools", "dotnet", selected, False)
+
+        child = pin.call_args.args[0]
+        window_selected.assert_called_once_with("native_plan")
+        window_plan.ffi_product.assert_called_once_with(child)
+        self.assertEqual(
+            [item.args[:2] for item in build.call_args_list],
+            [(window, window_selected), (actions, selected)],
+        )
+        check_c.assert_called_once_with(window, window_selected, binary)
+        self.assertEqual(pack.call_args.args, (window, window_selected, [windows_sdk.RID]))
+        self.assertEqual(check_package.call_args.args[0], window_selected)
+
     def test_disposable_windows_build_disables_incremental_compilation(self):
         environment = {"CARGO_INCREMENTAL": "1", "CARGO_NET_OFFLINE": "true"}
         selected = {
