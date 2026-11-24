@@ -41,10 +41,6 @@ AppleScript, open URLs, control windows, collect analytics, transmit data, or
 persist action history. Those live integrations are provided by
 `DesktopActionsMacOS` or the host app.
 
-ActionRequest identifiers are the canonical serialization names for the current action catalog. Use
-`ActionKind.identifier` and `ActionCodec` payloads for persistence, IPC, and tool bindings
-instead of relying on enum case names as external protocol strings.
-
 Use `ActionKind` when building a picker or command catalog before input is available:
 
 ```swift
@@ -82,10 +78,6 @@ if let action = ActionKind.openURL.makeAction(input: .string("https://example.co
   // Store or execute the action.
 }
 ```
-
-Decoded action envelopes, action payloads, standalone `ActionInput` payloads, input metadata,
-capability metadata, permission sets, and execution result payloads reject unknown top-level fields
-so stored data matches the documented contract.
 
 Live execution reports `ActionExecutionReport` values with ordered `ActionAttempt` records,
 `ActionResult` summaries, and `ActionError` diagnostics. Windowing actions use explicit
@@ -134,11 +126,9 @@ persisted action strings.
 
 ## Preflight
 
-Swift `ActionRequest.plan(for:)` and .NET `ActionRequest.Plan` expose the same Rust plan for
-an explicit platform. Swift `ActionStep.method` and .NET `ActionPlanStep.Instruction`
-project the instructions into typed values, including shared window request types.
-The .NET catalog, text evaluation and text or input-free request coding use
-generated JSON metadata. Typed window values use the WindowManagement package codecs.
+Use `ActionRequest.plan(for:)` to read the Rust plan for an explicit platform.
+`ActionStep.method` projects each instruction into a typed value, including
+shared window request types.
 Plans, steps and permission hints compare by value. Instruction order and fallback
 roles participate in comparison, and a screen-capture instruction owns its ordered
 argument values. Text compares by its exact UTF-8 spelling so distinct paths and
@@ -159,8 +149,9 @@ let canPlan = windows.isExecutable
 
 ## Results
 
-The .NET result codecs use generated JSON metadata. Result construction, decoding
-and the runner's failure reporting work when `System.Text.Json` reflection is disabled.
+Use `ActionResultCodec` for original-byte errors, results, attempts and reports.
+`ActionAttempt.durationSeconds` retains the wire value. Its `duration` view
+rounds to the nearest attosecond.
 
 ## Previewing an Action Kind
 
@@ -204,40 +195,15 @@ Hosts retain custom commands, permission guidance, logging and deadline exemptio
 
 ## Coding
 
-Rust trims Unicode whitespace from text inputs and rejects empty or NUL-containing
-execution values. Format characters such as U+200B remain part of folder, application
-or Shortcut names. Native adapters preserve the normalized value; path expansion and
-filesystem checks stay native. Swift `ActionRequest` and `ActionInput` compare/hash
-text by exact UTF-8 bytes. Direct enum cases keep raw whitespace in identity, while
-`input`, coding and planning apply Rust normalization. .NET `ActionRequest.Equals`
-and collection keys compare the canonical action identifier and input retained by Rust.
+For original UTF-8 bytes, follow the [saved action JSON contract](../README.md#saved-action-json)
+and use `ActionCodec` and `ActionResultCodec`. A generic Swift `Decoder` may consume
+duplicate keys or alter numeric spelling before nested `Codable` validation. When a
+Codable error comes from native validation, its underlying error is an
+`ActionCodecError`. The original-byte codec exposes that error directly.
 
-Version 1 envelopes contain `version` and `action`; actions contain `kind` and, where
-required, an untagged `input`. Use `ActionCodec` or .NET `ActionRequest.FromEnvelope`
-for untrusted original bytes: Rust rejects duplicate keys, unknown fields/identifiers,
-missing required input and explicit nulls before language decoding. Generic Swift
-`Decoder` may consume duplicate keys or numeric spelling before nested `Codable`
-validation. Codable errors retain the native codec error as their underlying cause;
-the byte codec exposes `ActionCodecError` directly. .NET uses `ActionDataException`
-with a portable category and optional unsupported version. C views borrow their owner;
-copy bytes before `desktop_actions_json_destroy`.
-
-Standalone `ActionInput` values carry `shape` and `value`. Swift's Codable projection
-and .NET `ActionInput.FromJson` and `ToJson` share Rust normalization for text,
-placement and movement inputs. .NET hosts can create requests with
-`ActionRequest.CreateWithInput` and read them through `ActionRequest.TypedInput`.
-
-Swift and .NET input parameter metadata preserve the exact UTF-8 spelling of
-normalized labels for equality. Both bindings validate labels, examples, and shape
-through Rust. .NET constructors throw `ActionDataException` for invalid metadata.
-The resulting metadata is read-only and owns its example JSON.
-
-`ActionResultCodec` and .NET `FromJson` apply the same original-byte boundary to errors,
-results, attempts and outcomes. Rust owns compatible error fields, diagnostic defaults,
-permission ordering, finite nonnegative durations and final-result consistency. Native
-failures remain distinct from macOS privacy denials. Exact float round trips preserve
-finite durations and coordinates; Swift `ActionAttempt.durationSeconds` retains the
-wire value while its `duration` view rounds to the nearest attosecond.
+Swift `ActionRequest` and `ActionInput` compare and hash text by exact UTF-8 bytes.
+Direct enum cases keep raw whitespace in identity. The `input` property, coding
+and planning apply Rust normalization.
 
 ## Windowing
 

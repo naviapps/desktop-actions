@@ -27,7 +27,8 @@ gesture matching and product UI.
 ## Contents
 
 - [Installation](#installation) and [inspect an action](#inspect-an-action)
-- [Platform boundaries](#platform-boundaries) and [saved-data migrations](#saved-data-migrations)
+- [Platform boundaries](#platform-boundaries), [saved action JSON](#saved-action-json)
+  and [saved-data migrations](#saved-data-migrations)
 - [Development and validation](#development-and-validation)
 - [Windows execution and acceptance](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md)
 - Swift guides for [the shared action model](https://github.com/naviapps/desktop-actions/blob/main/docs/swift.md),
@@ -188,22 +189,11 @@ if (windows.Steps[0].Instruction is ActionMethod.KeyEvent key)
 
 .NET `ActionPlanStep.Instruction` provides typed values from the Rust plan.
 `ActionPlanStep.Method` exposes the owned JSON for callers that inspect the wire fields.
-Catalog parameters expose `TypedExampleInput` for action construction. Swift's
-`ActionInput` Codable representation and .NET's `ActionInput.FromJson` and `ToJson`
-use the same Rust codec for standalone tagged input. Action requests embed the
-untagged input value in the existing v1 envelope.
-
-When reading JSON from disk or the network, pass the original bytes to Rust.
-Swift offers `ActionCodec.decode`, `decodeRequest`, `decodeInput` and
-`ActionResultCodec`. In .NET use `ActionRequest.FromUtf8Envelope` or the
-`FromUtf8Json` methods on requests, inputs, errors, results, attempts and reports.
-Invalid UTF-8 and duplicate fields are rejected without changing action text.
-
-Execution errors, results, attempts and reports compare by value in Swift and
-through `Equals` and hash collections in .NET. Diagnostic spelling is exact,
-reports compare attempts in order, and an absent duration differs from zero.
-Run results compare their status and execution report. Sequence reports compare
-their status, aggregate success and ordered deliveries.
+Catalog parameters expose `TypedExampleInput` for action construction.
+The .NET catalog, text evaluation, text and input-free request coding, and result
+codecs use source-generated JSON metadata. Typed window inputs use the
+WindowManagement codecs. Result construction, decoding, and runner failure
+reporting work with `System.Text.Json` reflection disabled.
 
 For live macOS execution and host permission hooks, see the
 [macOS API guide](https://github.com/naviapps/desktop-actions/blob/main/docs/swift-macos.md).
@@ -228,6 +218,50 @@ installed targets or successful effects.
 
 The default macOS executor resolves explicit `.main` placement to the system's primary
 display, independently of the display containing the key window.
+
+## Saved action JSON
+
+Use the stable catalog identifier, such as `ActionKind.identifier` in Swift, for
+`kind` in storage and IPC. The version 1 envelope contains `version` and
+`action`. A bare action contains `kind` and, when required, an untagged
+`input`. The input shape must match the selected kind. Omit `input` for
+input-free actions. Standalone inputs use the tagged `shape` and `value` form.
+
+Pass original UTF-8 bytes from disk or the network to the SDK codec before
+language-level parsing. Rust rejects malformed UTF-8, duplicate fields, unknown
+fields or action identifiers, unsupported versions, and missing, null, or
+mismatched action input.
+
+- In Swift, pass `Data` to `ActionCodec.decode` for an envelope, `decodeRequest`
+  for a bare action, or `decodeInput` for standalone input. Use
+  `ActionResultCodec` for errors, results, attempts and execution reports.
+- In .NET, pass `ReadOnlySpan<byte>` to `ActionRequest.FromUtf8Envelope` for
+  an envelope. Use `FromUtf8Json` on `ActionRequest`, `ActionInput`,
+  `ActionError`, `ActionResult`, `ActionAttempt` or `ActionExecutionReport`
+  for the corresponding bare payload.
+
+The codec trims Unicode whitespace from text and rejects text that becomes
+empty. Format characters such as U+200B keep their spelling. Planning rejects
+NUL characters in folder, application and Shortcut inputs. Path expansion and
+filesystem checks belong to the native adapters. Rust rejects unknown fields in
+input and capability metadata and permission sets. It validates labels, example
+values and each input descriptor's shape. Parameter metadata keeps the exact
+UTF-8 spelling of its normalized labels for equality and owns its example JSON.
+
+Rust validates result fields and orders permissions. Constructing an error with
+an empty diagnostic message uses the default for its error code. A report's
+final result must match its last attempt. Native failure codes remain distinct
+from macOS privacy denials. Round trips preserve
+finite duration and window-coordinate values exactly. Attempt duration is
+optional, finite and nonnegative when present. Errors, results, attempts and
+reports compare by value in Swift and .NET, including exact diagnostic spelling,
+attempt order, and the distinction between absent and zero durations. Run results
+compare their status and execution report. Sequence reports compare their status,
+aggregate success and ordered deliveries.
+
+In .NET, codec failures throw `ActionDataException` with a portable `Code` and
+the unsupported `Version` when applicable. For Swift's nested Codable behavior,
+see the [Swift coding guide](https://github.com/naviapps/desktop-actions/blob/main/docs/swift.md#coding).
 
 ## Saved-data migrations
 
