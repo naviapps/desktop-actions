@@ -13,12 +13,19 @@ use desktop_actions::{
 };
 use std::sync::Mutex;
 
+/// Native ABI version for the C header and Swift and .NET bindings.
+pub const DESKTOP_ACTIONS_ABI_VERSION: u32 = 6u32;
+
 /// Owned immutable UTF-8 JSON or error text. Views are borrowed until destruction.
 pub struct DesktopActionsJson {
     code: u32,
     version: Option<i64>,
     data: Vec<u8>,
 }
+/// Code 0 carries canonical JSON. Codes 1, 2 and 3 carry UTF-8 diagnostic text
+/// for invalid data, an unsupported envelope version and an unknown action.
+/// Version is meaningful only when has_version is nonzero. Copy bytes before
+/// destroying the owner. Callers never free the borrowed data pointer.
 #[repr(C)]
 pub struct DesktopActionsJsonView {
     pub code: u32,
@@ -51,6 +58,8 @@ impl DesktopActionsJson {
         }))
     }
 }
+/// The catalog derives supportedPlatforms from Rust plans. Entries do not
+/// validate caller input, permissions, installed targets or successful effects.
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_catalog() -> *mut DesktopActionsJson {
     #[derive(serde::Serialize)]
@@ -71,6 +80,8 @@ pub extern "C" fn desktop_actions_catalog() -> *mut DesktopActionsJson {
         serde_json::to_vec(&entries).expect("valid embedded catalog")
     ))
 }
+/// The host supplies shortcut catalogs and directory observations for evaluation.
+///
 /// # Safety
 /// Input must be readable for length bytes. This boundary performs no native effects.
 #[unsafe(no_mangle)]
@@ -155,6 +166,9 @@ fn platform(value: u32) -> Option<Platform> {
         _ => None,
     }
 }
+/// Platform 0 selects macOS and 1 selects Windows. An empty step array means
+/// the action is unsupported on the selected platform.
+///
 /// # Safety
 /// Input must be readable for length bytes and contain a bare action. Planning
 /// never queries permissions, launches processes or posts input.
@@ -214,6 +228,9 @@ pub struct DesktopActionsMacosEditingChord {
     pub modifiers: u16,
 }
 
+/// Returns the lowercase ASCII letter and canonical macOS stroke of a dedicated
+/// editing action. Invalid identifiers and other actions return zero fields.
+///
 /// # Safety
 /// The UTF-8 catalog identifier must be readable for length bytes.
 #[unsafe(no_mangle)]
@@ -297,10 +314,13 @@ pub unsafe extern "C" fn desktop_actions_json_destroy(owner: *mut DesktopActions
         drop(unsafe { Box::from_raw(owner) });
     }
 }
+/// Returns -1 when the physical usage has no supported macOS ANSI key mapping.
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_macos_key_code(usage: u16) -> i32 {
     macos_key_code(usage).map_or(-1, i32::from)
 }
+/// Returns -1 for an unknown action or unsupported mapping.
+///
 /// # Safety
 /// The canonical action identifier must be readable for length bytes. Platform 0
 /// selects macOS NX keys, 1 selects Windows virtual keys. No input is posted.
@@ -327,7 +347,7 @@ pub unsafe extern "C" fn desktop_actions_system_key(
 }
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_abi_version() -> u32 {
-    6
+    DESKTOP_ACTIONS_ABI_VERSION
 }
 #[repr(C)]
 pub struct DesktopActionsKeyStroke {
@@ -373,40 +393,47 @@ pub unsafe extern "C" fn desktop_actions_parse_shortcut(
             stroke: stroke.into(),
         })
 }
+/// Owned execution pool. Terminal codes are 0 for no delivery, 1 for completed,
+/// 2 for cancelled and 3 for timed out.
+pub struct DesktopActionsExecutionPool(Mutex<ExecutionPool>);
+
+/// The maximum and timeout in nanoseconds must both be positive. Invalid policy
+/// returns null.
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_execution_create(
     maximum: usize,
-    timeout: u64,
-) -> *mut Mutex<ExecutionPool> {
-    ExecutionPool::new(maximum, timeout).map_or(std::ptr::null_mut(), |pool| {
-        Box::into_raw(Box::new(Mutex::new(pool)))
+    timeout_ns: u64,
+) -> *mut DesktopActionsExecutionPool {
+    ExecutionPool::new(maximum, timeout_ns).map_or(std::ptr::null_mut(), |pool| {
+        Box::into_raw(Box::new(DesktopActionsExecutionPool(Mutex::new(pool))))
     })
 }
 /// # Safety
 /// Pool must be live; concurrent calls are serialized internally. No callbacks occur under lock.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_reserve(
-    pool: *const Mutex<ExecutionPool>,
-    now: u64,
+    pool: *const DesktopActionsExecutionPool,
+    now_ns: u64,
     interactive: u32,
 ) -> u64 {
     unsafe { pool.as_ref() }
         .and_then(|p| {
-            p.lock()
+            p.0.lock()
                 .unwrap_or_else(|e| e.into_inner())
-                .reserve(now, interactive != 0)
+                .reserve(now_ns, interactive != 0)
         })
         .unwrap_or(0)
 }
 /// # Safety
-/// Pool must be live. Zero means no deadline (interactive or already terminal).
+/// Pool must be live. The deadline is in nanoseconds. Zero means no deadline
+/// (interactive or already terminal).
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_deadline(
-    pool: *const Mutex<ExecutionPool>,
+    pool: *const DesktopActionsExecutionPool,
     id: u64,
 ) -> u64 {
     unsafe { pool.as_ref() }
-        .and_then(|p| p.lock().unwrap_or_else(|e| e.into_inner()).deadline(id))
+        .and_then(|p| p.0.lock().unwrap_or_else(|e| e.into_inner()).deadline(id))
         .unwrap_or(0)
 }
 /// # Safety
@@ -414,25 +441,31 @@ pub unsafe extern "C" fn desktop_actions_execution_deadline(
 /// 3 timed out. Capacity remains held until actual worker completion.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_cancel(
-    pool: *const Mutex<ExecutionPool>,
+    pool: *const DesktopActionsExecutionPool,
     id: u64,
-    now: u64,
+    now_ns: u64,
 ) -> u32 {
     unsafe { pool.as_ref() }
-        .and_then(|p| p.lock().unwrap_or_else(|e| e.into_inner()).cancel(id, now))
+        .and_then(|p| {
+            p.0.lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .cancel(id, now_ns)
+        })
         .map_or(0, |terminal| terminal as u32)
 }
 /// # Safety
 /// Pool must be live. Returns 3 only when timeout claims terminal delivery.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_timeout(
-    pool: *const Mutex<ExecutionPool>,
+    pool: *const DesktopActionsExecutionPool,
     id: u64,
-    now: u64,
+    now_ns: u64,
 ) -> u32 {
-    if unsafe { pool.as_ref() }
-        .is_some_and(|p| p.lock().unwrap_or_else(|e| e.into_inner()).timeout(id, now))
-    {
+    if unsafe { pool.as_ref() }.is_some_and(|p| {
+        p.0.lock()
+            .unwrap_or_else(|e| e.into_inner())
+            .timeout(id, now_ns)
+    }) {
         Terminal::TimedOut as u32
     } else {
         0
@@ -442,12 +475,12 @@ pub unsafe extern "C" fn desktop_actions_execution_timeout(
 /// Pool must be live. One means terminal delivery has not yet been claimed.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_active(
-    pool: *const Mutex<ExecutionPool>,
+    pool: *const DesktopActionsExecutionPool,
     id: u64,
 ) -> u32 {
     u32::from(
         unsafe { pool.as_ref() }
-            .is_some_and(|p| p.lock().unwrap_or_else(|e| e.into_inner()).is_active(id)),
+            .is_some_and(|p| p.0.lock().unwrap_or_else(|e| e.into_inner()).is_active(id)),
     )
 }
 /// # Safety
@@ -455,18 +488,22 @@ pub unsafe extern "C" fn desktop_actions_execution_active(
 /// delivery/missing id, 1 for completion, 3 for completion at or after its deadline.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_execution_finish(
-    pool: *const Mutex<ExecutionPool>,
+    pool: *const DesktopActionsExecutionPool,
     id: u64,
-    now: u64,
+    now_ns: u64,
 ) -> u32 {
     unsafe { pool.as_ref() }
-        .and_then(|p| p.lock().unwrap_or_else(|e| e.into_inner()).finish(id, now))
+        .and_then(|p| {
+            p.0.lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .finish(id, now_ns)
+        })
         .map_or(0, |terminal| terminal as u32)
 }
 /// # Safety
 /// Pool must be null or exclusively owned; no concurrent calls may be in progress.
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn desktop_actions_execution_destroy(pool: *mut Mutex<ExecutionPool>) {
+pub unsafe extern "C" fn desktop_actions_execution_destroy(pool: *mut DesktopActionsExecutionPool) {
     if !pool.is_null() {
         drop(unsafe { Box::from_raw(pool) })
     }

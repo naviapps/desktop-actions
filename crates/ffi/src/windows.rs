@@ -22,6 +22,7 @@ pub struct DesktopActionsWindowsTarget {
 
 /// Owns a best-effort capture of the current Windows foreground target. Null
 /// indicates no complete stable target or an unavailable Windows adapter.
+/// The target is read-only and may be used to create multiple runs.
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_windows_target_capture() -> *mut DesktopActionsWindowsTarget {
     #[cfg(windows)]
@@ -46,6 +47,9 @@ pub unsafe extern "C" fn desktop_actions_windows_target_destroy(
     }
 }
 
+/// Execution checks the captured foreground target and returns native-failed
+/// if the target changed.
+///
 /// # Safety
 /// Input must be readable for length bytes and contain a bare action. Target
 /// must be live during creation. The run owns its own snapshot. Null target or
@@ -115,6 +119,9 @@ enum Report {
     Completed { outcome: ActionExecutionReport },
     Cancelled {},
 }
+/// Execute blocks until completion or cancellation acknowledgement. Non-Windows
+/// execution reports unsupported-action for a run that has not been cancelled.
+///
 /// # Safety
 /// Run must be live until this blocking call returns. It may execute once only.
 /// Owned JSON reports completed{outcome} or cancelled. No host callback is invoked.

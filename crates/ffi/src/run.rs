@@ -3,7 +3,11 @@ use desktop_actions::{ActionExecution, ActionRequest, ActionResult, Method, Plan
 use serde::Serialize;
 use std::sync::Mutex;
 
+/// Owned plan and result reducer. No native effects or callbacks occur under its lock.
 pub struct DesktopActionsActionRun(Mutex<ActionExecution>);
+
+/// Platform 0 selects macOS and 1 selects Windows.
+///
 /// # Safety
 /// Input is readable for length bytes. Kind 0 is a raw action, 1 is an array of
 /// plan steps. Invalid actions become an invalid-input instruction, with no effects.
@@ -45,8 +49,8 @@ pub unsafe extern "C" fn desktop_actions_run_create(
     ))))
 }
 /// # Safety
-/// Run must be live. The returned owned JSON is null at completion or contains
-/// id and step; claiming another step before recording the current one fails.
+/// Run must be live. The returned owner contains JSON null at completion or an
+/// object with id and step. Claiming another step before recording the current one fails.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_run_next(
     run: *const DesktopActionsActionRun,

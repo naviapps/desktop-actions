@@ -3,6 +3,9 @@ use std::sync::Mutex;
 
 pub struct DesktopActionsActionSequence(Mutex<ActionSequence>);
 
+/// Status is 0 running, 1 completed, 2 stopped on failure, 3 cancelled, 4 timed
+/// out or 5 busy. Completed means every delivery was recorded. Check
+/// all_actions_succeeded for aggregate success.
 #[repr(C)]
 pub struct DesktopActionsSequenceSummary {
     pub status: u32,
@@ -10,6 +13,9 @@ pub struct DesktopActionsSequenceSummary {
     pub recorded_count: usize,
 }
 
+/// Creates an ordered sequence. Failure behavior 0 stops on completed failure
+/// or skip, and 1 continues. Cancellation, timeout and capacity rejection always
+/// stop issuance. The caller owns effects, values and reports. Invalid policy returns null.
 #[unsafe(no_mangle)]
 pub extern "C" fn desktop_actions_sequence_create(
     count: usize,
@@ -26,7 +32,8 @@ pub extern "C" fn desktop_actions_sequence_create(
 }
 
 /// # Safety
-/// The owner must remain live. Zero means no claim, including an outstanding request.
+/// The owner must remain live. IDs start at one. Zero means no claim, including
+/// an outstanding request or a terminal sequence.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_sequence_next(
     owner: *const DesktopActionsActionSequence,
@@ -42,6 +49,8 @@ pub unsafe extern "C" fn desktop_actions_sequence_next(
         .unwrap_or(0)
 }
 
+/// Result is 1 success, 2 failure, 3 skipped, 4 cancelled, 5 timed out or 6 busy.
+///
 /// # Safety
 /// The owner must remain live. Zero means accepted. Invalid ids/results never advance state.
 #[unsafe(no_mangle)]
@@ -80,7 +89,7 @@ pub unsafe extern "C" fn desktop_actions_sequence_cancel(
 }
 
 /// # Safety
-/// The owner must remain live. Null returns an invalid status, never success.
+/// The owner must remain live. Null returns UINT32_MAX status and zero aggregate success.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn desktop_actions_sequence_summary(
     owner: *const DesktopActionsActionSequence,
