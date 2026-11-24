@@ -125,23 +125,24 @@ Rust nor the SDK sources. Copy each `desktop_actions_json_view` result before ca
 ### .NET
 
 .NET consumers use `NaviApps.DesktopActions` and its exact
-`NaviApps.WindowManagement` dependency. Put both packages from one successful
-[SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
-in a local NuGet feed. The pair carries the native runtimes for macOS ARM64,
-macOS x64 and Windows x64. Consumers need only .NET and the packages.
-No package source is added globally. For a .NET 10 client, select the package version
-provided by that feed (currently `0.1.0` in this repository):
+`NaviApps.WindowManagement` dependency. Download the combined NuGet artifact
+from one successful [SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
+for your selected revision. Verify each package against its SHA-256 receipt
+and put the two packages in one local feed directory. Desktop Actions is at
+the artifact root and Window Management is under `dependencies/`.
+
+From a new .NET 10 client directory, substitute the absolute path to that feed
+and the exact Desktop Actions version:
 
 ```sh
-dotnet new console --name ActionClient --framework net10.0
-dotnet add ActionClient/ActionClient.csproj package NaviApps.DesktopActions \
-  --version 0.1.0 --source /path/to/private-feed
+dotnet new console --framework net10.0 --no-restore
+dotnet package add NaviApps.DesktopActions --version "[0.1.0]" --no-restore
+dotnet restore --source "/absolute/path/to/sdk-packages" --packages .nuget-packages
 ```
 
-The selected feed must contain both packages. Record the feed in the client's
-`NuGet.Config` so a later restore can find it with an empty package cache. The
-shared model and runner support Windows x64 and macOS arm64/x64 when their RIDs
-are present in both packages.
+Use a fresh cache directory whenever you switch candidates with the same version.
+Run with `dotnet run --no-restore` after restoring. The pair includes native
+assets for macOS ARM64, macOS x64 and Windows x64. Use x64 .NET on Windows 11 ARM64.
 `WindowsActionExecutor` performs live effects on Windows. Use `DesktopActionsMacOS`
 from Swift for native macOS effects.
 
