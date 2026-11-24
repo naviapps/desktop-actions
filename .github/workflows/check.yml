@@ -1,4 +1,4 @@
-name: Windows x64 SDK checks
+name: SDK checks
 on:
   push:
     branches: [main]
@@ -6,6 +6,11 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
+      platform:
+        description: Platform checks to run
+        type: choice
+        default: all
+        options: [all, macos, windows]
       native-aot:
         description: Publish and run the win-x64 Native AOT NuGet consumer
         type: boolean
@@ -13,12 +18,21 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: windows-x64-${{ github.ref }}${{ inputs.native-aot && '-native-aot' || '' }}
+  group: sdk-${{ github.ref }}-${{ inputs.native-aot && 'native-aot' || inputs.platform || 'all' }}
   cancel-in-progress: true
 jobs:
+  plan:
+    if: ${{ !inputs.native-aot }}
+    uses: naviapps/sdk-tooling/.github/workflows/plan-checks.yml@5b8ed6b1de70b0d7f0cf78519fd9fb1cbdf1f11a
+  swift:
+    name: Swift
+    needs: plan
+    if: ${{ needs.plan.outputs.documentation-only != 'true' && inputs.platform != 'windows' }}
+    uses: naviapps/sdk-tooling/.github/workflows/check-swift.yml@5b8ed6b1de70b0d7f0cf78519fd9fb1cbdf1f11a
   windows:
     name: Test Rust
-    if: ${{ !inputs.native-aot }}
+    needs: plan
+    if: ${{ needs.plan.outputs.documentation-only != 'true' && inputs.platform != 'macos' }}
     runs-on: windows-2025
     timeout-minutes: 30
     env:

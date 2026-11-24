@@ -167,7 +167,7 @@ python -I -B (Join-Path $tooling 'ci/run_sdk_tooling.py') python -m distribution
 To check Native AOT on GitHub's Windows x64 runner, dispatch the opt-in job:
 
 ```sh
-gh workflow run check-windows.yml --repo naviapps/desktop-actions --ref main -f native-aot=true
+gh workflow run check.yml --repo naviapps/desktop-actions --ref main -f native-aot=true
 ```
 
 The job publishes the reflection-free consumer with the pinned .NET SDK and
