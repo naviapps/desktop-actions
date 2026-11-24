@@ -125,11 +125,12 @@ Rust nor the SDK sources. Copy each `desktop_actions_json_view` result before ca
 ### .NET
 
 .NET consumers use `NaviApps.DesktopActions` and its exact
-`NaviApps.WindowManagement` dependency. Download the combined NuGet artifact
-from one successful [SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
+`NaviApps.WindowManagement` dependency. Download
+`desktop-actions-nuget-<revision>-<attempt>` from a successful
+[SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
 for your selected revision. Verify each package against its SHA-256 receipt
-and put the two packages in one local feed directory. Desktop Actions is at
-the artifact root and Window Management is under `dependencies/`.
+and put both packages in one local feed. Desktop Actions is at the artifact
+root and Window Management is under `dependencies/`.
 
 From a new .NET 10 client directory, substitute the absolute path to that feed
 and the exact Desktop Actions version:
@@ -141,8 +142,9 @@ dotnet restore --source "/absolute/path/to/sdk-packages" --packages .nuget-packa
 ```
 
 Use a fresh cache directory whenever you switch candidates with the same version.
-Run with `dotnet run --no-restore` after restoring. The pair includes native
-assets for macOS ARM64, macOS x64 and Windows x64. Use x64 .NET on Windows 11 ARM64.
+Try the [C# example](#inspect-an-action) with `dotnet run --no-restore`.
+The pair includes native assets for macOS 26 or later on ARM64 and x64, and
+Windows 11 x64. Use x64 .NET on Windows 11 ARM64.
 `WindowsActionExecutor` performs live effects on Windows. Use `DesktopActionsMacOS`
 from Swift for native macOS effects.
 
@@ -250,7 +252,7 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 ## Development and validation
 
 Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10.
-The checks use public SDK Tooling pinned in [`mise.toml`](mise.toml), together
+The checks use public SDK Tooling pinned in [`mise.toml`](https://github.com/naviapps/desktop-actions/blob/main/mise.toml), together
 with SDK-owned fixtures and validation settings. Run from the repository root.
 
 ```sh
@@ -294,14 +296,14 @@ Run from a clean committed checkout. Shallow producer checkouts also need a comp
 mirror or bundle via `--git-source`. The distribution workflow clones
 WindowManagement for the local delivery check. A fresh Cargo cache may fetch public crates.
 These checks verify installation from isolated local sources. The
-[Windows desktop fixture](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
+[Windows desktop fixture](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 verifies native effects on an owned worker.
 
 ### Distribution verification
 
 Dispatch the detailed macOS and Windows checks in
 [`naviapps/sdk-tooling`](https://github.com/naviapps/sdk-tooling) with the full SDK
-commit SHA from `main`. [`sdk-distribution.toml`](sdk-distribution.toml) declares
+commit SHA from `main`. [`sdk-distribution.toml`](https://github.com/naviapps/desktop-actions/blob/main/sdk-distribution.toml) declares
 the commands for each platform.
 
 ```sh
@@ -313,18 +315,18 @@ The Windows job verifies both x64 builds and runs the Native AOT consumer.
 The macOS job combines the accepted DLLs with both macOS architectures in each
 package. The workflow verifies the same primary package and exact dependency
 on macOS ARM64, macOS x64 through Rosetta and Windows x64, including emulation
-on Windows 11 ARM64 when requested. Download `desktop-actions-nuget-<revision>-<attempt>`
-and place its main package and the package in `dependencies/` in the same feed.
+on Windows 11 ARM64 when requested. Use the [.NET installation](#net) instructions
+to consume the verified packages.
 
 For local macOS distribution checks, run `mise exec -- make check-distribution`.
-It uses the revision in the `sdk-tooling` task in [`mise.toml`](mise.toml).
-[`native.toml`](native.toml) declares the native artifact and is recorded in its
+It uses the revision in the `sdk-tooling` task in `mise.toml`.
+[`native.toml`](https://github.com/naviapps/desktop-actions/blob/main/native.toml) declares the native artifact and is recorded in its
 build receipt. For a detailed Swift dependency-graph check, run
 `mise run sdk-tooling -- swift-consumer --distribution`.
 
-Independent package consumers live in [`fixtures/consumers/`](fixtures/consumers).
-The [owned Windows acceptance projects](fixtures/acceptance/windows) exercise
-live desktop behavior. [`distribution/`](distribution) contains the SDK's
+Independent package consumers live in [`fixtures/consumers/`](https://github.com/naviapps/desktop-actions/tree/main/fixtures/consumers).
+The [owned Windows acceptance projects](https://github.com/naviapps/desktop-actions/tree/main/fixtures/acceptance/windows) exercise
+live desktop behavior. [`distribution/`](https://github.com/naviapps/desktop-actions/tree/main/distribution) contains the SDK's
 packaging and validation entry points.
 
 ### Native artifacts and package checks
@@ -344,7 +346,7 @@ mise run sdk-tooling -- check-binding dotnet --package-source /path/to/private-f
 ```
 
 `DOTNET_BIN` selects an existing .NET executable. Follow the
-[Windows acceptance guide](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
+[Windows acceptance guide](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md#windows-ci-and-owned-acceptance)
 to build and verify both DesktopActions and its fixed WindowManagement dependency
 on an owned Windows worker. For a local macOS-only package check, pass a
 WindowManagement repository containing the revision
@@ -368,8 +370,6 @@ The package fixture checks codecs, platform planning, shared window requests/run
 without posting input. Keep `ThirdParty/`, Rust provenance, framework
 `Resources/ThirdPartyNotices.txt` and NuGet runtime notices intact.
 `mise exec -- make native-verify` checks the framework against its build receipt.
-[Windows acceptance](docs/WINDOWS.md#windows-ci-and-owned-acceptance)
-records OS effects separately from compilation and installation.
 
 ### Documentation and static checks
 

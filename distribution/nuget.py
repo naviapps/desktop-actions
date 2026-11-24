@@ -99,6 +99,7 @@ def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):
         "window-management-ffi": "NaviApps.WindowManagement",
     }[native.package]
     inputs = ["mise.toml", "native.toml", "distribution/pack_nuget.py"]
+    readme = root / "README.md"
     if basename == "NaviApps.DesktopActions":
         inputs.extend(
             (
@@ -107,10 +108,15 @@ def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):
                 "distribution/verify_windows.py",
             )
         )
+    else:
+        # Older Window Management pins package the repository README.
+        managed_readme = root / "bindings/dotnet/README.md"
+        if managed_readme.is_file():
+            readme = managed_readme
     nuget = selected("nuget")
     files = {
         "LICENSE": root / "LICENSE",
-        "README.md": root / "README.md",
+        "README.md": readme,
         **nuget.retained_notice_files(root / "ThirdParty", "ThirdParty"),
     }
     return nuget.pack_native(
