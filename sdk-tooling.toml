@@ -1,0 +1,59 @@
+[[native.artifacts]]
+id = "sdk"
+symbol_prefix = "desktop_actions_"
+minimum_macos = "26.0"
+
+[checks.swift]
+inputs = ["Package.swift", "Sources", "Tests", "Artifacts", "ThirdParty"]
+executable = "DesktopActionsConsumer"
+
+[checks.rust_c]
+git_url = "https://github.com/naviapps/desktop-actions.git"
+rust_packages = ["desktop-actions"]
+rust_git_dependencies = ["window-management"]
+
+[checks.rust_c.c]
+framework = "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework"
+header = "desktop_actions.h"
+
+[checks.bindings]
+abi_fixture = "crates/ffi/tests/c/abi.c"
+dotnet_project = "bindings/dotnet/tests/DesktopActions.Tests/DesktopActions.Tests.csproj"
+
+[checks.nuget]
+package_id = "NaviApps.DesktopActions"
+fixtures = [
+  "fixtures/consumers/dotnet/PackageConsumer.cs",
+  "fixtures/consumers/dotnet/ReflectionFreeConsumer.cs",
+]
+
+[distribution.macos]
+commands = [
+  ["xcrun", "swift", "--version"],
+  ["cargo", "fetch", "--locked"],
+  ["make", "check-distribution"],
+  ["git", "clone", "https://github.com/naviapps/window-management.git", "{temp}/window-management"],
+  [
+    "sdk-tooling",
+    "rust-c-consumers",
+    "--git-dependency-source",
+    "naviapps/window-management={temp}/window-management",
+  ],
+]
+
+[distribution.windows]
+commands = [
+  ["rustup", "install", "--no-self-update"],
+  ["sdk-tooling", "python", "-m", "unittest", "discover", "-s", "distribution/tests"],
+  [
+    "sdk-tooling",
+    "windows",
+    "-m",
+    "distribution.verify_windows",
+    "--native-aot",
+    "--export-native",
+  ],
+]
+
+[distribution.nuget]
+pack = "distribution/pack_nuget.py"

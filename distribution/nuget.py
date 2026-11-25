@@ -98,7 +98,7 @@ def pack_sdk(native, selected, runtimes, *, sources=(), environment=None):
         "desktop-actions-ffi": "NaviApps.DesktopActions",
         "window-management-ffi": "NaviApps.WindowManagement",
     }[native.package]
-    inputs = ["mise.toml", "native.toml", "distribution/pack_nuget.py"]
+    inputs = ["mise.toml", "distribution/pack_nuget.py"]
     readme = root / "README.md"
     if basename == "NaviApps.DesktopActions":
         inputs.extend(

@@ -337,8 +337,9 @@ verifies native effects on an owned worker.
 
 Dispatch the detailed macOS and Windows checks in
 [`naviapps/sdk-tooling`](https://github.com/naviapps/sdk-tooling) with the full SDK
-commit SHA from `main`. [`sdk-distribution.toml`](https://github.com/naviapps/desktop-actions/blob/main/sdk-distribution.toml) declares
-the commands for each platform.
+commit SHA from `main`. The `[distribution]` section of
+[`sdk-tooling.toml`](https://github.com/naviapps/desktop-actions/blob/main/sdk-tooling.toml)
+declares the commands for each platform.
 
 ```sh
 gh workflow run check-sdk-distribution.yml -R naviapps/sdk-tooling \
@@ -354,9 +355,9 @@ to consume the verified packages.
 
 For local macOS distribution checks, run `mise exec -- make check-distribution`.
 It uses the revision in the `sdk-tooling` task in `mise.toml`.
-[`native.toml`](https://github.com/naviapps/desktop-actions/blob/main/native.toml) declares the native artifact and is recorded in its
-build receipt. For a detailed Swift dependency-graph check, run
-`mise run sdk-tooling -- swift-consumer --distribution`.
+The `[native]` section of the same file declares the native artifact and is
+recorded in its build receipt. For a detailed Swift
+dependency-graph check, run `mise run sdk-tooling -- swift-consumer --distribution`.
 
 Independent package consumers live in [`fixtures/consumers/`](https://github.com/naviapps/desktop-actions/tree/main/fixtures/consumers).
 The [owned Windows acceptance projects](https://github.com/naviapps/desktop-actions/tree/main/fixtures/acceptance/windows) exercise
