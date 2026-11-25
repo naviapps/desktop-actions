@@ -3,7 +3,7 @@ import PackageDescription
 
 func dependency(_ name: String, environment: String, revision: String) -> Package.Dependency {
   if let path = Context.environment[environment], !path.isEmpty {
-    return .package(path: path)
+    return .package(name: name, path: path)
   }
   return .package(url: "https://github.com/naviapps/\(name).git", revision: revision)
 }
