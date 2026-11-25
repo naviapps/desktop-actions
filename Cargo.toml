@@ -10,12 +10,12 @@ repository = "https://github.com/naviapps/desktop-actions"
 rust-version = "1.99"
 
 [workspace.dependencies]
-desktop-applications = { git = "https://github.com/naviapps/desktop-applications.git", rev = "1ddfee787a940ee6ca964ec28922868910b90ac5" }
-desktop-applications-windows = { git = "https://github.com/naviapps/desktop-applications.git", rev = "1ddfee787a940ee6ca964ec28922868910b90ac5" }
+desktop-applications = { git = "https://github.com/naviapps/desktop-applications.git", rev = "a76e43b45321fc80972876eca725115b627f0e5f" }
+desktop-applications-windows = { git = "https://github.com/naviapps/desktop-applications.git", rev = "a76e43b45321fc80972876eca725115b627f0e5f" }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["raw_value", "float_roundtrip"] }
-window-management = { git = "https://github.com/naviapps/window-management.git", rev = "06463118a74029a57038c4e614e36a429b2516ae" }
-window-management-windows = { git = "https://github.com/naviapps/window-management.git", rev = "06463118a74029a57038c4e614e36a429b2516ae" }
+window-management = { git = "https://github.com/naviapps/window-management.git", rev = "4703b68005ba34ee9f16988606975eafb7d7752a" }
+window-management-windows = { git = "https://github.com/naviapps/window-management.git", rev = "4703b68005ba34ee9f16988606975eafb7d7752a" }
 
 [profile.release]
 lto = "thin"

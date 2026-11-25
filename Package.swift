@@ -25,14 +25,14 @@ let package = Package(
   dependencies: [
     dependency(
       "desktop-applications", environment: "DESKTOP_APPLICATIONS_PACKAGE_PATH",
-      revision: "1ddfee787a940ee6ca964ec28922868910b90ac5"),
+      revision: "a76e43b45321fc80972876eca725115b627f0e5f"),
     .package(
       url: "https://github.com/swiftlang/swift-subprocess.git",
       .upToNextMinor(from: "1.0.2")
     ),
     dependency(
       "window-management", environment: "WINDOW_MANAGEMENT_PACKAGE_PATH",
-      revision: "06463118a74029a57038c4e614e36a429b2516ae"
+      revision: "4703b68005ba34ee9f16988606975eafb7d7752a"
     ),
   ],
   targets: [

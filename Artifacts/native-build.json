@@ -60,7 +60,7 @@
           "lib"
         ],
         "name": "desktop-applications",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "targetName": "desktop_applications",
         "version": "0.1.0"
       },
@@ -71,7 +71,7 @@
           "lib"
         ],
         "name": "desktop-applications-windows",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "targetName": "desktop_applications_windows",
         "version": "0.1.0"
       },
@@ -98,7 +98,7 @@
         "name": "form_urlencoded",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "form_urlencoded",
-        "version": "1.2.2"
+        "version": "1.2.3"
       },
       {
         "compilation": "target",
@@ -109,7 +109,7 @@
         "name": "icu_collections",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_collections",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -122,7 +122,7 @@
         "name": "icu_locale_core",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_locale_core",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -135,7 +135,7 @@
         "name": "icu_normalizer",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_normalizer",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "host",
@@ -146,7 +146,7 @@
         "name": "icu_normalizer_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "build-script-build",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -157,7 +157,7 @@
         "name": "icu_normalizer_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_normalizer_data",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -170,7 +170,7 @@
         "name": "icu_properties",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_properties",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "host",
@@ -181,7 +181,7 @@
         "name": "icu_properties_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "build-script-build",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -192,7 +192,7 @@
         "name": "icu_properties_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_properties_data",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -205,7 +205,7 @@
         "name": "icu_provider",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_provider",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -233,7 +233,7 @@
         "name": "idna_adapter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "idna_adapter",
-        "version": "1.2.1"
+        "version": "1.2.2"
       },
       {
         "compilation": "target",
@@ -244,7 +244,7 @@
         "name": "itoa",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "itoa",
-        "version": "1.0.18"
+        "version": "1.0.19"
       },
       {
         "compilation": "target",
@@ -526,7 +526,7 @@
         "name": "smallvec",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "smallvec",
-        "version": "1.16.4"
+        "version": "1.16.6"
       },
       {
         "compilation": "target",
@@ -558,7 +558,7 @@
         "name": "syn",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "syn",
-        "version": "3.0.9"
+        "version": "3.0.10"
       },
       {
         "compilation": "host",
@@ -610,7 +610,7 @@
         "name": "url",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "url",
-        "version": "2.5.8"
+        "version": "2.5.9"
       },
       {
         "compilation": "target",
@@ -621,7 +621,18 @@
         "name": "utf8_iter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "utf8_iter",
-        "version": "1.0.4"
+        "version": "1.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "utf_types",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "utf_types",
+        "version": "1.0.0"
       },
       {
         "compilation": "target",
@@ -630,7 +641,7 @@
           "lib"
         ],
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "targetName": "window_management",
         "version": "0.1.0"
       },
@@ -641,7 +652,7 @@
           "lib"
         ],
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "targetName": "window_management_windows",
         "version": "0.1.0"
       },
@@ -819,7 +830,7 @@
           "lib"
         ],
         "name": "desktop-applications",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "targetName": "desktop_applications",
         "version": "0.1.0"
       },
@@ -830,7 +841,7 @@
           "lib"
         ],
         "name": "desktop-applications-windows",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "targetName": "desktop_applications_windows",
         "version": "0.1.0"
       },
@@ -857,7 +868,7 @@
         "name": "form_urlencoded",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "form_urlencoded",
-        "version": "1.2.2"
+        "version": "1.2.3"
       },
       {
         "compilation": "target",
@@ -868,7 +879,7 @@
         "name": "icu_collections",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_collections",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -881,7 +892,7 @@
         "name": "icu_locale_core",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_locale_core",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -894,7 +905,7 @@
         "name": "icu_normalizer",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_normalizer",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "host",
@@ -905,7 +916,7 @@
         "name": "icu_normalizer_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "build-script-build",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -916,7 +927,7 @@
         "name": "icu_normalizer_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_normalizer_data",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -929,7 +940,7 @@
         "name": "icu_properties",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_properties",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "host",
@@ -940,7 +951,7 @@
         "name": "icu_properties_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "build-script-build",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -951,7 +962,7 @@
         "name": "icu_properties_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_properties_data",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -964,7 +975,7 @@
         "name": "icu_provider",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "icu_provider",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "compilation": "target",
@@ -992,7 +1003,7 @@
         "name": "idna_adapter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "idna_adapter",
-        "version": "1.2.1"
+        "version": "1.2.2"
       },
       {
         "compilation": "target",
@@ -1003,7 +1014,7 @@
         "name": "itoa",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "itoa",
-        "version": "1.0.18"
+        "version": "1.0.19"
       },
       {
         "compilation": "target",
@@ -1285,7 +1296,7 @@
         "name": "smallvec",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "smallvec",
-        "version": "1.16.4"
+        "version": "1.16.6"
       },
       {
         "compilation": "target",
@@ -1317,7 +1328,7 @@
         "name": "syn",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "syn",
-        "version": "3.0.9"
+        "version": "3.0.10"
       },
       {
         "compilation": "host",
@@ -1369,7 +1380,7 @@
         "name": "url",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "url",
-        "version": "2.5.8"
+        "version": "2.5.9"
       },
       {
         "compilation": "target",
@@ -1380,7 +1391,18 @@
         "name": "utf8_iter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
         "targetName": "utf8_iter",
-        "version": "1.0.4"
+        "version": "1.1.0"
+      },
+      {
+        "compilation": "target",
+        "features": [],
+        "kind": [
+          "lib"
+        ],
+        "name": "utf_types",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "targetName": "utf_types",
+        "version": "1.0.0"
       },
       {
         "compilation": "target",
@@ -1389,7 +1411,7 @@
           "lib"
         ],
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "targetName": "window_management",
         "version": "0.1.0"
       },
@@ -1400,7 +1422,7 @@
           "lib"
         ],
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "targetName": "window_management_windows",
         "version": "0.1.0"
       },
@@ -1527,7 +1549,7 @@
       }
     ]
   },
-  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: aarch64-apple-darwin\nrelease: 1.99.1\nLLVM version: 23.1.1",
+  "compiler": "rustc 1.100.0 (0ef1bc386 2026-11-09)\nbinary: rustc\ncommit-hash: 0ef1bc386059596dada8fb65b50425aab2ea637a\ncommit-date: 2026-11-09\nhost: aarch64-apple-darwin\nrelease: 1.100.0\nLLVM version: 23.1.5",
   "configuration": {
     "ffi": "crates/ffi",
     "library": "desktop_actions_ffi",
@@ -1588,7 +1610,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "348397b7f836506dfdef87943a231c8eba71cb083aca993ee38166d480b25ad6",
+          "Cargo.toml": "0d35e4277274ea34313559b8cfa3b73d1991e703dff37723bc41553bcf258e83",
           "crates/core/Cargo.toml": "41bb2e841039178ea5e05b042fc969b6cd0585901ae0d6e5d823d0c67dd5475c"
         },
         "name": "desktop-actions",
@@ -1601,7 +1623,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "348397b7f836506dfdef87943a231c8eba71cb083aca993ee38166d480b25ad6",
+          "Cargo.toml": "0d35e4277274ea34313559b8cfa3b73d1991e703dff37723bc41553bcf258e83",
           "crates/ffi/Cargo.toml": "11e8eeb5b7bf765a084234ed4a6d6d86c24d93f7883640d2556a382d0ed2c59f"
         },
         "name": "desktop-actions-ffi",
@@ -1614,7 +1636,7 @@
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          "Cargo.toml": "348397b7f836506dfdef87943a231c8eba71cb083aca993ee38166d480b25ad6",
+          "Cargo.toml": "0d35e4277274ea34313559b8cfa3b73d1991e703dff37723bc41553bcf258e83",
           "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3"
         },
         "name": "desktop-actions-windows",
@@ -1629,13 +1651,13 @@
         "inputs": {
           "Cargo.toml": "1a053a0b6dbabda61d70e9e23b8b6d13c001b884329ba8707ca45404b50714bf",
           "crates/core/Cargo.toml": "d86dff2797631c1801f611dbf7bb31f26d974b445b5868b1f64859f788f17f1f",
-          "crates/core/src/lib.rs": "ceae04f56e01c5947543da73434655e217f6609406590171f401f9ec8e72ca75",
+          "crates/core/src/lib.rs": "f5debf83ec40e30b2421ca3bdc0edc2f9c88644e201cea1fb94ebaeb1984228c",
           "crates/core/src/resources.rs": "e69af1712f30cea4e84dc139ce9762ef36e352887b17fe1eacb907810c396c91",
-          "crates/core/tests/application_contracts.rs": "5eb16f680c2e374312566c1ab67e23c0e04c36111c7ec0e08348185514757b3d",
+          "crates/core/tests/application_contracts.rs": "2ee734fa4616c9d3717e3021da23fde39dbe5e26c65ac7d60f6fb096d481d261",
           "crates/core/tests/resource_cache_contracts.rs": "b8bd7acacade818726fb71e4aba049b86582da7b3735f095e054c15e0a4fb5a4"
         },
         "name": "desktop-applications",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "version": "0.1.0"
       },
       {
@@ -1650,7 +1672,7 @@
           "crates/windows/src/lib.rs": "13c888e2f9ba39b6d6b53a2378ee12b0e43eaba3f65a6f0416d7cc4aa519f2f4"
         },
         "name": "desktop-applications-windows",
-        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=1ddfee787a940ee6ca964ec28922868910b90ac5#1ddfee787a940ee6ca964ec28922868910b90ac5",
+        "source": "git+https://github.com/naviapps/desktop-applications.git?rev=a76e43b45321fc80972876eca725115b627f0e5f#a76e43b45321fc80972876eca725115b627f0e5f",
         "version": "0.1.0"
       },
       {
@@ -1691,7 +1713,7 @@
         "version": "0.2.7"
       },
       {
-        "checksum": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf",
+        "checksum": "afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e",
         "features": {
           "aarch64-apple-darwin": [
             "alloc",
@@ -1703,56 +1725,57 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "b376a9800c7c6ff3ee0adbeb3bc2055994bcbb994b6fdf81ad58cdb8fac454f6",
-          "Cargo.lock": "1dbf555d3a0e46fb4fde0559cd29ef38290eed9e08e7e9df2c02cee663aa0ba0",
-          "Cargo.toml": "118b1d87e862ea329b8bc84b389085a2f8e049d4c0b8b3c38ac2bffbe3501928",
-          "Cargo.toml.orig": "d523fbc2da822b802fb51843d81d4aa9da7a6f660ad3805c40325e9fb0d1257c",
+          ".cargo_vcs_info.json": "1566e69a00a98914bfb5b34cac55714b07d75f999c0654f5f15c39610e2a6058",
+          "Cargo.lock": "251ed4ddc1c65537dbfbfc9c6126415397da10f6119a17a7674250601311775a",
+          "Cargo.toml": "47a39fced5fea0239010d6cc5e65bdd6312ef348e029be8389e4be8a14b5ce99",
+          "Cargo.toml.orig": "ec6d88693dc9d81b2dc3ab510295130a0a61edf0f7ee30b0c67ca4df2f1295e5",
           "LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
           "LICENSE-MIT": "20c7855c364d57ea4c97889a5e8d98470a9952dade37bd9248b9a54431670e5e",
-          "src/lib.rs": "766b5d679064e01f7e6cce6f127a23885f79806ce3bccc49e4fe41933b83fd8d"
+          "src/lib.rs": "99f16d4890b77f5a809476ff957babda3c08b7f3455726915162fdeb50d87da3"
         },
         "name": "form_urlencoded",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "1.2.2"
+        "version": "1.2.3"
       },
       {
-        "checksum": "4c6b649701667bbe825c3b7e6388cb521c23d88644678e83c0c4d0a621a34b43",
+        "checksum": "fe090a42a0d3140fed8c63263ed1fecc02422cb2f4bfe55cd8de2de1b8e105dd",
         "features": {
           "aarch64-apple-darwin": [],
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          ".cargo_vcs_info.json": "f5ad06d6d816d1d211ec86d639b4fd2b6551db6e9bdcd37c3c7ccc47f1873618",
-          "Cargo.lock": "281b1642001f508afaf929a328b2d2801baa78b91f7e98e9aee6f39f7bd467a9",
-          "Cargo.toml": "8f7a2c13e5f27b3edcadac862f50ff5fd16689ec83bcca9a5a6bb0670918263d",
-          "Cargo.toml.orig": "963d26428f923ead6ef52219b65549eabcba96bef3e3dcb67279e6fa9c4cef3d",
+          ".cargo_vcs_info.json": "69dd55ac51455d200a6275c9b2a7efc1de0dbf4a006b813f18c232d68131c943",
+          "Cargo.lock": "38ae95fbcbe7ef73e8a7cb25da198ddc847b45840af7273bd9d864cb97e19fae",
+          "Cargo.toml": "3c171e438bc7ffb79ba688ccd9ae1d0c9e59a1232c636db9db7794c70bc191ee",
+          "Cargo.toml.orig": "21825506167fd1a9b2f1bc83bbbe3b73849250a6508567e7fc6c301cd0586621",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
           "README.md": "b1a0b37b61d42026996dda3b7d524d42888181f3e7eaf940c9b2e5f561c449e3",
-          "benches/codepointtrie.rs": "4052e9e3a3a744955a5ab3f7089cafaf2920ad5c7566fc8b3b77ee1d39376c20",
+          "benches/codepointtrie.rs": "afcf8afe84e616334d7e0531e55b530d0df386ca3d0dff74717d2e2d73a4a4cb",
           "benches/iai_cpt.rs": "a8ed4e67866d415e6ed0c8c95a9b1887b4198ea409d4cd9efafb50b8c13b3ecc",
-          "benches/inv_list.rs": "39e0386fd0e908d6e18b16e021345ba8c88fa70e06e26a29913dfa218a68b03d",
-          "benches/tries/gc_fast.rs": "4761a339f9b266813f4fa7ffa229b3464ced2ed106ce712ae6a96c0e49e5224e",
-          "benches/tries/gc_small.rs": "a1a75d2325dbce031e0127de8d84e900ca7c73ec81da1679965ab0127a99c205",
+          "benches/inv_list.rs": "997b42d26783b1f39cec567e78b304930f142092217f7085b5a7f8eefc9a785a",
+          "benches/tries/gc_fast.rs": "02060d3502871e361972c48179beb441a9a41d57fe0ca7d60cec9c57654200fa",
+          "benches/tries/gc_small.rs": "b2e4f85928f28934d19f6c68503ad683a0c9612c49d9f437d074a8103ede65a1",
           "benches/tries/mod.rs": "82cfdd1c5870d343613098fdff5a7961cfe5645a33480c6a252efae9a074e022",
-          "src/char16trie/mod.rs": "5950a1b427743e956b459956cadd72ff7531fe46bfb871d8e3a848b1e4ab0657",
-          "src/char16trie/trie.rs": "20ac75a0e2f3bcb74c619e98f44b3cc1f41bea2787ceef186d54cf997a1d9264",
-          "src/codepointinvlist/builder.rs": "bb0796333ca76d7714ee8425201a5957ab6b26b55dc049c34b3fb1839afc1581",
-          "src/codepointinvlist/conversions.rs": "8ac096ae63fa508ee2d7b2805aca864971110accaa358c178855540074e2ad21",
-          "src/codepointinvlist/cpinvlist.rs": "f9b47dd0432379637e194c2adf5acfcb91372a7f896cfab378928ffe65969532",
-          "src/codepointinvlist/mod.rs": "d48bc8ff1d103c4e37c4729181bc90b5e5e0db7701a49bd53c4d8c67e9089eb0",
-          "src/codepointinvlist/utils.rs": "6d6b4f5884beb830c16b6e5df07688f8cd70e2293a96d03037be690896d514e1",
-          "src/codepointinvliststringlist/mod.rs": "1fdb0b404f0b9a44218157ae1b58712d3ff7fe5b1d23521514a5eb36587d68df",
-          "src/codepointtrie/cptrie.rs": "dc7133751f32c74f3a87b1eb60e705aa0766a622ce48845aaa466f055267f6f2",
-          "src/codepointtrie/error.rs": "028dd55421b0bebf1634ad99752dbe349b40ab10ca565aa6bb134c5885ffd87b",
+          "src/char16trie/mod.rs": "27f0dfd507402edf26419a7c487ede123838f68fcba63f0f7dd387089a24ed92",
+          "src/char16trie/trie.rs": "ba17fe199aee28fe2218bd7a06ead492289bf315e2accb27b8b23e1c7df34e78",
+          "src/codepointinvlist/builder.rs": "844f6037e6bb80530ccc39552913f2c442c6ba376b2eea2d61e7c1aa87195789",
+          "src/codepointinvlist/conversions.rs": "e713dbf92710a3dd7c7c91208a0ea99071a4df7f8c2d7f80a1c24b7b7e95ecf5",
+          "src/codepointinvlist/cpinvlist.rs": "46118a7b957f04c12127a6032ddd1652af6fc65a5d61e1b7995aba5dd1aa562c",
+          "src/codepointinvlist/mod.rs": "fd015030900c1306f6a80edfde45c40a463c336ce93e49498a9afbe1e8f3fa2c",
+          "src/codepointinvlist/utils.rs": "25d3d355f5fe3bc82e859db853e4d0d5f270fa58216d5877bae591c96a75a394",
+          "src/codepointinvliststringlist/mod.rs": "11c405409e3ccd6e0a3cb41172efa13365723129b5b31e8ab1234c34c7b9e838",
+          "src/codepointtrie/builder.rs": "bacf8faeab607cdb7681a0996f9f9bfeff87519592f56d8686bf56f788b5933f",
+          "src/codepointtrie/cptrie.rs": "53d28993143f4d1c979febe85ac73fe82d228338f6d90b8af734b75e134cef5c",
+          "src/codepointtrie/error.rs": "e27ebf2e07e588992d1c01c5c8a7b7b1fb1c626c63e962e4525efec82724bfd7",
           "src/codepointtrie/impl_const.rs": "ff25fa0d54e174c289b25a6060f50e03c8aa41bad922c9386de3148f8ad95109",
-          "src/codepointtrie/mod.rs": "d77de5edc258bbe79e0b6a37fedd315478fea6f9fd46c6923c564d045ac053d6",
+          "src/codepointtrie/mod.rs": "519f0a126791dba1c1b0160c1921440f9d597a24e642c6c7472017bcfd630207",
           "src/codepointtrie/planes.rs": "8a063b1efce889e46e69c7000ce48eeb420bb861f4ceafa839faaa944715c7bb",
-          "src/codepointtrie/serde.rs": "103bf57194a4d2111ed064d9bf2796b4ff7b5c2b1a1222a7378bad8143aa453f",
-          "src/codepointtrie/toml.rs": "6185421c1384e6a9a69b57153e1dcd793665ceb385dff2b61a2c1b0508609ec3",
-          "src/iterator_utils.rs": "2a5dfab19a752ae495617d68c07d11d1c0fbded233221dc43e9dd8f959001cd9",
-          "src/lib.rs": "a15ba283ccb32fc9a1cbe67166fa8eac5cd9225e4de022d09b057be4ff8eb688",
-          "tests/char16trie.rs": "f8018b90187f3b99a6a835c1c41bced18d98a28c41822abf3536cd1f0f08c44f",
-          "tests/cpt.rs": "3a151ba56273a29777f0a7656e533f4a603281569dd5349e15f837d2b9ec65e8",
+          "src/codepointtrie/serde.rs": "63299b9965b2e30e086e0151be2806f3a041469e39ed66a127f1ffa2c7d71fc5",
+          "src/codepointtrie/toml.rs": "c2148626801612649d1d40ba18ed134a0f7076a5fdd437d63522cfc6078645e6",
+          "src/iterator_utils.rs": "6be1d4da0c061cc711e8279e790894786cf631f0d2252787fe8d11af154179d9",
+          "src/lib.rs": "841071c7d2a06222c39f3bcf508f23b039b18de49edca2accc13d3e04b2347e9",
+          "tests/char16trie.rs": "ba8286cb147168914430d42dcda91fbea1b3e744d69f7a93e7840e3bf88447c8",
+          "tests/cpt.rs": "9aede840ddd35f4ce4404e1056f03974f04952c6870967ec5b4d262de47f4e6a",
           "tests/data/char16trie/empty.toml": "b900365b9c786f1b185307f5d8835a901d4860b9b097bce13aa0e592fcb384c4",
           "tests/data/char16trie/months.toml": "439245fc4385fe693f283b7bc179bf5558dd8039a89987314dfc8c4a9e0092b2",
           "tests/data/char16trie/test_a.toml": "34b179dd4e7eef73ce373b74e426ecfa05fb7aa2b0fc15e437bfcf3ea4242a9f",
@@ -1800,10 +1823,10 @@
         },
         "name": "icu_collections",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
-        "checksum": "edba7861004dd3714265b4db54a3c390e880ab658fec5f7db895fae2046b5bb6",
+        "checksum": "25d29b57c17c6528d0dc4c2141cfa2d08200465acb537a3909c8b9b8a4a984c0",
         "features": {
           "aarch64-apple-darwin": [
             "zerovec"
@@ -1813,10 +1836,10 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "87472294cb1b942324597b25d40baa022967be22454f8c2172de6089d9ff8d32",
-          "Cargo.lock": "060041080fd4db117c6f5604ac650c14f88eedbc28b5169a30f3337d40b4313f",
-          "Cargo.toml": "4dd1fdf5dcd1517c4f6339872f8589f2074090ede054ba1f38259ad7d6abb7af",
-          "Cargo.toml.orig": "1953cfdf680ff8b4f33d2602aee3a0e8c5dc11c8936325953fb254bf2c3b4840",
+          ".cargo_vcs_info.json": "641af0908151a196d6c872e83344e9e9d090b30cbe058762569c27ff25507a92",
+          "Cargo.lock": "feaf16427d0da8cf38379798945f78b12491b3aa86aed8e7d869ad6d2c4dda31",
+          "Cargo.toml": "3a44f836e2fae9dfb8e056bb2dae59f19867feea890b7ef89260b52f659f380f",
+          "Cargo.toml.orig": "f48a0eeec734f5abce04c843739028da5612003ab0cf6d31c7bae4e33a5cea11",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
           "README.md": "3e30d773b84c9682a0f03fbfae067edca276b16a2ed0f0ab99c31f6a53aa68b2",
           "benches/fixtures/langid.json": "373c11527653c63c685c9e229a8de5ae2b557c25b686a9d891c59e1f603232d8",
@@ -1825,88 +1848,88 @@
           "benches/fixtures/subtags.json": "28be3a639e452d713e807d5779b6819e06277e2dbbf67801ef34964fb9b074b6",
           "benches/helpers/macros.rs": "b9bf068a08156f8421ea39ca2a5b83351f9f9b63336b207706b75d1acb7697ac",
           "benches/helpers/mod.rs": "9118aceb41badd98a6d3e07f79bf6328f3da1f93ae82ef99e6ca7e7229aa4c42",
-          "benches/iai_langid.rs": "256aa84228af9fd730a90ffc81b2adafaec131b338d786142b770fa45fc221f1",
-          "benches/langid.rs": "0203769d2c5ae9d5269344216b93d43c6cb9f58bf4e3b182247afe00f5bb0287",
-          "benches/locale.rs": "172d82598b2924515de72c731837d702ce2ff75fdc3655069288c9015ff30c56",
-          "benches/subtags.rs": "6ff85047f04896749dff12ed00060afc882ac2ff27f86a57c3afdcbba13f797a",
-          "src/data.rs": "29274b5276adeb92d91a2da4a37cc9216e131e1d8f7984d50d6899f5e71e9d20",
+          "benches/iai_langid.rs": "b515382c9c437f02dcd79217564dbfd2e22a77e0dbbd46b6cf60ce9e1d5c308a",
+          "benches/langid.rs": "5d2ea4a01972992f961449edb3710567702af84ae7e88d3c80428c53b10907f6",
+          "benches/locale.rs": "ccd5510300cb9befc7e52b564009057b5c89e97a7685f136ba62d5e101811116",
+          "benches/subtags.rs": "d405bb0f23e61fa7987ea496a6b7a5a0b4738e3c7c58e53592f4bc7d825ea60d",
+          "src/data.rs": "c87f4b91648ca42a074e20b28055204d301d6e131e0725a40034d4c2a61c6756",
           "src/databake.rs": "b0cb3175eb2a919fe9d48d6c85635676a99d2474fc34b2b2ba503fd6d67fec3e",
-          "src/extensions/mod.rs": "93c2d618750068e4f724fc3389330115daae93fdff54f13d3c6d81852127a417",
-          "src/extensions/other/mod.rs": "7548cca590f16f04db3245e322b0ba3596eff26c129f89bb554fc2c7d3e97c16",
-          "src/extensions/private/mod.rs": "0063cd169fa42285c331a8c4d9c3a24a60a79d9217bebb4b105523fde678faba",
-          "src/extensions/private/other.rs": "050fba0eeb47b45c539ebda561cabe8f2d6b1cd6ab272bd8d25eb34b33466c96",
-          "src/extensions/transform/fields.rs": "06ba3c3baec94b76f8120bdb8e76ceeb5cdab4e9dba6852f10965e8af8e76dd3",
+          "src/extensions/mod.rs": "d3b01969bb300921561e8cdb74c01cef2d376d4cc36311484dfa5104729bb142",
+          "src/extensions/other/mod.rs": "772a4abc4a35d74a1deb21f7b1b5f95071cd5bcc2793b8973b2c1f961ad15a11",
+          "src/extensions/private/mod.rs": "cefebc5f9acb90a771edc80ab0c59b95d3364a81f22bf6ca47adfa24a4ff0ccf",
+          "src/extensions/private/other.rs": "896588878396125ecfad0a20a9c3e36157e19ac4849c1d2fed8777082ac0a649",
+          "src/extensions/transform/fields.rs": "293d188d04a6b8904dbe9f19d08f1e08abf82d21f04e7559cb938b737fe0d3bc",
           "src/extensions/transform/key.rs": "7b44e1ccd95f3fcc0892a018effa054cd74d64a3667535eed2270d41baef1393",
-          "src/extensions/transform/mod.rs": "1a24f18770f870985501069d760b0ab26a071c4fb32738fb5a81e309eacd16eb",
-          "src/extensions/transform/value.rs": "6ee1205b7576d7d49d9d2b983e7bea7e8b92db9f2a70cd940c1f61bf94e14eef",
-          "src/extensions/unicode/attribute.rs": "c2a6cfc920532c58023c40a9bd10632a73aedd4670a1562fa7caa15a500018e1",
-          "src/extensions/unicode/attributes.rs": "5fe26de18edf670e93aeff51a1d95f29a2117d4f965796126c6c99baf2640683",
+          "src/extensions/transform/mod.rs": "b8288a0251d3e9491e2cdbfff53bf5621d2348f7aa195bdf5f2cfe9d19f72a55",
+          "src/extensions/transform/value.rs": "42aad3e00ef906d5718cdba31466c6a631904a7cb851d83510964194ba4d9b84",
+          "src/extensions/unicode/attribute.rs": "0b6f292b0efc1065f561555e11c03560b340b7d1100876c61d8863f00cc4c702",
+          "src/extensions/unicode/attributes.rs": "1f44b3ac96181cbdf134c18e9e513ac4a31c5f5e1024b5f66901c35a949d2414",
           "src/extensions/unicode/key.rs": "ad3c8844b6b55529d70a7d91889bf53703f92994b316d5c9052fe68b5350e530",
-          "src/extensions/unicode/keywords.rs": "25028c190011c26ff98c1f41d756b832c5077d47bc3cda16619080c0ea9256f5",
-          "src/extensions/unicode/mod.rs": "c3d96faca4cfbb2097ee163adf7d2284f3bdf809a74aa5465f96af9f8a3b2d1d",
-          "src/extensions/unicode/subdivision.rs": "ee1c7d0e4b0e4fe3124dafaafef24356f661077201a6a16269b0315374f0bf7a",
-          "src/extensions/unicode/value.rs": "d30a4708c7cc0867bd863ad40b49419116786cc39eedd06205088af1b60a10ee",
-          "src/helpers.rs": "b157f722e09e3da2bc1920cb964638940207173c5bcfcc271c3086a8a70cfb77",
-          "src/langid.rs": "d37dc4aaf8d07bf2dc21a028ea117295f37f46afefe98845e65740692bdf317c",
-          "src/lib.rs": "0f38bc043dd3f9ee84c0934f91aa32a739f0b5f839e32869180f94270c284bc6",
-          "src/locale.rs": "c595ec154ea306359c92a4b5bc7e6f42fc0b8cbc1bb3a1d145ce9ba36fe63c4e",
-          "src/macros.rs": "c2d9fa8a671561d7e9b8082439d56450a1d87039fa5040742a95bd3ab85e9288",
-          "src/parser/errors.rs": "9959d6e1f00f89ce739d18d489cf7733865cb95a26e4a33b9651eda2e310d89d",
-          "src/parser/langid.rs": "32b4950254793f77d0d5873cba17d6e134b0c3772cbddf559c9e52f4af80d57f",
-          "src/parser/locale.rs": "3ba0374f8af82c3751974c4007cd167753153dc3bca9f0cd70d0b0cd17b36fe0",
+          "src/extensions/unicode/keywords.rs": "9ec2e79bd3164c69f41bc3b5a17f5a1322a2a9efe59f8e31a976d2c589e9d1c2",
+          "src/extensions/unicode/mod.rs": "f364025b542d67997192bd00aad5a22baf9abfba6063c7d3204a6766e3a0a2d8",
+          "src/extensions/unicode/subdivision.rs": "3224641005f864f62983f8e0038c7126b5a06fcccdab257681eb8ac1598fef21",
+          "src/extensions/unicode/value.rs": "d7945cba8a806424b0709a8c9cb87f3516a791c866afedec289972f5c7842350",
+          "src/helpers.rs": "51eeadbc4627baef055b4b35e9a252c302c5a7c1b0a78328f1818dba84718821",
+          "src/langid.rs": "7388b9737b2734aae12ad9c4c038cfdc9e39950dbf7bdfb998de6b0de10f69e1",
+          "src/lib.rs": "2226541c6f8e591a803b081c28e882dcc58729c2e9b9d08b34e7a8899fab3dc8",
+          "src/locale.rs": "e9fc92bbbac0a70515548055326a34f728a9f868f47d7340734b714aad4eb920",
+          "src/macros.rs": "692bd546eacd897d7c106de26edfcaa5da485eb3c32a0d9dd0b363cacc7c3ce3",
+          "src/parser/errors.rs": "a27ff0e8169dbf85d5aa0f3c2c0a520a13eb2d7d17c8bcdcd91632898da842dd",
+          "src/parser/langid.rs": "cfe9b328aafc1665d7c91f7f5c2167d656254ab37dd5b1df22e5819313ba955b",
+          "src/parser/locale.rs": "5786d5691c05d970863445a518da8f1b2eaf2b5ee4facd121410cba4a41f4668",
           "src/parser/mod.rs": "56430a72c3c407f9661e9b6062b7bb13627c508838330482a1a6630de3169d94",
           "src/preferences/extensions/mod.rs": "8055be6df84eac91b2bb96603e022025ff80b8f6594b5a82c2b0fb95f0367043",
           "src/preferences/extensions/unicode/errors.rs": "9f6e2edfaecd1b8679aa011c1d35250be8d0aac9ea5558b1e0fa58f5f9527ead",
-          "src/preferences/extensions/unicode/keywords/calendar.rs": "e78abd46c4488776e720e6e4fbef4cf7d2c0e7a5a73a5897b5a0a43c497c0609",
-          "src/preferences/extensions/unicode/keywords/collation.rs": "2fbdf8d32967afa80ae35eb33555fb390d96c8690efcfd0d61e30d09f945781c",
-          "src/preferences/extensions/unicode/keywords/currency.rs": "92335724649b7ce1f840fe8f0b02f1896a7dab495d36fc45e7858bfa645420bd",
+          "src/preferences/extensions/unicode/keywords/calendar.rs": "40c464207d63ef8465a616f0d46fd0dded5f597451aae7dc9cab0222e8e62377",
+          "src/preferences/extensions/unicode/keywords/collation.rs": "560c28fe187cab809383c398f6235ca40692a8fc149f400e8d1ff01658eae9f5",
+          "src/preferences/extensions/unicode/keywords/currency.rs": "6b6c5aa4c06cdbba67e20f4600b205980f70d830300301983938daadeeb96d91",
           "src/preferences/extensions/unicode/keywords/currency_format.rs": "69ca7166d19a3d90953bd898e00ad76db89570b7973f251d930d5b5f090ef3ef",
-          "src/preferences/extensions/unicode/keywords/dictionary_break.rs": "2489abf09a017c419de5e443ac4bf014476c27c6d31b84a2b55cf6fa53740826",
+          "src/preferences/extensions/unicode/keywords/dictionary_break.rs": "9b5b19e667ffb02de6e8d969d8b14c18011107956d885c56887c3429ad2552b6",
           "src/preferences/extensions/unicode/keywords/emoji.rs": "0b34acbba058050452d7b4d0b538cd784d5bb76b54cac7b2acd1f946b3ae04c5",
           "src/preferences/extensions/unicode/keywords/first_day.rs": "65e7be67e62b0f5de16508001d2a9d902361eb630df1be5ef4d0ea4f24713e0e",
-          "src/preferences/extensions/unicode/keywords/hour_cycle.rs": "01d36e9066b4c6a8db0bf224f0877fa9f4414217484267fff183779b492a11e5",
+          "src/preferences/extensions/unicode/keywords/hour_cycle.rs": "b51db1332ef50abbb258d5b8c53df7146909f4b067e09a4d628e49b37a8f3c70",
           "src/preferences/extensions/unicode/keywords/line_break.rs": "0292b4e9c6dadf9759f7371e1a4b6db0b917211026b7dde1983a1726e1d89206",
           "src/preferences/extensions/unicode/keywords/line_break_word.rs": "6fef4aef3dc44541bb1cbeefc0a8cdb9b97f0a26ad9c4f9be057cb4fb3f1c45b",
           "src/preferences/extensions/unicode/keywords/measurement_system.rs": "ddcadb5c654f6dd253ea70a095534978588788979f03796fa128354d349bf909",
           "src/preferences/extensions/unicode/keywords/measurement_unit_override.rs": "ee3a9417050f6b7d6e5c987ece779218e006a19136fea705485bf080c0865dde",
           "src/preferences/extensions/unicode/keywords/mod.rs": "18c6384f19567e7865b48963eb43f34cb53e4eb52dfa9e6592e3af64a4b4b687",
-          "src/preferences/extensions/unicode/keywords/numbering_system.rs": "47105a6613fca0f9306f1db3f0ce9b5b29416218144af5596ed392ab552521f1",
-          "src/preferences/extensions/unicode/keywords/region_override.rs": "65590219d58dcf466f48f07f94d6fc0ce1433182e5acd8e926ad01f6a7d245be",
-          "src/preferences/extensions/unicode/keywords/regional_subdivision.rs": "77866d9824b3b4569b63c4bfeac26f2d2025d1eab3d2ea147961f6773ee270e9",
+          "src/preferences/extensions/unicode/keywords/numbering_system.rs": "12b5e36357fde6d1e1cba07c4869778210bc9ed2eb8283f0c11d2a3583a85b2a",
+          "src/preferences/extensions/unicode/keywords/region_override.rs": "befd1e667d98940f07c29ce545adc47eee18ce62f91aaf7c7efe648548b38555",
+          "src/preferences/extensions/unicode/keywords/regional_subdivision.rs": "6a4f98a678c45fdbf5a895fef1123574e14b1c56f9b17a64a35e35dd3055f630",
           "src/preferences/extensions/unicode/keywords/sentence_supression.rs": "8e991966dd9e4a6de441fdd03f8075a70c544741c76e8e076923159a107b6689",
-          "src/preferences/extensions/unicode/keywords/timezone.rs": "1d7f7ba02728919d57e793fe1d695e7d47bd5c173d72e518b7e35f0e724c77d9",
+          "src/preferences/extensions/unicode/keywords/timezone.rs": "d25b919dfcadd379b9c86a58bddc5fedb4e83ffeef581d6ed52603a56fdb46d7",
           "src/preferences/extensions/unicode/keywords/variant.rs": "8598a4dd392c32ad08db700a3500a218b5c0674444675a4ca84da8be81b2bcb7",
-          "src/preferences/extensions/unicode/macros/enum_keyword.rs": "45cd0ace21a363b813a1bbb571a2b22f93839549ba1a96f776dc442b08b2bdd9",
+          "src/preferences/extensions/unicode/macros/enum_keyword.rs": "33cacdbd6e491e89ce9582fd884ba0d92dc95ecf680d74678aea9ccb56092fd7",
           "src/preferences/extensions/unicode/macros/mod.rs": "fc4212e6a62a402eebbaba29cec5e0f91109d3aa1d962039e50dd633a7ecc70d",
-          "src/preferences/extensions/unicode/macros/struct_keyword.rs": "dba324f98c3e108b7add972cbf2a9586486e560350d736a4e7034834177472d6",
+          "src/preferences/extensions/unicode/macros/struct_keyword.rs": "05e9e4b1e388f85ebc1375d8de4b3926630058b0fb74e101fe56f34303f57be3",
           "src/preferences/extensions/unicode/mod.rs": "9ce8a095b63724f124798a0f7e4b7dcc60bd0e7bfb2523d0f9e11883a81f904d",
-          "src/preferences/locale.rs": "759466d81773a853d87f2f8288d096a001fa208a2b6752ee767ec63c4f80e605",
-          "src/preferences/mod.rs": "e563ebc4594e54da8f60bcd6a3aefc77677163c7b847db67f576a1680da979e9",
+          "src/preferences/locale.rs": "c7b29d79e24780d569cfaa5c8d5689f8c8441ac52d0dfff016da63026b77bf27",
+          "src/preferences/mod.rs": "c6cb25d40e79be583341dcb6a238fdfab75a7c7c4869f7b6f3b1ed8f83d6b972",
           "src/serde.rs": "a1a3439a0cc2e9ff754784d355ac8daf885cc5f3f210460b6781ff6d0ae2e7a3",
-          "src/shortvec/litemap.rs": "51af8e84fa010492ec44938eb65fbef23486267bb4d6c6a03154497b38ba35b1",
-          "src/shortvec/mod.rs": "e4ff29488b509354d80f8d75f6468cf68eda4a1de1cfaa54e8f1c9f9dc0b9f6a",
-          "src/subtags/language.rs": "94757472cfb54f2f583c79ea6ad7c7662240868a2bc04e4b938998e32a8de394",
-          "src/subtags/mod.rs": "f998571e80229552aa0aedcae35d0918a9aff261a58e488cfcc6d67d1f696b8d",
-          "src/subtags/region.rs": "1157ea7f2defb86233ee86f4522e494d6dfe4776a2b5f853008c75cbbcc312f0",
-          "src/subtags/script.rs": "f562cc5607b5acec4ba5fc14dddf5d7eff1d19129535f3a309fd0fb31607b714",
-          "src/subtags/variant.rs": "6230b1bb252b0782c9cb015be8f583e8b2d8ab7ffff79789bb6df600e2b0eb5c",
-          "src/subtags/variants.rs": "c3af767be128fa4bcab6efd65188f428e3a6b66ac3c69cb3e6489938cbb7094d",
-          "src/zerovec.rs": "a63c99e0ef6d38f4b4903b42b1e800aa821c7cbfd817b07d313dcdf4d377823d",
+          "src/shortvec/litemap.rs": "845556c33a6637080a93042ed1634861994c1c2cc56445c7232f241d6952ef1c",
+          "src/shortvec/mod.rs": "3ba99cdc11c0f53ca5e463a47bd518486492e64ef114398f86caba82a93220fa",
+          "src/subtags/language.rs": "9c61afdd83d420602c550784ffeb5524c8a455344a32c307d6fa7938a901f811",
+          "src/subtags/mod.rs": "d85fab90e5509125d9f5b3260b806415088ad53663e812e359d13fd153101d87",
+          "src/subtags/region.rs": "f02119571e9b9fc886c2c15b6f1f031f9f0885a3f1489478d623272a06122b07",
+          "src/subtags/script.rs": "8ee9c763837ce9628da359043aa56841e2f8481b73a5587578921cf1eb191049",
+          "src/subtags/variant.rs": "3f8d5699f527e94a6c78336f994d51fa8bb098303ca0aecd840bafb39872c1d2",
+          "src/subtags/variants.rs": "7ff1c09b4a000b2fcbb4ee1d4f9bba8ac0a340f19dafb53b171025b239eb0919",
+          "src/zerovec.rs": "8e4ba5dc264823730d263a640bce7d62cff9d159a342d18921e3b4bb3c45cf8b",
           "tests/fixtures/canonicalize.json": "5414bd4972eb80ba46c727b407a8ed48a6e12e3639db034033586813c872f59c",
           "tests/fixtures/invalid-extensions.json": "36eb5966085a1c9e966689af504cfbf8ea9b78b741675fe033ec9b6153e63ea6",
           "tests/fixtures/invalid.json": "109169258632bd23d06827dfae6509f02a8127ffec25f48281ed61d795c67765",
           "tests/fixtures/langid.json": "960fd01722217ef1ea9077e2e0821d7089fe318a241bd7fb7918f50bf8f3f5c3",
-          "tests/fixtures/locale.json": "df1b195b18780758a6b1c0264206b9cd9ac8c4741c5d6b0cc2b92f8e17991c17",
-          "tests/fixtures/mod.rs": "448fcf033391285b2f7ed2d73195a80a1342007083708b0786dc7d822df5831c",
-          "tests/langid.rs": "d79f33c1f536bec7a0eb1c466842afd61e15098f5039ea6a8085cdf31128199c",
-          "tests/locale.rs": "a7ffc4e9d1ebc70e9d915994033b3853285764953c6f0416f07e30520852b17f"
+          "tests/fixtures/locale.json": "cf2d1d1b7ee2736ea6e496dc1d6b228c040d5c4c493ae4fdd42d4892320eeed7",
+          "tests/fixtures/mod.rs": "32b8b38ea35827782d173278cb983ccf2c6899ba9d414a549aa5f61b8387b3a4",
+          "tests/langid.rs": "2a6d2f78e6e465ff4071c03b3018fa31074426996b9686bf0c43c74d9c143880",
+          "tests/locale.rs": "fb42f118a807f455949a71b2d17a5bc79e6b005a5ac088e23d04b903eb006988"
         },
         "name": "icu_locale_core",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
-        "checksum": "5f6c8828b67bf8908d82127b2054ea1b4427ff0230ee9141c54251934ab1b599",
+        "checksum": "404a3b8c486f205c87fe7f23ab6894d84a4ad76d6e4671ae1981ba7def87c599",
         "features": {
           "aarch64-apple-darwin": [
             "compiled_data"
@@ -1916,79 +1939,79 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "75992dd22cc724a459b542a67a921e80396f5849eb42d9ebf059a39654f9a9d6",
-          "Cargo.lock": "6103b6ae33368ba7383a9c85d2534b26c907012434faf758006fea61706aed6a",
-          "Cargo.toml": "24273bcc1f268b0a559f70d25e7278cae2fdbb2aa8720876e713953bfb9d568b",
-          "Cargo.toml.orig": "1c8a5ef7cda3f66eb283bae506e5750329376558c29be6fefcbe60979d3fea3b",
+          ".cargo_vcs_info.json": "dff12560ce448365e092e84640925deff28c0eb7e893ced30033bbdf170bd2c2",
+          "Cargo.lock": "19847060c433d4ec6d56b73e945a19daa44c1a34a2cc49d4cbd16288fb6d186e",
+          "Cargo.toml": "082123b2cc80f678b7ae691b662f84e2be0092bc6105d46ed82ad3f96fd0ff2b",
+          "Cargo.toml.orig": "7629ae50d3037813d38a95c74441d4e3921dc8fb304bcd2627fd11b8d61110be",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-          "README.md": "aec56e279d7e40a901b47a2eccb52197fde6c9499011b349c5ef509363bee6a9",
+          "README.md": "339c9afe82b2a4b6e429edcd27a9d48021e8c920d658b204c9966a12f9b64a6b",
           "benches/bench.rs": "c863372f937f0bf3c5cf214dd3729a88d450fa67f5d054753c2d9ea31fa84286",
-          "benches/canonical_composition.rs": "0aa91d5d400f58da61865f5fabe878c8506e60466c78503f77041ef7257e6dbe",
-          "benches/canonical_decomposition.rs": "3b44b8f832e426e8c82e449743117182ab7b138288001b621ccc9325b4c27b6c",
-          "benches/composing_normalizer_nfc.rs": "9a7aaae94e0096ccac9f3d1a83585c3f449af87f9f0f8b05615d2a010078e3e8",
-          "benches/composing_normalizer_nfkc.rs": "ad92d562a1e9aad3611521526882e1896aa436d2ac59493c8c00686c57bdf31e",
+          "benches/canonical_composition.rs": "00239f6bd4475e7b3907edeba21fbf49dfeee39df18e2fb549887d798022fb59",
+          "benches/canonical_decomposition.rs": "88a3b0ba651bbb30b43f921b603fd0e0633238166dc0d453500ae5552dcd4c05",
+          "benches/composing_normalizer_nfc.rs": "7ca0cd7449df9455662f418c482a00340170b34b9984909003fe7d4f0ac9e1c3",
+          "benches/composing_normalizer_nfkc.rs": "5b42b4db7c668f9a3e1f1ee4d8471df426fb5f4c8ee4939b322829b5b1706f01",
+          "benches/data/Carroll-11-ar.txt": "322c102a875b619d46347e16fceb64ff76159fde8ee451e02431cae3bffe481a",
+          "benches/data/Carroll-11-de.txt": "edbff2586764c271a7d7c79553578f1b6eb15c25128c6d5b7f9fa99f2b04dd96",
+          "benches/data/Carroll-11-el.txt": "bb2f230bf7224ca10e61093d76296b39643b98e65fc1bf47120a216b3831a720",
+          "benches/data/Carroll-11-es.txt": "243febfe3a2cc35aaefff0cfd5f2922a3d87354d994fea707180c2d59c0f16cf",
+          "benches/data/Carroll-11-fr.txt": "a5211011634da3a77e2b1cb540c1ab384b22f12fd3fc0f46d6fadd94cd743d5d",
+          "benches/data/Carroll-11-he.txt": "8c1c7d3e039efa76ba2418c63b0ee41cb259d28a293f994a3824af606775760a",
+          "benches/data/Carroll-11-pl.txt": "dc4e04b01c6aae286f6193216ffe3e7583da5dfbdfb77efc1eb4a9ce5fe30cef",
+          "benches/data/Carroll-11-ru.txt": "cfff909dc7fcabb61fe61994a5e64a06649fc8475ab933854b4bffa0970d3fe5",
+          "benches/data/Carroll-11-th.txt": "0484775397ed1f5f54d01b0b32339cc8f3bba6554a9c3aa4866bba977ff67d89",
+          "benches/data/Carroll-11-tr.txt": "88056361e53fa4afaf85c033e5e6ec0ebd34d0ddd6bd1774d6157f67f43ff491",
           "benches/data/README.md": "fa79b84815a228c3fbfa5d4c6d12885036994ca8ad61e683b2113cf2b428bb85",
           "benches/data/TestNames_Japanese_h.txt": "6522f8ed794ad348c904079082ec3aa303ae7acf3f68bbc49fa0ee90eebf31e0",
           "benches/data/TestNames_Japanese_k.txt": "e4e18804fe742ecd27ae48bc3564c6bc653180a3c649d43a2ab4d8b7f2607627",
           "benches/data/TestNames_Korean.txt": "9cbf54d5ee16726c0fc9477366e273ba1b82e651c9e88e6c7532df5344f03920",
           "benches/data/TestNames_Latin.txt": "3a30d450d259a6be4a6aee8eeef08d3767d11fcc047b8f58060c542efe1182d1",
           "benches/data/TestNames_Thai.txt": "28d76ddb62d6f47646232860fce7440544f402158443889393fd7e8bf10e9c3d",
-          "benches/data/TestRandomWordsUDHR_ar.txt": "02a775153e9746ae938a9db0b60244f2c00d911bb72b611a3593b0991fd95723",
-          "benches/data/TestRandomWordsUDHR_de.txt": "100b9502e7ddcb2fcbd055cb7ec9113245105bd1c606cace5e5bc147cc18727b",
-          "benches/data/TestRandomWordsUDHR_el.txt": "d1a2f0f9efc9ce663026ca7c285177391937c90008479a8c5b909c300dc86972",
-          "benches/data/TestRandomWordsUDHR_es.txt": "deeebda09e0ce0f80dd805317e96d1a630908601ff2a4d1ccb0021b00b55814b",
-          "benches/data/TestRandomWordsUDHR_fr.txt": "5931edc9f1af2c27a0b35c9624732e70b87b0fd72ab486710f3aa6367c7ad35f",
-          "benches/data/TestRandomWordsUDHR_he.txt": "dc77a89ffb9803e5c574d87f4789cb17624df73e40a8a92961df8ea8be103425",
-          "benches/data/TestRandomWordsUDHR_pl.txt": "26c378295ee2ef75ccacea691df0456394184a9a5c9ce48b2bada169b2402bbb",
-          "benches/data/TestRandomWordsUDHR_ru.txt": "a1c339f6d7b69cf9154e855c290ab09eeaf167ebcdf6d4bcb917de039fba10ee",
-          "benches/data/TestRandomWordsUDHR_th.txt": "3ba518be9863c85c3ac80cbb12299e3594e6f5afed3406d910d948007adaaf4e",
-          "benches/data/TestRandomWordsUDHR_tr.txt": "815c7babbc7228ef89b56f29638aeb63013aeca0003a49e58994e26b41cba01c",
           "benches/data/wotw.txt": "8f28e68041ce75bbf75e72e186a6145e4c2de9e7e62b9b86ce0621c527a23669",
-          "benches/decomposing_normalizer_nfd.rs": "28f3d54c9af813af7ac9d0fbc9d45a7a6d27a25266bd593453eb35c1894280b5",
-          "benches/decomposing_normalizer_nfkd.rs": "cbaa2755878ee1cc90170210fddb7c79836457f89eb84f4f32fb51348f350bd5",
-          "benches/utf16_throughput.rs": "8b8065ccb2d31d7191ba4916e00c341bcc00df56fc7dac3d7a42de907a3c8d94",
-          "src/lib.rs": "46ea272d5821a752e29f6622b23b5549bf1b008775a0eb6c38bebdbe9c6191eb",
-          "src/properties.rs": "d4dcba8900c68ee08db4b00695edfbf83a7e325fb7f970bb96c40ff26afc3d80",
+          "benches/decomposing_normalizer_nfd.rs": "38cf47a14659a8d2d9133cf3835b1a738ad776c59cdf2f7dbcbd5dee4d2aa318",
+          "benches/decomposing_normalizer_nfkd.rs": "a56ec51581bb922839826dc285e204e58eea36900834c9f569b37cca5e12709f",
+          "benches/utf16_throughput.rs": "6dc57b6b3f82f663b07c6263a55c3a2c1605c2d1d30f27ef8da3120c1dc4195e",
+          "src/harfbuzz.rs": "2301328cd8d6effa0f37373b8e97a455325e5a39e7bf4deb6abf9d26a316b4c8",
+          "src/lib.rs": "0c44d2a692cc7d526121f62e86dfdfb14d31471d9155a34e3ff5a4c8aebc1106",
+          "src/properties.rs": "bb24476481123c1ecb750645a48ceccda263c699989522135450aacec61fa669",
           "src/provider.rs": "5850afc7ae842c7af74ce029be256944c64f5d0b51d95725a8366f5af22163e9",
-          "src/uts46.rs": "de86f63076dba6e5f95dfc99865db8ce84820190d54185b0380c737b8758247a",
-          "tests/data/NormalizationTest.txt": "1b04c22b82064adf871e76fd2148cd749129163f7d05bd7ace923516a65afe02",
-          "tests/data/README.md": "521fcd44a1f10f21629df88113fa29ca9f4e1dfbeea79fda19a7dc8ba435e24b",
-          "tests/tests.rs": "01db1c9dc1c7c71f80aed528e4309f416349af9eec887d2e438a3a11f2ee7f7c"
+          "src/uts46.rs": "b2f7093211a0bf946ee59927fb988a2915643f29823bd5709417b8950747e2eb",
+          "tests/data/NormalizationTest.txt": "25a50d816764b04abfb4a646d3eb2b2a803284c3873d9a06757b94fe4513dde3",
+          "tests/tests.rs": "9df2b08ad63dc834d42ebf22d7a27e8b077451467005be8652e01ed72a491634"
         },
         "name": "icu_normalizer",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
-        "checksum": "7aedcccd01fc5fe81e6b489c15b247b8b0690feb23304303a9e560f37efc560a",
+        "checksum": "20f0088bfb7441f7a37fa0c9e20cb1e9cba1cac6b9ce8cd2a6dc44294f8e8cbc",
         "features": {
           "aarch64-apple-darwin": [],
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          ".cargo_vcs_info.json": "780adbfbebd6981602c2e815eb23756e3626769fab7593aff47974247e8a9e6e",
-          "Cargo.lock": "014c3d8a81a8e80bbb808e2daa9138e7da62ec1e36a010a951343617be9a2ab8",
-          "Cargo.toml": "78b8a44ad73cf6d7a1c9ee3dad6504932412ae33a357263a2f8864cb03b561c0",
-          "Cargo.toml.orig": "7690436a7c877291a81c261329fcdf225cd46472173dd291f94552d490699c03",
+          ".cargo_vcs_info.json": "b2a367fe0b9be2bfe2de2673e7d08a935246810f14c41d94983200b8a76321d5",
+          "Cargo.lock": "2aef26c34bbfe79c1d74be8e1b66820085c0a321c0d8ec4223921a17e63c1bb1",
+          "Cargo.toml": "246973e45a91326b4ad3e8b9efc938872475bec9c7696c017185d6f3d26f3882",
+          "Cargo.toml.orig": "cb340ce95ebdce62a81850e52d9ac456ef04643de14ea53a55d037691aca514e",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-          "README.md": "54bd0542b605a252c6542cb5bc461e9786190c382d730ca0738e42c3c3335a24",
+          "README.md": "c1918a6c1dd0ea81b817c1e99fa9930b235d0c170f3579c634a4a05520a4ad66",
           "build.rs": "c2d446772e3d766a804963dbf36e51729f910920f91f4b68c0c199fe6ca0853e",
-          "data/mod.rs": "816d79344f7e006666cc4e0d022a0a02dbdc7bb3d6f577f5de938c2e95560ac0",
-          "data/normalizer_nfc_v1.rs.data": "e75ecf21315a3c6ee3fdcf0a89a717ed3390fb718401a84d34aeb283e684fab3",
-          "data/normalizer_nfd_data_v1.rs.data": "a12a0ae7e51c9b63f1955a6e3efede180568047ce449c1d3c3ce7749a74f997a",
-          "data/normalizer_nfd_supplement_v1.rs.data": "1a749185d56c76459fae81c1aded9ffc612f2215e7a2d02ae6bf083db4304093",
-          "data/normalizer_nfd_tables_v1.rs.data": "c521766d8a56019c93882a2c83c0b6add538f4123a364649904388ee03400ce7",
-          "data/normalizer_nfkd_data_v1.rs.data": "642b1886979bf8a5fa768a9b666c9305ff2966f49bf6c24fdd0c66c4d533f28e",
-          "data/normalizer_nfkd_tables_v1.rs.data": "770b247935bff1ed767628d4ff74f26b02849356fe3d5e3fd3abd266fb04414e",
-          "data/normalizer_uts46_data_v1.rs.data": "1de2dc2727674800787e9f846d0214dbd65c50473aef30a87295a2bd42226f6d",
-          "src/lib.rs": "35a00aa7c95db366db7d49c1aa5481afdcf76caf0efbd819c0f790998b20457a"
+          "data/mod.rs": "52cf2dcf1745c2741751d0aa976267209fd34495a06394399cf9a56d93836847",
+          "data/normalizer_nfc_v1.rs.data": "37cfc4ba0763282417b6b6283a2650315649dcbf2e4fc12920d7c37bce79778e",
+          "data/normalizer_nfd_data_v1.rs.data": "67b24749c42461ceffce69985fc581a72fa5a748f88a9b1f6ce6790c6cf1e2e3",
+          "data/normalizer_nfd_supplement_v1.rs.data": "1b350c303ece34e6b274402cd4311d7680bf466cae154838d9cf5cc8c361f434",
+          "data/normalizer_nfd_tables_v1.rs.data": "3b77cc88af4769de217530a7d80735777c2ddd4fdd4ee1919df64020dee0e9ed",
+          "data/normalizer_nfkd_data_v1.rs.data": "b389011d2e8dd0b2388c69b319302d7ff7649e010fcf0114464510594d58d535",
+          "data/normalizer_nfkd_tables_v1.rs.data": "52dac1012d866ac9d414b119dff7232097e8cf18272435859b62c099acefb3f3",
+          "data/normalizer_uts46_data_v1.rs.data": "95210aa8d0129588ef2602ad6d602474558bb7c1cfcbb35d4c9fe0e10642bac6",
+          "src/lib.rs": "3cd51f9fa78f9178979b33cbcecc0aa237fa7f5769ff4403a47c48b3e0aea1aa"
         },
         "name": "icu_normalizer_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
-        "checksum": "020bfc02fe870ec3a66d93e677ccca0562506e5872c650f893269e08615d74ec",
+        "checksum": "2ea83d991c56158f7cf898bf86436c1dfe7c07ee82fe88951f2695c9f37a379f",
         "features": {
           "aarch64-apple-darwin": [
             "compiled_data"
@@ -1998,181 +2021,199 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "6d5fc1ab516f90b4e43a02192bc7c3c6a841020df5f000f394f93b2914e3c018",
-          "Cargo.lock": "fd056e7443449e4784abbbadf79d8ff0f03015b6bf672317c35122b85788e642",
-          "Cargo.toml": "0bff4bddbb92a688d8b90f8cb75a24cab54e77b91757f7fd186f03091a88853f",
-          "Cargo.toml.orig": "7eb2195078fecb119b857ef4fad4d574236ec4d8486138d846f044d7a4d25d63",
+          ".cargo_vcs_info.json": "6f3aa7bf4b3ffaa16e3c2b369b47c285c96eca83490c8fde17b6eb9fa28900fb",
+          "Cargo.lock": "27aca5bffbbc72ae776018eb22746ae252451dc1aca8f3c2586795d6976b8a4b",
+          "Cargo.toml": "f0da6d942c70f83ea3e54d6bca262f1ae0493bcca3d063a13d8dcf85666fac1c",
+          "Cargo.toml.orig": "b2d3bd71bdeb2c29e9378197d1ea131342a8d393d9c12cf1b1ca1b9fd58007b3",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-          "README.md": "78fb5c330563031daba1639443167abd3275942fbdd55410986d47fa3924a583",
-          "src/bidi.rs": "57e057d672c435b32e324084f04d1c7b04841c716fa00c52462fe79b62f1aa4b",
-          "src/code_point_map.rs": "d713ad1cea186807b61394f4b23ff1e52af9bb2b1aeefc06f21ef3d3891b1daf",
-          "src/code_point_set.rs": "1c773ac0bc264ea020b47ddef4efa8be56bb6d49a26e74d77d7dd4704c611ed6",
-          "src/emoji.rs": "c8367d2439f919f5b7f6dbe1d9f59e63fcae0d7ba72deb5cf7bbe4c9a0afba97",
-          "src/lib.rs": "cc7ad2a642798f4c70d25b5abe49bfcaa2bedcb6b7da337f57e63c14cf9ea227",
-          "src/names.rs": "9906ba5c7fd0147779a47dd76ad51d2b0eb15c8f491d4960ba4ef0a006dd0396",
-          "src/props.rs": "2e98eecf61b1b7856bd4dc271cc6d503e4061ed04553744de622c09d248be361",
-          "src/provider.rs": "2a1ff29be1dc5e33ee7f480016668beba708b5dd85128e38b481c09aa3e95d85",
-          "src/provider/names.rs": "52be067a469f7b3e6fc0c9be1cddb93f591dcb9b325405a105c7d99114fb64f9",
-          "src/runtime.rs": "b50648c69e980e1f77508974c007585ee0e71972c7c3ee3ccfa5792c3946e09a",
-          "src/script.rs": "9dd7ef15970fcf9619b0b6fa2ce4b391b0d275e8c67f2afe21a863e408e96183",
-          "src/trievalue.rs": "2b91b48017a2f2c522f463c636419257b0f3ab26ade4026750ab1a0ff0e935eb"
+          "README.md": "56a1c8cc2beac7c08aa3c9c7053ab27f54d4faaf264e0c61f3f34527ed1cc5aa",
+          "data/PropertyValueAliases.txt": "06c4c8eaf7b0bf34abe73b113da1215bd784ac254d4c223600b90267caa4bbbd",
+          "data/prop_numbers.txt": "54a00eca2bce6790035dba1fa5c6c438c9d537da9faac63a6df4333a7064b357",
+          "src/bidi.rs": "a41be0c523f5b7f948be3d988c916456c75b3babf9c7c1a53aa5302e19c592cb",
+          "src/code_point_map.rs": "d319d183361b18b7267a5bcdf8c06966b3c9261c5633bb1fc32c2c59403cfa54",
+          "src/code_point_set.rs": "b32c7ab10b0cbbefd49f352360cf6366fd5095abc84f120a0d4028fb133e33c0",
+          "src/emoji.rs": "08acce0d8f265852750d5684b03154af34b0f0595021bb1c1f43ffb99f0f31b9",
+          "src/enum_values.rs": "2044bf545e00016b6909e912b8802d28cb7485874b8db4960754c3bd5285c792",
+          "src/harfbuzz.rs": "3b5fbc76b3175ca15628c17ec0ccd9e88efdf4e3222d767b7f11b54b4fec7b1d",
+          "src/lib.rs": "a014d1f0c17ed55369acf158d0c8c7aeadc9c046773d94c91967ae2bfc1f0a4b",
+          "src/names.rs": "c9646a9012827db066f1cc50d25ec2a6a52f730a2a8ff5a5dce020de868ecdbb",
+          "src/props.rs": "ff9b15b0d33dcffd6906e58cd7bae293f3a75200adbce07585078a200392c7fd",
+          "src/provider.rs": "53890263e9a6996b1d90c36532e5ca04b084f83c3e7e6d79a48401149baf9561",
+          "src/provider/names.rs": "e28a58093fa9e3d4d509f0cddfc25905ff627b78a05efdbdf9ed2b8973c9102d",
+          "src/runtime.rs": "b4e4e13f747f6307b9f77863b364312881421e49a2b7132e203325c784340c92",
+          "src/script.rs": "a1f1ae643dbcff412ac702621dc0e76192513121e485999a19337c0522743060",
+          "src/trievalue.rs": "a334660096a4e03d1e0b8c4c6f10d853bc8f7a4f185d3faacc9ba25ad38b86ee",
+          "src/unicodeset_parse/mod.rs": "59ba793b92708540f3df9ddbc2b86a2afefde668c2144645ca14389f1ecf55ed",
+          "src/unicodeset_parse/parse.rs": "99bfe5ca1e3be75d9abdd4551d34b5b787f0faf344179584558937a0e23f9abc"
         },
         "name": "icu_properties",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
-        "checksum": "616c294cf8d725c6afcd8f55abc17c56464ef6211f9ed59cccffe534129c77af",
+        "checksum": "b98f29af82d02b163fe50161388350e743bb3107cc8e8c2f7314cb505faddfcf",
         "features": {
           "aarch64-apple-darwin": [],
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          ".cargo_vcs_info.json": "5af174090f08da9ae7d70619c613d205b4f05f71ed190f0d49a833c38ea5041b",
-          "Cargo.lock": "c8df924628834cedc778cc9ba5702f8d65371afb59bd64115e4bbd1204ca131b",
-          "Cargo.toml": "42b9c57ffc387f255ae3d0435fb88b1c0f4fd566a6e8e030b676c9c91229c729",
-          "Cargo.toml.orig": "0457be5168f095cdc925d449fd7d88740af3dc616e745f0307bea6cf3d02d849",
+          ".cargo_vcs_info.json": "1175ed6d0e8ae681bcf61bc9db41d2ba4994f6019e83087fef24c10c494417c8",
+          "Cargo.lock": "6fa0630f3058fea02794a69d45033e0c9d47a639eb0bf5969bd107f1015e0364",
+          "Cargo.toml": "857c51535f8ddc15afbdb82fbab9017c79b027e2d041199069ef790ed016f225",
+          "Cargo.toml.orig": "919f09c0f5da9d0bc566637d3ffde1fc4e4855bdce707a46fc9241a7c73dccdf",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-          "README.md": "ed00f9dfefadab7018798cfd9498cd5e47a4a0e92eb941f7cbd8e42333650346",
+          "README.md": "684fc74e35b43b196d51dd51ebdea1d5406da891100a6617ff81867bfa5c73e9",
           "build.rs": "c2d446772e3d766a804963dbf36e51729f910920f91f4b68c0c199fe6ca0853e",
-          "data/mod.rs": "e4792f1735e0a034f7025e60d22e5cee435f0efa4044feaf1e5cce04fd8972c8",
-          "data/property_binary_alnum_v1.rs.data": "9ba6d119a697c0add0589b4163c20f12530b7340df05edd324fa63c2def43ba6",
-          "data/property_binary_alphabetic_v1.rs.data": "fc97d291e8942215548f8f6d4a0d45ed1d44239771df40c93962e4644094ba2c",
-          "data/property_binary_ascii_hex_digit_v1.rs.data": "623810e3c8640f4297bf58cdf0f02f23080db3ca018524ad62da8a8cb7844b96",
-          "data/property_binary_basic_emoji_v1.rs.data": "df25d2f3dcad3613ec6e71a4939a2aa0ac796c7acf43f0147152b01eda754e48",
-          "data/property_binary_bidi_control_v1.rs.data": "10f5f60b95c22ade953b1ca4fcc98b2ded5b68c390bd849f08b34042ac8cdb2e",
-          "data/property_binary_bidi_mirrored_v1.rs.data": "e70326d8672935b642232e32fd0547518f2af9205c2d936c8aafd43b38d9cea0",
-          "data/property_binary_blank_v1.rs.data": "84149f2a94f9dea90dccd9e4398228b09ad72d246851fb4ae543d5ba65960b9f",
-          "data/property_binary_case_ignorable_v1.rs.data": "e295373ade217e572bd3e1fce37f696cf0ecd4e6789cbff38064cb7122176cf7",
-          "data/property_binary_case_sensitive_v1.rs.data": "ddf6ff0fa2dfca320f53b7062366e213b547b02d839b1c4bdea8595bfe871b26",
-          "data/property_binary_cased_v1.rs.data": "08370f3ad5ef76a9af6fa8742baef788b20f8a761a097055ba791445cf446757",
-          "data/property_binary_changes_when_casefolded_v1.rs.data": "d8ef50fc006c29c592c4438ad5b7f41979e3af074c67a43be1aeb2383c32ddf9",
-          "data/property_binary_changes_when_casemapped_v1.rs.data": "690dcbbcf8a925df0de43b5e11d3ea35252e6bdb8f949c43a2008668363fa6b7",
-          "data/property_binary_changes_when_lowercased_v1.rs.data": "edf8c1f0e04e3c081abffcc35740ce434c83e8d6c37a937c020b27ffe5fe022e",
-          "data/property_binary_changes_when_nfkc_casefolded_v1.rs.data": "87bdbf2e0238e90304896a6235f9cb793266a112dd5980fa9736e1756fdc4a4c",
-          "data/property_binary_changes_when_titlecased_v1.rs.data": "dc64a7753fd7b7e17f87654609a94775fcc0dae2ec3d3d379f0d3d07bca5b4b5",
-          "data/property_binary_changes_when_uppercased_v1.rs.data": "df00b5b5f1d70c21773e8b240c6f0a61520ea7365d7cadb6b660ef6d9c03ee06",
-          "data/property_binary_dash_v1.rs.data": "318527566b56e97b983fd81283fdf5cf2e75640c07e56b00700ba9326bce01fe",
-          "data/property_binary_default_ignorable_code_point_v1.rs.data": "49f092cb94e1f42622e26ea1f2df535ef23421f47a36acb2b28c8d3ceb7316ce",
-          "data/property_binary_deprecated_v1.rs.data": "0b39483b000d64ab7126d9f17d017362e0033500b965ac6aeade537ff33c4fe8",
-          "data/property_binary_diacritic_v1.rs.data": "07a50f5a7041a99b662886262f0aef305eef699ee58e97b290ff61a7193d5861",
-          "data/property_binary_emoji_component_v1.rs.data": "9d0d8db18662b5b1437a6644e7112bc0f107dfb9890f926a150d6a0462691f5b",
-          "data/property_binary_emoji_modifier_base_v1.rs.data": "1467ad19e3d20809fba634bf30536c27f5abb08c287d8de9d55f56c29542a17d",
-          "data/property_binary_emoji_modifier_v1.rs.data": "b62693cf554909490c2f609698b9908e282aff717aaca9a05dcc757bce1ed788",
-          "data/property_binary_emoji_presentation_v1.rs.data": "c18f00047090a9adcd4f2727f90ec5003de653538e320a2083c4a603a58afa53",
-          "data/property_binary_emoji_v1.rs.data": "fd9297eb72d2e400953cf1147dd3d8fb6c2195440a3399bf64b6aefcdeb4d31c",
-          "data/property_binary_extended_pictographic_v1.rs.data": "fb91a46f7818e9df1b878ba46fa29ea7120bc233b24495c0dc8f7597b19f1d7d",
-          "data/property_binary_extender_v1.rs.data": "d7c8d9574ee0538a89420f149921dec079e7f731cc99146e908b27f67660b934",
-          "data/property_binary_full_composition_exclusion_v1.rs.data": "d4d9f5d5e263cd80c09bee6dab26a89524d8d11f9241422410f46df54051ff5b",
-          "data/property_binary_graph_v1.rs.data": "fe535b008284aef0282688b6f7710888a554024a3096c78e3d2eec234d1701be",
-          "data/property_binary_grapheme_base_v1.rs.data": "aceec035c4cd9667f1a6cebf2d86f1725f0ea0dfe4053a07feb1caeb4589e76f",
-          "data/property_binary_grapheme_extend_v1.rs.data": "bcd3a5a6e90705610a06fdbab296d9118f466cc1d66b87bfeaf26d4092bc3349",
-          "data/property_binary_grapheme_link_v1.rs.data": "3a3936fa0aa6e987322f7e27083b67a303ffd237aa3381def39f241138916bc5",
-          "data/property_binary_hex_digit_v1.rs.data": "34608437fc25dc6372105e864cc9bca96408381a140caa0e6a95d96fd3333668",
-          "data/property_binary_hyphen_v1.rs.data": "dcc7868fe09e2a79e3bea1504c4dc5fcacff2a60fd93a1fa79d10b1f2f0be136",
-          "data/property_binary_id_compat_math_continue_v1.rs.data": "1d02b26c65a6cc21a276d7fc571b65d591b27c9c640d70da35be2d5e505de08c",
-          "data/property_binary_id_compat_math_start_v1.rs.data": "9a55985823b9035b29dd44e498dfd9b46e2e3b96a16bd88770cc62a99f5edb39",
-          "data/property_binary_id_continue_v1.rs.data": "e82d1a073afd838b6857b7278c75d0df368d952c3541509deb812fc8fa72bc85",
-          "data/property_binary_id_start_v1.rs.data": "38b2f5be36b257b79e0d6e06b6fd5b38865d3058f56dc1bd3b223b71eb9c66ba",
-          "data/property_binary_ideographic_v1.rs.data": "1b7d2040ae860d91521c1d1749fa5f0d8a2d66fdcfcfe749f15d254a1c6a92b8",
-          "data/property_binary_ids_binary_operator_v1.rs.data": "fb4c9ea68dbec8686027aedca9762f9a156f7b0021d1052c150538db84d9481c",
-          "data/property_binary_ids_trinary_operator_v1.rs.data": "11f184984861fe318adc3b90d1052966ec231450e9347601d94542e122437b66",
-          "data/property_binary_ids_unary_operator_v1.rs.data": "b50c2756aed14fce37e3fd4a1e708a65b9c2579e44515e80290f2fe31e3702c1",
-          "data/property_binary_join_control_v1.rs.data": "e0636b7754f3e187ec93b39bc05b622fc1e95c2d3b4974f6f3c82c36d8035986",
-          "data/property_binary_logical_order_exception_v1.rs.data": "08aa835bd9c5179fc3cec22570a80a1c1e6249a810e67bdab2f09f8e3b4cb91e",
-          "data/property_binary_lowercase_v1.rs.data": "32025bdbb5a07a0a1f399443991a349101421c7ee039a7f070ccdf0df85b961b",
-          "data/property_binary_math_v1.rs.data": "85580accffc06149ac8ea30d35bcf638d72bfccbded49c6d36ca6902c61e024a",
-          "data/property_binary_modifier_combining_mark_v1.rs.data": "ab1b5dd23d255980cad295502f4cdefb0792ff1f3189b2c8d0f97bee22dadf74",
-          "data/property_binary_nfc_inert_v1.rs.data": "73f9ae9abc7fa3987c13a77bf6d561bee8725535fd6910151abb6f953dfcab29",
-          "data/property_binary_nfd_inert_v1.rs.data": "290764e9c0991382e758039c75025e442ce4ffc5c655c993a98f52b9dfe0606b",
-          "data/property_binary_nfkc_inert_v1.rs.data": "b40b9310b6951119eb58ad2c316bcf0782b4061219bba7102ee99c48c03ba809",
-          "data/property_binary_nfkd_inert_v1.rs.data": "cae267892c5e7eff314b375f29398cf033d5a29f41b445151441e6ada0b89fb9",
-          "data/property_binary_noncharacter_code_point_v1.rs.data": "1074f4f37bd7a7e56d1e283731d57ffb645e96beee2cfa0a83215fb305775ce3",
-          "data/property_binary_pattern_syntax_v1.rs.data": "532a795135a84bb931eb84bc46ecfe8dec054f8fed4d99da2e49d507cdd6c3de",
-          "data/property_binary_pattern_white_space_v1.rs.data": "5bf6a89da1a949ba6b4a22d237268ff891987a89743a31e20656afe611a8a773",
-          "data/property_binary_prepended_concatenation_mark_v1.rs.data": "b20cd7311acab660b7ca68dc4be52d6ec641ae1116eaad07b10ee5d2a3092539",
-          "data/property_binary_print_v1.rs.data": "a3adaf50ba8ae831673cef07b2619cc7acf4e328e48cdc120ae1b9e07a17b253",
-          "data/property_binary_quotation_mark_v1.rs.data": "fbaff5e115b22f69b9721aed5bdc4eea98be7f0dfd4dfc8e160475c1a1f05372",
-          "data/property_binary_radical_v1.rs.data": "f7008c4ff23a06a080ea81e822e1e42f77c397f1added6be0aa1961284f078b3",
-          "data/property_binary_regional_indicator_v1.rs.data": "f097cad5ad09e2b254b3244d24a708d70cbe9336eccea7c1828aa71a1b68e3f6",
-          "data/property_binary_segment_starter_v1.rs.data": "ef276d7b9456ff8e48e38f4aede518d422e347d3ac26c4343d1df91fe4244640",
-          "data/property_binary_sentence_terminal_v1.rs.data": "d35ef7ac725bcb8f00ff7b6ed4877c860631cb0af87672ed6f8ff1826f9f6e4a",
-          "data/property_binary_soft_dotted_v1.rs.data": "2503fae2e93b1788be13c8f6f0a253362c68b3791f7c73e5b8afbbc5af057427",
-          "data/property_binary_terminal_punctuation_v1.rs.data": "fd8c0948c7b96a27e930bb33727b08835654c66d3f34e3cd5a0b584e07fbf037",
-          "data/property_binary_unified_ideograph_v1.rs.data": "dd3cf4def7db56b00426210605c36ca9c871b102d198a382c522bf7fb48f554c",
-          "data/property_binary_uppercase_v1.rs.data": "febe7b8aafb6831de87396ba43ec3ac5583261100fac3cbee6bdbca1a601fd65",
-          "data/property_binary_variation_selector_v1.rs.data": "444f7fa581f9583bacdfdbeddc5c0f6e7e041edd99e3f250a5ec55542da33268",
-          "data/property_binary_white_space_v1.rs.data": "3d782171d94c85789ff0d94fde568580856f633c353f0f994d91571f0a95255b",
-          "data/property_binary_xdigit_v1.rs.data": "73c494a9715ba0bd1999a509a327a3c72d9acbc51485fdc2e23168ba555fb7a4",
-          "data/property_binary_xid_continue_v1.rs.data": "47f42dc832d354d000102d848eb1278ebba763500669a69b1d60295d9fe4ef80",
-          "data/property_binary_xid_start_v1.rs.data": "9b31aa5aa77017289e4201d4e796743cf757a70472c5e263991f33e0d3d4465c",
-          "data/property_enum_bidi_class_v1.rs.data": "dbce62aeea9289e92aa587dcee6016a0eb6cbc0f97be0d7718e9f39b6ddf548b",
-          "data/property_enum_bidi_mirroring_glyph_v1.rs.data": "7123faede5556fc359058768ca4780186dbc8518ae7557f042bd019a8ee31ffe",
-          "data/property_enum_canonical_combining_class_v1.rs.data": "49a632a5441cb11c5e4db5be1a4745f68fa6812818863042db5ddd76e2b42e90",
-          "data/property_enum_east_asian_width_v1.rs.data": "ddca8486c1e2f1c7e0cfc0b15e4e88618a4e921b7ee6790fdedf49588e66f6ec",
-          "data/property_enum_general_category_v1.rs.data": "e54847965297bb5376de05f80bdf5aabb33e14030fdd8fff81471ef3314f483b",
-          "data/property_enum_grapheme_cluster_break_v1.rs.data": "8508e94b4de138690f57fada994fdede33bbc394b879cc447555b4d422dc0d13",
-          "data/property_enum_hangul_syllable_type_v1.rs.data": "4ab436c9767bdc135908c92a6a1d8188bb6ee180cadac5fa14a63efecaaddf36",
-          "data/property_enum_indic_conjunct_break_v1.rs.data": "6d00ac2186cb471567b45a0d2f33f6c41d4ee51402452978abfd6e634cfb8f17",
-          "data/property_enum_indic_syllabic_category_v1.rs.data": "c43d0e10feba38c3db4be32aab2e4e357a9253eabace3f4efbc29568750c33ed",
-          "data/property_enum_joining_type_v1.rs.data": "589285ee5059b9349dc555bfe8c7a4084c09668e78137f0858dc1bf0bfd23dd0",
-          "data/property_enum_line_break_v1.rs.data": "bf7c89c0a58e2c7513768f066253388fdedb4f6d73907fc3b26098ee937aac36",
-          "data/property_enum_script_v1.rs.data": "00feb2038c6326f7a220904d03ad8b2494e552292f1f7fe319ea780edfad0ad2",
-          "data/property_enum_sentence_break_v1.rs.data": "2ec25aa909ad75844a4173b25f3b0ccd4915717dd9310d17058320e8690555c5",
-          "data/property_enum_vertical_orientation_v1.rs.data": "45b5f35308371cb6a3053aa28c175aaa0c02b34df5f82872c2a2efb0d78674dc",
-          "data/property_enum_word_break_v1.rs.data": "a515d2f580f247673abc77efad0f7d58e3e3c38d98609e54e3285cfdf23e4154",
-          "data/property_name_long_bidi_class_v1.rs.data": "0a67543f92ce297b8bce75628466ddf5d2a0b2bd7cccd1846c18db726bc9418f",
-          "data/property_name_long_canonical_combining_class_v1.rs.data": "c336c9d3ec67f6d22b447ccba6e4726c17522fe6c982ac5f7a5c3fa145971b60",
-          "data/property_name_long_east_asian_width_v1.rs.data": "47afd76555acca75e22dcfd9b26da070cb6f0a90bb069ce7af1281815f9e0079",
-          "data/property_name_long_general_category_v1.rs.data": "5d6146948e89a2ab23f3bcbf37e51777f75ba7de299bf1af08cdb2852565dd2c",
-          "data/property_name_long_grapheme_cluster_break_v1.rs.data": "567f6f9bd68423df5df9457305732f9c664a403e318595ae3d0fc05bfc2b3466",
-          "data/property_name_long_hangul_syllable_type_v1.rs.data": "b06bffda7ddee52bd60e672592977dd368fed141df62fcc1cf5509b2c9496f1f",
-          "data/property_name_long_indic_conjunct_break_v1.rs.data": "5b7c753a42d161d8a31d8318eef7bef28444a0e56190f3cf92adc64f2053fd1b",
-          "data/property_name_long_indic_syllabic_category_v1.rs.data": "2f7f3608593d341b81085bbc04a39ff6e6a940cce30a99a2163262efa1aa3518",
-          "data/property_name_long_joining_type_v1.rs.data": "d15c77f293712cecd6ebf20ee9a261fa3f2eac2146e6a8aa16499635ae68bc0b",
-          "data/property_name_long_line_break_v1.rs.data": "986a0ecb5b6a13301d1b4b2ac96d006eff1cf0d9db84d649de888866bd4960d3",
-          "data/property_name_long_script_v1.rs.data": "d87f54dc637fffbae516ea40172b181bc9450717e60c123b196623c06cbc1375",
-          "data/property_name_long_sentence_break_v1.rs.data": "3d3ecb164820917bb33f3a4f2878afd13af7d6d54e8712fc58bf79152ff741b1",
-          "data/property_name_long_vertical_orientation_v1.rs.data": "6f0c23ad2ea33d84c645fc6add2e5714b1c26270d31ce6c388f1c881869623a3",
-          "data/property_name_long_word_break_v1.rs.data": "5030f3fc6e67da742571b331b6156dfbbf96473d2a6a3300d28564c9db24e92f",
-          "data/property_name_parse_bidi_class_v1.rs.data": "1397747314bc53177604bbe1259be039e3d70b7b3f415d48b1fe6a35c252052e",
-          "data/property_name_parse_canonical_combining_class_v1.rs.data": "16ac547e4d5275cd71dd3fc0da771b613449c0ac6081bc5dd4d095a54716b0bf",
-          "data/property_name_parse_east_asian_width_v1.rs.data": "c4827ee655bc45185f5f0c5e6019c3bf9cd32da491444176f748a057f106ec39",
-          "data/property_name_parse_general_category_mask_v1.rs.data": "4aef94f3cfa4a5d95faf8fd9943ad41e5685c1cbf4b52c887bfd748c5a64992f",
-          "data/property_name_parse_general_category_v1.rs.data": "718035879b9a985b1ba03965c003a90336607601af401dd70fe2a8589219900b",
-          "data/property_name_parse_grapheme_cluster_break_v1.rs.data": "7a24a9abe74c240da350b40d954dce5e2c849204df167e654301786dfb6dbff2",
-          "data/property_name_parse_hangul_syllable_type_v1.rs.data": "95375674f648c359c03a7c22d58482aa323210e8aaed094b0155c4cd8406b16c",
-          "data/property_name_parse_indic_conjunct_break_v1.rs.data": "80a0963073c18d899b96dd7168c0d452ef57a7e938e6b94450386ef0f1f13571",
-          "data/property_name_parse_indic_syllabic_category_v1.rs.data": "113411769348fe83408053bf6db9685432bc3adcd40f9ab560061bf5b20f72ac",
-          "data/property_name_parse_joining_type_v1.rs.data": "cffe1a58a2c1dc89455ae7fb99928f1fbaa95bf908b9170c60b424b3f56ef395",
-          "data/property_name_parse_line_break_v1.rs.data": "e97380e5a0178654ee4ae634e320f0d62f278391aee52a5190235ae8603c2545",
-          "data/property_name_parse_script_v1.rs.data": "d952f3cc393e59228c3b90c4782f6c15e15da6f6a9da18f6ac4f16af3d55f4f2",
-          "data/property_name_parse_sentence_break_v1.rs.data": "19a31d9c88ac3aa0147929c6ec1774fbc13b232564435d77cbb4f7d2a4eff36c",
-          "data/property_name_parse_vertical_orientation_v1.rs.data": "ba8dc7f7d3a5a8644754255453b65e59d0b9d634eed000efb946b912548d3acc",
-          "data/property_name_parse_word_break_v1.rs.data": "80cdffdc3178ae8956ede34c1032519acf1920f0b3806dfcd9f1e35c3d4c3696",
-          "data/property_name_short_bidi_class_v1.rs.data": "b34569cb0fd7b293c67631b444c1a556443f37105a674c7037398e56ad6886bf",
-          "data/property_name_short_canonical_combining_class_v1.rs.data": "7223a04588d9c5b2b28f190b5c35b2eba28143699b965ada48107e465d16c943",
-          "data/property_name_short_east_asian_width_v1.rs.data": "0d5d3c1bb3a1e65049abefd91b45e9781e97741716db49fecf9970b9925c1ce0",
-          "data/property_name_short_general_category_v1.rs.data": "6e9c1b2695c7f5e8d4049aa8ea521e8715c7545da2c59074645f5f65084e7684",
-          "data/property_name_short_grapheme_cluster_break_v1.rs.data": "0e4a9cb425d948f8a35cafa839fb7dc47afa6f046702e5aefcc68694d6d9aec0",
-          "data/property_name_short_hangul_syllable_type_v1.rs.data": "fe2defeadc71aa9f47b39a19bb94d87eca61d9609fc96f3a3ac6b2519709e780",
-          "data/property_name_short_indic_conjunct_break_v1.rs.data": "ee22d742988bd39321d031fb6b571c6cd82b7ab9e0810c3369a5d7895c9e75ee",
-          "data/property_name_short_indic_syllabic_category_v1.rs.data": "52e88a0b2a76432a789fc29dc9726dfcdce00e92d9966f847fc8a7c4b9946d83",
-          "data/property_name_short_joining_type_v1.rs.data": "0f7afe2bf9369eff40f4b639b1dd977217bbdc4e0f6792e3ab683b29d79f6e16",
-          "data/property_name_short_line_break_v1.rs.data": "881f0a1ea4382c4f499b80f9564f2a5ee768f1200bd5e9f043736b66cc6306f2",
-          "data/property_name_short_script_v1.rs.data": "57dcc82caf1cc1ec2d7473efa9b9aed979eba9fd5e83ad15a1712879c99ced4d",
-          "data/property_name_short_sentence_break_v1.rs.data": "93901f2906e3f62458d02032258a8014d20a150e00b1f4216219e473e27ae205",
-          "data/property_name_short_vertical_orientation_v1.rs.data": "b079ec914fdfee2df476c43b6a68f2a22e565abc08e5b6b05bacdf2a17b557ee",
-          "data/property_name_short_word_break_v1.rs.data": "d5f635cfcd3ced313960facc9eeaf74c157f7579ff50c41ca7e604621864e9ec",
-          "data/property_script_with_extensions_v1.rs.data": "f02c15afa32022478ad9285b8ba89edff0cdb7b7648c289e590e699dcf73bebe",
-          "src/lib.rs": "7a6e87c028631f9d033a6c9b7491c44e5a9c8efa3ab1c10cd3e2f7514e353bc1"
+          "data/mod.rs": "afc639a5a31c0167db1909799ae05e6642d74d93129dadb1b5d2d015a856b9ef",
+          "data/property_binary_alnum_v1.rs.data": "a32172e319c452a43bcb3d5eba24c7eb8ec8625bbf1dd5cd2121667ff8041ecc",
+          "data/property_binary_alphabetic_v1.rs.data": "ba225b0e2210d3c227573877220ec62c8e26d51a796a5127573cbc8d06d5a155",
+          "data/property_binary_ascii_hex_digit_v1.rs.data": "1b6f28e203dd87aabcbfe29cbd7a248d77efb2e001ee2a2e5d701e3878f8ed93",
+          "data/property_binary_basic_emoji_v1.rs.data": "342ec961341809c9888ab5f0891af15f9d60357ec41a8773af5199e3c1db63e7",
+          "data/property_binary_bidi_control_v1.rs.data": "9a9509b4276e9d971189b95e83655708a8fbbd3a82ece3d9806771786f7d743a",
+          "data/property_binary_bidi_mirrored_v1.rs.data": "b5d56483c9116ab53f2eaac1305c6d03f10998e36d471865f734455cc7ac715e",
+          "data/property_binary_blank_v1.rs.data": "7fa783c0317c57e7350729e960bfb473995d3a9e9f9b3c52eff8d674f69eb53f",
+          "data/property_binary_case_ignorable_v1.rs.data": "cdeda19c615efd8bbf570f685022e5bbba5e240122568223603755e51d472170",
+          "data/property_binary_case_sensitive_v1.rs.data": "3116b800ba9765afe663362b3a49e73ab951f449abd72bffe1572da8ce3a1c36",
+          "data/property_binary_cased_v1.rs.data": "4e9d7fa9078dac42dea26a79c1b085a103bfd79ea17966738d18a43c3d43ed19",
+          "data/property_binary_changes_when_casefolded_v1.rs.data": "33857576e4f1877afbaf35c71eedaf61505405bfe01021c51828d37660d0192b",
+          "data/property_binary_changes_when_casemapped_v1.rs.data": "d4f811f0cc6a3605e957bd2273bf5ed9aadf180663dc35f7434d520f72d894a0",
+          "data/property_binary_changes_when_lowercased_v1.rs.data": "88dd2ccbcbc2625488fab155a6da48a25ccb94b941f340df1f18fd4e6321d471",
+          "data/property_binary_changes_when_nfkc_casefolded_v1.rs.data": "ee73548454b30b7d43451a04b09a38f5965d220064b3d04df7811d3c97929b2f",
+          "data/property_binary_changes_when_titlecased_v1.rs.data": "6eb59b22343980c29dc6fa5c0a0b6b7e908de5c26db3adda2d71c5837511e9ec",
+          "data/property_binary_changes_when_uppercased_v1.rs.data": "a985f8109eb3e126409c956fa62434b5faa0aaa6b2c0f02c4c2f859d158c010e",
+          "data/property_binary_dash_v1.rs.data": "b124a9b4072ed30daa54659607c82f7c8353a01fa874b723fb0b63d4e73050d7",
+          "data/property_binary_default_ignorable_code_point_v1.rs.data": "d05690fb6d83fa75c249c4bcc9fd1cf32341e6f77c0144f802caa430d00feca7",
+          "data/property_binary_deprecated_v1.rs.data": "d1aae6d758b9b895c051ff7752efeb852a811252b17ed0bd71676c7f40d5237f",
+          "data/property_binary_diacritic_v1.rs.data": "de521bbaa30913f3936a7d38b36db021a04c6e33e709964731ce550c6dd49af3",
+          "data/property_binary_emoji_component_v1.rs.data": "257a19fba602c94e1f7c44e50001484ca07f401d2b173cdafecedeb928fa40b3",
+          "data/property_binary_emoji_modifier_base_v1.rs.data": "a15c72286f95cc19f8908aba07ad9db3db864db34f936d509313b5119c0dc8ce",
+          "data/property_binary_emoji_modifier_v1.rs.data": "f702bcdaa782528fa5a59eef288ee1c57f0f340e1fb90eb4151a26288185a29a",
+          "data/property_binary_emoji_presentation_v1.rs.data": "a71dd5b5f091868aa405216d4028524863cdeab9b44b2e174780da2a4069e332",
+          "data/property_binary_emoji_v1.rs.data": "ccab5fa1a55ed3aa324f0cf55be9897ef6205ad38219d4c60d26652e2e4472e4",
+          "data/property_binary_extended_pictographic_v1.rs.data": "8f3649c68bb9cc5c87d874897846572ff6e7e412321f6ed8766c67582eec9b23",
+          "data/property_binary_extender_v1.rs.data": "8d21bacc83374baa49d7f6d385e6b4d22ec2cbd6363a5c47be6f7d7db18e910f",
+          "data/property_binary_full_composition_exclusion_v1.rs.data": "d6d87f1436aa26f0336f399507500d7a55db8f1ad7a4d4bdbc11735bac7b771d",
+          "data/property_binary_graph_v1.rs.data": "cee9318239346af02d4bcded2a011a738170c73220bdbda9e2895ca14a61e460",
+          "data/property_binary_grapheme_base_v1.rs.data": "1664128531e4d2dcbe1340a0cd194538d25832fdcc53f0145b4ad466d8690690",
+          "data/property_binary_grapheme_extend_v1.rs.data": "400fa1491c262c20d1df7bf19cf52f0853f9ca60dd9f5a4f0d549c242787dcf2",
+          "data/property_binary_grapheme_link_v1.rs.data": "e0365d7dfb9054297362fbad8356e0fe6e0b7938419d241828e8ba505518dd86",
+          "data/property_binary_hex_digit_v1.rs.data": "93eb82007354e95a0a4170ab704336c39ec386d19a15ae5a8a696ddfc33adf0a",
+          "data/property_binary_hyphen_v1.rs.data": "d8d0b4913a0c79d1fbb23c4e158d57dfddea35c0908cecf954eeb4755d56e884",
+          "data/property_binary_id_compat_math_continue_v1.rs.data": "150827720dbbb6a8d76e320af8b286b7c0e3b539d9c3652807b66afe68ad1f57",
+          "data/property_binary_id_compat_math_start_v1.rs.data": "bb4cd933f62199ae5b73d655083c2eef7fdbf7c04d39b97e1ad607c650fc645b",
+          "data/property_binary_id_continue_v1.rs.data": "cb466a7d20fb54e9a209519da54e1531bf304bfaa84ce8da0cd0af0cba5c86ee",
+          "data/property_binary_id_start_v1.rs.data": "9223d3e3b4b263fafea2fc472a043d985c91607381f4cdb780e5dffb581357f5",
+          "data/property_binary_ideographic_v1.rs.data": "49905b2f9abc43750fa93ed47e4dd44ea4c19f774f67be876f72e6cbbe62e344",
+          "data/property_binary_ids_binary_operator_v1.rs.data": "9543bdae6276cec4984d84538928278111c5115a01925719ded73f9bb359b49f",
+          "data/property_binary_ids_trinary_operator_v1.rs.data": "f73b2ee369c64e96b49da04d89a97b158aa879a12572fd5d75803743de23fb4a",
+          "data/property_binary_ids_unary_operator_v1.rs.data": "2476989ef1764bf5acd286440a509bf745b79b1beec05ed9570bd79635154bbb",
+          "data/property_binary_join_control_v1.rs.data": "3e9eda340803324a066044213ec48736eb43fa5ea1f3608c2a66df75328c8d50",
+          "data/property_binary_logical_order_exception_v1.rs.data": "35ce26812f070aefe2cba187273c4ea284dc14e8d332aa00a395c5b805b1c37a",
+          "data/property_binary_lowercase_v1.rs.data": "5903617b8e1f8a841148d5a83003539e433ec0fab68c0b03ca00951115b9f834",
+          "data/property_binary_math_v1.rs.data": "004cd2932d8532b74479e89e0ab74c1dd235e2195c616b43e26afa1845a34e67",
+          "data/property_binary_modifier_combining_mark_v1.rs.data": "94c08ca7070e78fb38ea63a1294a30efc4dae5017bd53215e011953ce9ada725",
+          "data/property_binary_nfc_inert_v1.rs.data": "b51960750dae6092d790057cb7cc0d16f9ec0fe9239be1e42a85d47406394111",
+          "data/property_binary_nfd_inert_v1.rs.data": "85876fb3f169101b4cf77051e8bc5eb65812e3ebacebae521862dcd279579135",
+          "data/property_binary_nfkc_inert_v1.rs.data": "b6ffc45b7d6377c44cd09ae6391df306b84402cd87207c60e32a3383186212b6",
+          "data/property_binary_nfkd_inert_v1.rs.data": "3599d1aa28d0eb102dd24992a0bcad953005d0ca00a2e7b8ce77dbeb8051b6b5",
+          "data/property_binary_noncharacter_code_point_v1.rs.data": "c8392d3f4317da898cb6d332c8683b324bfd0bfe0e5c252024cd8c114caa784c",
+          "data/property_binary_pattern_syntax_v1.rs.data": "52d4c40a053f5ff36f5ed25aff710e4ed1f11b453f2d26fc7723c31c07fae754",
+          "data/property_binary_pattern_white_space_v1.rs.data": "885be495730ed820a2a8fb99d4b71508c096113250c70dffecd97100d6725a92",
+          "data/property_binary_prepended_concatenation_mark_v1.rs.data": "c741bc7989bc2996f993dcf9c7c0c832e5a829edf35a0b7e8ae7e7d2ea468a34",
+          "data/property_binary_print_v1.rs.data": "a4db2278cd8df43a1f3b3994fcabd8e05d8bfd14b08ee9eb329555ac163bbe54",
+          "data/property_binary_quotation_mark_v1.rs.data": "08d9115666a71885a74ec355bef6163a0975067d30a896b7afaa782379cb72aa",
+          "data/property_binary_radical_v1.rs.data": "461bf8d208f67b7bf2faf98b72754dc7aa386d0b2bbeeab3157db98aa6225d22",
+          "data/property_binary_regional_indicator_v1.rs.data": "adbfe6e74da7fae0903d3cb5d54b04c5f0285b6832589191175591f49da3bddd",
+          "data/property_binary_segment_starter_v1.rs.data": "ff08a3a107c0438001ea75bc160cc3e38ef0147bd7b0fd0e05a8434e4cd9722d",
+          "data/property_binary_sentence_terminal_v1.rs.data": "fcbfcdf4f43498e010d55a7718b3261b4087fec540e0e7be5024c911f08e7454",
+          "data/property_binary_soft_dotted_v1.rs.data": "fe624955b3adb502e40cbce11d7404b83bde52859634ee82fc56154304b23417",
+          "data/property_binary_terminal_punctuation_v1.rs.data": "dfc645bbcd44bd9893cd4af9eca4e4fd7704cb0b2f1a3febfb51aaa58f66c7b7",
+          "data/property_binary_unified_ideograph_v1.rs.data": "3427fd98d4845d6cb6b40d2b222df9f2760af73e63714c9b0846061a5da7a1e1",
+          "data/property_binary_uppercase_v1.rs.data": "6b498743e05deb5171ca7693b443223141c310470685b0ba679893f81ddcb060",
+          "data/property_binary_variation_selector_v1.rs.data": "e12d1b2ba5062f026581ae070e64a24046526e005b41c638f6dd791857c0cf66",
+          "data/property_binary_white_space_v1.rs.data": "b452f80b144b7404033e8270b08c42db38c54dd5de97e2438b166ef5bed4661e",
+          "data/property_binary_xdigit_v1.rs.data": "05da542b916e38e24e4d1e50b06b3e020ed2595354d06d7f37720264f1b7abdc",
+          "data/property_binary_xid_continue_v1.rs.data": "a232d7d920b6bc0ac4f915da6650177bffd47bc38498a910bb41347857b49702",
+          "data/property_binary_xid_start_v1.rs.data": "08088b91ad9d5151dc1bcee83b8fc8e5f34ede751abcb78a97a356d1a4424e57",
+          "data/property_enum_bidi_class_v1.rs.data": "aab6204fb2bf12ab9f4ae2c187d143f672b3594fc400c36870d3bb9c3236fdb9",
+          "data/property_enum_bidi_mirroring_glyph_v1.rs.data": "f1ba7c58cd18df63b9fad998664d589bef3f0afed31073eff7dd5c58fd1c26b0",
+          "data/property_enum_block_v1.rs.data": "ecbe0e59a5e15bd4f564cbd5d25947e094cb7d1be6aace6f1693670182ea6599",
+          "data/property_enum_canonical_combining_class_v1.rs.data": "eae1086a0b9def1940a764bafeb097185a3ec8eeace1579c894441853ed634cf",
+          "data/property_enum_east_asian_width_v1.rs.data": "f790b8bde6a9eea24f29bd644baecb764ecf3dfdc4ade55f65728cfa4a24b266",
+          "data/property_enum_general_category_v1.rs.data": "a09661fb0ebabc9008682f7d6928e7fc41a18d3b884f4a9316f7f46093caa50f",
+          "data/property_enum_grapheme_cluster_break_v1.rs.data": "77765e7da5d3b5b68315825c09e169aae98e5d259a174e849fb669f1656205bc",
+          "data/property_enum_hangul_syllable_type_v1.rs.data": "9505ae76beba775e37ec76332ce7eb8ac60204b52ccaecf381cd088748efa6c5",
+          "data/property_enum_indic_conjunct_break_v1.rs.data": "5d067ac9fd4472b98da49efa96ae939db4751e78dd9cd89c8ec6d5d80d4a0f52",
+          "data/property_enum_indic_syllabic_category_v1.rs.data": "1fcb3fa0cf956bee9f9e4734a0b3c405c8b6cdf5d383d51f4b137a5b885a23ad",
+          "data/property_enum_joining_group_v1.rs.data": "f1740b415d2f744c54ec1e438fc8aa940c718f723f6067b7483249e051e18209",
+          "data/property_enum_joining_type_v1.rs.data": "732674ff086bc4b9758169a148e2a8a35dfe1d132f2d69f38602fd112ab493be",
+          "data/property_enum_line_break_v1.rs.data": "f0ab07bc0a0e3afad00cc8164770b871b850e08a3ade22554721ff124b97b564",
+          "data/property_enum_numeric_type_v1.rs.data": "8b8460f1e2479839515443c2b9a31c16a3292f56e6cbf19f27f46444e7d9ed2e",
+          "data/property_enum_script_v1.rs.data": "7b007fd66cebd6560a94ffe913da0a3b568db64bd8b9a3b31e69e91850e52b28",
+          "data/property_enum_sentence_break_v1.rs.data": "3815d8a92ac438f863a6f4f4f41439dab856d0c0be2745a3ffde903e1dffabd0",
+          "data/property_enum_vertical_orientation_v1.rs.data": "ce9626fc7250d4a22ef9596f035a940e923c6fec213d2ca0769731d9041b0302",
+          "data/property_enum_word_break_v1.rs.data": "8a3326dae27d6fe7c67ca4f7932c77b7fca20e093caef0fc132649df8e2a00af",
+          "data/property_name_long_bidi_class_v1.rs.data": "e5789cfcbc878f106bee15e83fe69b02f425ee759da0b80de257b09d6fb621e4",
+          "data/property_name_long_block_v1.rs.data": "e7378ca3d95c06af4a0ca380d612639f79210bd92895de3b2ea8cbfa0276bd6e",
+          "data/property_name_long_canonical_combining_class_v1.rs.data": "c699c7a1295d1c6da4865408d7c67b007c562ea9aa623aa3a2ad75ebade36e5e",
+          "data/property_name_long_east_asian_width_v1.rs.data": "9e4c60650fafd68fa9c4091fd820211d348d22992dc2d16b9ba50bcc603aeb53",
+          "data/property_name_long_general_category_v1.rs.data": "f8b7082dcb9e3f5c7b422eb1fdca3e38e725a515f17a9cf1c7816c8096172347",
+          "data/property_name_long_grapheme_cluster_break_v1.rs.data": "1e7a32fd76b4e467fda218b26400c35cb68b327aeff7b8ca2f3d2201e142e4a2",
+          "data/property_name_long_hangul_syllable_type_v1.rs.data": "b39557af35075d6c35a10d54fca843237c8018c468e1ed2031b758ee9807ae16",
+          "data/property_name_long_indic_conjunct_break_v1.rs.data": "4fa93fa7f52a1bcc054582c5305522582ed46343906a95b2c9c0d682c7a070a2",
+          "data/property_name_long_indic_syllabic_category_v1.rs.data": "9550f381fab5d8158ef694207f66e36b82a34cdde3e4fd4771b5b4c111bf71ec",
+          "data/property_name_long_joining_group_v1.rs.data": "421cbad8490169b1e9ef205693ae7e91cc3c6d4473cd40dcd0991903dd052c6f",
+          "data/property_name_long_joining_type_v1.rs.data": "b0a8f04510eed4dfcdc1dd30aa5c8ec951f888a382135371608cd0c530fb866f",
+          "data/property_name_long_line_break_v1.rs.data": "fffa80aa8aa63bee6f6a24d20826ba9ed91e5199da9e345bec4c94a612b2e4f0",
+          "data/property_name_long_numeric_type_v1.rs.data": "cb9a935c85ae4b17e93aac1adc5c63bc551127cd5db3cb9657468b9bfcb43cb9",
+          "data/property_name_long_script_v1.rs.data": "9b2e4f8bff6e11249ac934cfc2ffbb58310a9f7998be344011c84b611b6e1226",
+          "data/property_name_long_sentence_break_v1.rs.data": "c62e6b35094dca47b1851f56d8bd800fcf692e6bab352f532c3f74cdb0bea86d",
+          "data/property_name_long_vertical_orientation_v1.rs.data": "e0321d3519074bc6ba4ad975150ad457b736901b6033049adaeaf8a2a5bc1e49",
+          "data/property_name_long_word_break_v1.rs.data": "428ddb1e1b824202163d748d436c32baa1ee889b899d08c59cf9547898b2eba2",
+          "data/property_name_parse_bidi_class_v1.rs.data": "d2951b20685c826a4ae5e56c11bce76f0251cd3084d3029f5ecac82ed516914f",
+          "data/property_name_parse_block_v1.rs.data": "b08d1afb17a82d24e6e26875363d4e761f87caede0fd69503183bbbd7710ba29",
+          "data/property_name_parse_canonical_combining_class_v1.rs.data": "5570c6b914e80916d91fbd2864a2dee6447122b8814020ab652410bf7ce80274",
+          "data/property_name_parse_east_asian_width_v1.rs.data": "06668899e01bc6ab2c34cb0f13ac232bdbf42b2346807f199cb356a1bca92182",
+          "data/property_name_parse_general_category_mask_v1.rs.data": "4e77fbdd6e1eadf547602ebf98915e44855c6a132be2c6c77d5f9d16f44d9317",
+          "data/property_name_parse_general_category_v1.rs.data": "3bf37ebc73afd9a7ec6d6dd34fb73a995f9d138d2fc45687d1b9562fef58c6b8",
+          "data/property_name_parse_grapheme_cluster_break_v1.rs.data": "9a06020994e7da083bd1723b61c9d23cb21058608f8e2636d2f697e9aebfe8ff",
+          "data/property_name_parse_hangul_syllable_type_v1.rs.data": "7b3c265f45a0c8414fc7958746beed65c24f93926a458c1ab38b61b978499af7",
+          "data/property_name_parse_indic_conjunct_break_v1.rs.data": "a247655639f6c91ea179439b53e56505fe230c851d2eb79d46ceb5fd68b007a1",
+          "data/property_name_parse_indic_syllabic_category_v1.rs.data": "a57a1698672f23ba106d395f5bc938be9bdbf8c6751a897cd46e1bfeb6c13586",
+          "data/property_name_parse_joining_group_v1.rs.data": "5eca4af0bdf855639628cee375edbb811a88ac60c1f7e5e538696bd1d0fc9a01",
+          "data/property_name_parse_joining_type_v1.rs.data": "816df5a50f93c5badf62556747bfb25491e452d0375e7e4d5f6620a71a625c7a",
+          "data/property_name_parse_line_break_v1.rs.data": "068d0b1f0a17dffcea62b304c2a219b9a636d1cbe5b06f558c17cea255931746",
+          "data/property_name_parse_numeric_type_v1.rs.data": "4c6d4873fbfaf9bf22833dffc22438eeb8e0a750323d70c2b47951b2cc2c06ca",
+          "data/property_name_parse_script_v1.rs.data": "5997add78c84e054dbe2a1943d76de6a000fb47da319448d71869149d8befd52",
+          "data/property_name_parse_sentence_break_v1.rs.data": "d8a2639068f18e85c442ef07e08f949577d70f151974249a07bf8882d1acb2a5",
+          "data/property_name_parse_vertical_orientation_v1.rs.data": "1eebe0903beaea18f7c353bc5dca812de104b54d07967d1762688a6fa5d832a8",
+          "data/property_name_parse_word_break_v1.rs.data": "527600a48c896a172c74f73af5328905d3c061866e494097c29bf7a2926f3466",
+          "data/property_name_short_bidi_class_v1.rs.data": "0bffd03e85584bbd067f247402766f64082ee755122cb59afd73cd3784bcafb3",
+          "data/property_name_short_block_v1.rs.data": "4b2dd6155503068813248223ce33e1099d81cbc9cefb8416a3f0378ca998ebb4",
+          "data/property_name_short_canonical_combining_class_v1.rs.data": "52ce2fefbe5b02bde5002acca373b15e27e2eb4e9f5aa868a71036e20c1ce744",
+          "data/property_name_short_east_asian_width_v1.rs.data": "4828d60c1851c0eb22c45a1c2a228a04bdc43fd93df09820a21f22dfa831d991",
+          "data/property_name_short_general_category_v1.rs.data": "9cd9b799e7d619cfe6902b8d712970a24c86bae9070c31f11b3cc2f63132cb90",
+          "data/property_name_short_grapheme_cluster_break_v1.rs.data": "3e8c5da04183b06a72b9895bec43bc2d89da7ba82e9e52fcebd7d7e282818733",
+          "data/property_name_short_hangul_syllable_type_v1.rs.data": "c6013b49b4130772d4bf821486023f8ffc137f89b2643205892d12dc1c6aabd6",
+          "data/property_name_short_indic_conjunct_break_v1.rs.data": "39fc4c71f571d22ba96c6c2ba14909e6035b7a40895585336989b0a96af9d705",
+          "data/property_name_short_indic_syllabic_category_v1.rs.data": "96422bf9c71e2d17a4b40b79a9573d3124dfdece08969dcc0a7176f6b7ae4fa0",
+          "data/property_name_short_joining_group_v1.rs.data": "cbf74ca6fefb60a6ff4eeaa7483114be96b17d5e8cda8a0075b9aa2dc0d453bf",
+          "data/property_name_short_joining_type_v1.rs.data": "663fe93ca74be6fdee2666ce5f9407dbe833d0fa37f18c0828132066b556ec1c",
+          "data/property_name_short_line_break_v1.rs.data": "ed8a9d68303aaf42e84c5682a32be13f938e7123a96e9c679c296a880d96901c",
+          "data/property_name_short_numeric_type_v1.rs.data": "64abfb401988035c3a38b19060a29a96cb0725d54c1ecac755f027ae79382414",
+          "data/property_name_short_script_v1.rs.data": "70b94657b5fdd67fc63f78c218cb2942fad4491c459bb0b104352bc96c5b704b",
+          "data/property_name_short_sentence_break_v1.rs.data": "bacf1e351527add60f0e321328ed7314b2cc9557e96dab0b6d6f1317698e71a9",
+          "data/property_name_short_vertical_orientation_v1.rs.data": "e5e1bfe0a6cf49d3847d061a5923f75cbc67ef36e38424d71850d3680607a319",
+          "data/property_name_short_word_break_v1.rs.data": "be87c21288a06e12bb1e3d6e9a9780f7fffdfc3610c873be61e7b54892695cac",
+          "data/property_script_with_extensions_v1.rs.data": "88d2e0c58f9c93ed6f2ed32786b8d38a63508cde910d7aa87b94ecf2ea2dab5b",
+          "src/lib.rs": "6d9409480d29cf7ba0be4563ce5ffded3d6be180d67a9343fe79457e66bc54be"
         },
         "name": "icu_properties_data",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.2"
+        "version": "2.4.0"
       },
       {
-        "checksum": "85962cf0ce02e1e0a629cc34e7ca3e373ce20dda4c4d7294bbd0bf1fdb59e614",
+        "checksum": "413099315636c588ee8f011190b329b971a09a8fae9d157e01dcae8379468514",
         "features": {
           "aarch64-apple-darwin": [
             "baked"
@@ -2182,35 +2223,35 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "2ed4241166dc02c67dd0eecd7c5c056f6b35116aaebf7278bb85080abf72c62f",
-          "Cargo.lock": "500d737ee28cb23594c68323bde2d5d2d696072f2aefc196df9fd6c4446fe7e3",
-          "Cargo.toml": "3951bf1cd3332fd42b8f1f3bfabcd205f178fe169c07e2ed667781207ca7e6ba",
-          "Cargo.toml.orig": "f7cc7f934ec41bce668d25fc3a9c60ce7968c10132439ec11f40f506037ffc85",
+          ".cargo_vcs_info.json": "c0261edcb43e216a9e4e9bec03c87bf7fcf163f65027c9fbadc4c189b5cf8157",
+          "Cargo.lock": "ad61565b4e2f6039f25352d1304a47b3ce0531b6ed88f315966f5cba54804e9b",
+          "Cargo.toml": "2fae089674b1782d890a93addc8bf67be3b50879d17e89d2c5518559335d39be",
+          "Cargo.toml.orig": "517edb103c2da1b48aec1b9409005ca4218fbdedffe4ee38de3321da49ca193d",
           "LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-          "README.md": "2fef28533e883b656b0899debe782bd3bb9e0fcee7a83df9d8726ad545ef74b4",
-          "benches/data_locale_bench.rs": "2c9b1dff0b30a3bcc99ffcfd3f328f67ece08e6fae71cd52a546108f30d5337b",
-          "src/baked.rs": "bd2a8f7c14744b926d4f34337ba5b464564ad3eb7622bc7330df68d3951bea53",
-          "src/baked/zerotrie.rs": "8caefd3b3afdbfea13bade514a9e16ff5883fbc7999ffe44ece7f2bdb7bce315",
-          "src/buf.rs": "c06e7ac4066b9b21c54fb6be040cccad984bc3578257dea8aa5299519fb6e9fe",
-          "src/buf/serde.rs": "c2fece78c659e3b7a3e0ae8d4353cb6c868ab4e262241e491237b71fc99eef7f",
-          "src/constructors.rs": "2e6836e02500fd8deb0b1e8019d83c80d42fc9c0278b896cf9bb3983daa65938",
-          "src/data_provider.rs": "92dba4a48d41ddd65e8620e59b64e7c299dc072bf6c3ed381e337b8f44257864",
+          "README.md": "ad48d613d1d5e9eb96583dc996b733b7fd270b11a99fea52e45d05d9e64b07c7",
+          "benches/data_locale_bench.rs": "f7e56d546bb7e192b8bfd39a2d37717bc597f8539dbeebc481a2a0d2f12b7911",
+          "src/baked.rs": "fbcba33d7b74ef34fced30c076bd993f528e3b58e9e8d854e606635c990ef44d",
+          "src/baked/zerotrie.rs": "986bad147d8d8edf47b17b4ec236dfb509bf97734f40e7d2ca68ef0a56fb00cb",
+          "src/buf.rs": "7f9c1bc4d6c507cd7de1b1559914fbcf7f4b9aaea9a1d121de934dd6f430b7c5",
+          "src/buf/serde.rs": "188041ba4858620e0f7fa3c0961778d84ed32f731b8fa2e9271dbee96d8e9e96",
+          "src/constructors.rs": "ff38dd744fd30d68e2bdab4c2b22f753186f5cf632a60dd388387b7c9b29ffb4",
+          "src/data_provider.rs": "d22d3089cd99a69512ede4e87abccedad29c8ac7f33eca4797116fc772193fca",
           "src/dynutil.rs": "ac96b217158587d49dd5237c51e62e31d1593dd8166905f1ced5bff6da00cfa4",
-          "src/error.rs": "810a7ec374b16726c4f0b14b7385059ee23bcc3f6a3dfea4ba552d32f3296ad6",
-          "src/export/mod.rs": "125152288d6c0b633c1e36b8fefd4cb02c6c5abb1ed54f5b3d5d4563f3b7cf03",
-          "src/export/payload.rs": "1bcc7c33b1bbeeb18b673d76516370927a2d9c7450eab32f677abab94222518d",
-          "src/fallback.rs": "ca6e703f6c95049c3c6eb7fb59a62e0d413800b975d9cc853145c0f74a84222e",
-          "src/hello_world.rs": "4429e3d16e813006a70cf7de26482ac45d27e57e5e81a6aacfde929cd29f40f3",
-          "src/lib.rs": "6bbea342463aae00ad4596a8d09c92eafa2b083c13de2f750a7ba8a0172fa7c8",
-          "src/marker.rs": "3e087116950bf1b8a4afaf5faa046ac0da789c91e06e997c78a51133e0717a85",
-          "src/request.rs": "0f5b249570a817af09fb0322087ab50f7e8b088d16139911bb6e8f0780c46bb0",
-          "src/response.rs": "1d94006fd410afb005af3f56a861b6728351e35345ea894f083bcc7a94625503",
-          "src/serde_borrow_de_utils.rs": "30bd6e712bf413f47c0801df845ed790ab7edcb49f57020b769ffc79c36b4651",
-          "src/varule_traits.rs": "fae2ce9ae1b148ded7dcf4cd0bd526917fe013c476f6443271f745f08b624926"
+          "src/error.rs": "c1f53fcdbe1c9ebef127a7cc800692fc4b04fb3e28c0541c930444c77bb4e47d",
+          "src/export/mod.rs": "0676433f975414fbaa52fbb6fc4433a10b6462d147d98c1ef082ddb81961eb73",
+          "src/export/payload.rs": "8c43ea5fc9d429a58b7f4afe81425bebb1427547726bb6d28c9b9bd858b82786",
+          "src/fallback.rs": "cbb59c022bdfc912bb940e12cd43ac1fa85100fb3d5836eaded225cacc52de9f",
+          "src/hello_world.rs": "f3393fbe0915c3164b2bfbbf17150b4f7c82e1226f04b907e42cc20f73399f6e",
+          "src/lib.rs": "5254196453edf9c553b6586dff295c74d09fda391556b686def470455a4dbe40",
+          "src/marker.rs": "aa9a396e0daa9b7bb537ecb30a2f5a2a8dc82c645140fac02f26e04cb64a0e1f",
+          "src/request.rs": "7f0faa9edfcd712619bddf3871ec4a5df17ae066e59595d1892fcd7689056d4a",
+          "src/response.rs": "4e58ec74e2fd4dab5f2aaf85c747bb51c96ed21f0bb327f789e020a642d850fa",
+          "src/serde_borrow_de_utils.rs": "7e0d167e8fd9bd8016861b9d60278e7209c25e6be71dc563cdcfb58b895082e7",
+          "src/varule_traits.rs": "1a09d62c6e4eff4a59f76b66b51c1b10c273be4a5cdecc3c3dd4677ebd9d365d"
         },
         "name": "icu_provider",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.1.1"
+        "version": "2.4.0"
       },
       {
         "checksum": "3b0875f23caa03898994f6ddc501886a45c7d3d62d04d2d90788d47be1b1e4de",
@@ -2254,7 +2295,7 @@
         "version": "1.1.0"
       },
       {
-        "checksum": "3acae9609540aa318d1bc588455225fb2085b9ed0c4f6bd0d9d5bcd86f1a0344",
+        "checksum": "cb68373c0d6620ef8105e855e7745e18b0d00d3bdb07fb532e434244cdb9a714",
         "features": {
           "aarch64-apple-darwin": [
             "compiled_data"
@@ -2264,45 +2305,45 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "b461e960d23241410ec1f742eed1753a8b565b7b8ee402adec24becf6d7a2df4",
+          ".cargo_vcs_info.json": "05e7d549a305c6b1ea4e05aa42bea27703fdac8eeaec51663d3798ad61348e7f",
           ".gitignore": "44c92e3a70ad3307b7056871c2bdb096d8bfa9373f5bf06a79bb6324a20ff2fb",
-          "Cargo.lock": "35b3914d2ae1233e73e08fd7a111366fa95d078b588786f7a0785e3cd35a9777",
-          "Cargo.toml": "5bc0d786570fd2b9be3d1eb4a08825b43735a13d5f5fa83c38664d974bd50e18",
-          "Cargo.toml.orig": "78db9269879d2e05b13baf0b49adf05c297530b7d04e12a24433358839cd932f",
+          "Cargo.lock": "676d3d07ab1c3e56c27a35f2b334c0b60505682a0e37f17f5740b94297dbf22a",
+          "Cargo.toml": "a5be3efe6b6b3ee7823820c9a3d47f318234f6a5fd48ab878d33cac9bc3ee573",
+          "Cargo.toml.orig": "2322b3045e8d21870eabbc10ccf01e4d378981ce7d72f7134900e6d6c19e6665",
           "LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
           "LICENSE-MIT": "8b43ce8accd61e9d370b5ca9e9c4f953279b5c239926c62315b40e24df51b726",
-          "README.md": "48fbe86bdf574cdfb76c6eabaa8134549ad40d0e3c6c1a3b29000fc8d92c8426",
-          "src/lib.rs": "c78c1c3bdfae97fb13ec121f4460eaf8f6a0466c54a5ab629724cfc4bac2d5f1"
+          "README.md": "eb15a240a1a5713f78ba7c9ab684633c030ea3fdce620adc7ebfc80b3a04a8d6",
+          "src/lib.rs": "b80b2f763904dcf818000bf3fd146da4188cd848e46f4981cc984e2f3990cf7c"
         },
         "name": "idna_adapter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "1.2.1"
+        "version": "1.2.2"
       },
       {
-        "checksum": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+        "checksum": "3bd1574e617a9a6c1f8f8181bd7e841e1f20e4277607ef28945765188d6284d4",
         "features": {
           "aarch64-apple-darwin": [],
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          ".cargo_vcs_info.json": "e0165305f3b22a9ab4217a121f85379aa56c2675caa7afedc0a7468fc187600b",
+          ".cargo_vcs_info.json": "59616383194141d6a182c648abed2d6da67917aba21d843564a773d1eacb5496",
           ".github/FUNDING.yml": "b017158736b3c9751a2d21edfce7fe61c8954e2fced8da8dd3013c2f3e295bd9",
-          ".github/workflows/ci.yml": "89c4f60223daf03217ea7c1e8879135b11d2554bd1e57dd9eff5c02f1adc7909",
+          ".github/workflows/ci.yml": "5d197e7af15a1e5c2ace39c33e5196b9a76244355609c7681283ee9f16e5ceec",
           ".gitignore": "07d64eb09a56c853b7853a47276799b38d7d6d25a4314b0c1abc10432c214e17",
-          "Cargo.lock": "1cd64090b8e883963bb08d91e6968cc1e83ffdba4f4b2f47651ce9d351a8a947",
-          "Cargo.toml": "894c215e4e7e973b556b0e9627bf9b6a719a043fac9b5af9838660816392a09f",
-          "Cargo.toml.orig": "44ca1ae5d9b48743305b57f3367051289512037e7836b8b3693b68d48dec0483",
+          "Cargo.lock": "1265f5c39ddede9af0c34bd08566dcf563d88eb239f5106fb0dffd79930a4d93",
+          "Cargo.toml": "390761f23126428f121c5c23dff87d42d9e78a2c0ac5031a59605b7eda8cc356",
+          "Cargo.toml.orig": "e5c0e93914f73b0e0473f59b24c7f2a82370bd474b5aa6dbf3be1c76c1f79827",
           "LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
           "LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
           "README.md": "1305bd79675db0194915d9bc91bd0b3cf9487bc1126e05bf46b48ab43edce44b",
           "benches/bench.rs": "29a0bdb973848007d681e571c57487e21e1bfb7aed5980c2190dba354498b154",
-          "src/lib.rs": "e962338e1886873aa7c3399ec89aa5378ccbfed712b9690f043628079390a34f",
+          "src/lib.rs": "4289a1fc5c20e8927f4ce27d1d0f085ae0f9fe7b666462dce92bd36466e89829",
           "src/u128_ext.rs": "498cc94f13805e551248fd82f47cc318f51d953a5002a9f8698858cd12fbae3c",
-          "tests/test.rs": "b22f8a8ed89edcbb4140b74f5edd7f2adf3cb0e363990dd6010cd6ebe0dc36b7"
+          "tests/test.rs": "fca9b50e3f7ddb9466a69f682c2e624b2102c619f3fdd4e63e39a8bc1f2ac8e9"
         },
         "name": "itoa",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "1.0.18"
+        "version": "1.0.19"
       },
       {
         "checksum": "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae",
@@ -2992,7 +3033,7 @@
         "version": "1.0.154"
       },
       {
-        "checksum": "d0d5d4b1981b8bbbb7aed204cae5726d683d5d6ac7e74ec54122ea28f315e7c8",
+        "checksum": "3244542535d5de959d90ec55d1b5ff0fd2bb7b1310223907d5f11932847f7b59",
         "features": {
           "aarch64-apple-darwin": [
             "const_generics"
@@ -3002,21 +3043,22 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "ba665cdcd46cd59957f596ad575d2497ae1a2c7e215dc3bcc38377f0cf5dad8d",
-          "Cargo.lock": "0fd93fd1cba77b56fbf5b3a0c0279ca647283cb3fd985568cb075b3789245857",
-          "Cargo.toml": "01b4c86d677ccf162137a6ce62ff6f243fdb6996322ad1863da1481d514a2cbb",
-          "Cargo.toml.orig": "fa30b5eb7f1ad5d46729c1b82ac743c5269ff21e29909fe5eee5ccbfe541f9d2",
+          ".cargo_vcs_info.json": "955bd7a5fe7485aee499fd300fa26c1c0af47bc9d169af47c5d5d95ce4706ea3",
+          ".gitignore": "6ed50d7bde26437b81cc4cbb084a5f308ca9f0b5d6a10ea027e0b1bb71592094",
+          "Cargo.lock": "0c48c935d1c974b95fd23337bd2af4b35c88c244860cbd8ce6792ba897af1666",
+          "Cargo.toml": "3cf40c83931839b5d0566300b8084043064436f84c5fcfd142e13a4138bc2e7a",
+          "Cargo.toml.orig": "93459c7f00ab2397c7f119053078fac79e1adf57d0686c4ae83db189b0ef8daa",
           "LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
           "LICENSE-MIT": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9",
-          "README.md": "a01127c37308457e8d396b176fb790846be0978c173be3f13260b62efcef011b",
-          "src/arbitrary.rs": "8ffbd752c5ec31089bfb91f702a496a3e26d0079d8f34ffb617dd75fc21503b4",
-          "src/lib.rs": "c95ee991a165908b650df4a0e6473d357294137baa4bfff415e58f9bfacccec0",
-          "src/specialization.rs": "46433586203399251cba496d67b88d34e1be3c2b591986b77463513da1c66471",
-          "src/tests.rs": "e453d846bc54bc5204a50b83bdc53f2a844879ff3f59b8414ed38afe91ac477d"
+          "README.md": "0f0a485d0d6a9afb48e3f28d0e708745f88760174202fdd9a81f72d26ff39f49",
+          "src/arbitrary.rs": "d7b083121ce24d88dc31a2a962391a9126923c250c2b516523b66a72b17e223e",
+          "src/lib.rs": "de9cfac60660ad17998f64e2d4ee279f639c906cf570c77b2ab47caeb56c9649",
+          "src/specialization.rs": "618e0ef3d23055feb2c43ad78d594df00fde616805b8896d360543e8c102d45a",
+          "src/tests.rs": "0322980a98f2469577ed622526559f1319df5d3361be8449584165feb45d7e23"
         },
         "name": "smallvec",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "1.16.4"
+        "version": "1.16.6"
       },
       {
         "checksum": "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596",
@@ -3040,7 +3082,7 @@
         "version": "1.2.1"
       },
       {
-        "checksum": "d78c8dee4c7bf0e14673097256fed6142ce9d3b85a408189d07482442145823b",
+        "checksum": "4ae9ccbea3a7b0b09443036490c8f34a8b1b760fd345e5c0dae0aac718faea79",
         "features": {
           "aarch64-apple-darwin": [
             "clone-impls",
@@ -3066,10 +3108,10 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "cee294e3a4f8d4422a82e49ee3224414ea309f9c2e717533d97f0c960f3b8eab",
-          "Cargo.lock": "5f4c517504cd387d67423ed245a18bba376df929cdbaf444e310251c731ffc5b",
-          "Cargo.toml": "b6f7f6069d92142d3e294f84855a68049bebc5b886c557ed4ae980ddbc866e1c",
-          "Cargo.toml.orig": "d80272529ba81ff84369a6dd390a1eb3de56e01cdc7633e81a7cd7f9512d41cc",
+          ".cargo_vcs_info.json": "e26a647ede4f4db469664a5ea3a93589c8a854abae51a070a543f6328236236a",
+          "Cargo.lock": "a520598f761ea734d76b2f256a5a44d5116018c3b5ea86ee6aee8f6c00e83b77",
+          "Cargo.toml": "483292e3ca48fc6fc04c1ff03ef5fcafdb39417cee3df0727122b52129b1dc6b",
+          "Cargo.toml.orig": "673d452a27444d399783f9a6b4a3349381ece66ceaf19624bb43f139d5a01bd1",
           "LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
           "LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
           "README.md": "a00f270c7f468863f28b9984547872efb57c7db1b9beb6e685852dc24de6846e",
@@ -3090,7 +3132,7 @@
           "src/expr.rs": "9196c144305eda8bdd63e117c8126aef2170af1dae08a951e4af70399bed8f5a",
           "src/ext.rs": "8bc0d0ffab88c73d2305c9f588e6b5285501de8869308162f91019c83bc5bdf1",
           "src/file.rs": "4513d0f1f4a4d78ba94c0895e97aadc0c2ebcf6f5da36abf762e77e813bc9aea",
-          "src/fixup.rs": "7647cde30efdce96b1488ae805788c168d4499b464b7d421abc17ea8ffde66f2",
+          "src/fixup.rs": "b04ad7fcc5a2fa21f5e4058b358354ba4eb38ca013f30a06876955646dd59555",
           "src/gen/clone.rs": "342704f87c06f11b4b6b60689df5f55e7a9a67d656b9286cc23a364f485c135f",
           "src/gen/debug.rs": "29782ea05d86b95e98bb664d6688c413c871dc78f5dc9ee81f584aaa63e85558",
           "src/gen/eq.rs": "15f2b5070ea8fccf07dbff6bf2fdc027c6d913599b5c1a8e8a5bc9e39e601133",
@@ -3103,7 +3145,7 @@
           "src/group.rs": "61e067094aa930b6550dc3717a5aaeef7dabfdcf1a177f83fb636598fa7e4e72",
           "src/ident.rs": "a17e32b0d997649c4c986d1c9eef24be5331cd9ab478604932297b55f785487a",
           "src/item.rs": "11529dc48c5045d3b0f7947d05ea5aadf0f389f4a8e0b25222333042721ab10f",
-          "src/lib.rs": "bbd84571900844f1c73bf784ead1adb2c1ac07163e2038920bae9c0bc132e9e5",
+          "src/lib.rs": "18e97adc1098c1edac0c9aab253e34844da6699af095ffebb5b949fe0000ed45",
           "src/lifetime.rs": "2f3a240a4a0d9536dd1e3255d5ae0d64efcc46f295cf565a09e8ac33cd3d3487",
           "src/lit.rs": "b474ef6e974844ba972c0fcedf3e075f03e822faf4e55a9b27f648efe7121098",
           "src/lookahead.rs": "ea51bbf9a23d68238f8324a51675f5815fb3e5fc08c6bab93bc2648d3342c38f",
@@ -3131,7 +3173,7 @@
           "src/ty.rs": "63bbf2272575d40ba632b54ca51857f43410bc22c20ff3ecedee3d3f52dd84e5",
           "src/verbatim.rs": "503055ba92ebb97da71a8a7cae1e6606969aadfb965b0d6c7e56693f9ef66b0a",
           "src/whitespace.rs": "9cdcbfe9045b259046329a795bc1105ab5a871471a6d3f7318d275ee53f7a825",
-          "tests/common/eq.rs": "bb7e40bf43a7628e305fc1afaa4c0b540e7bb2f25f4a3b9d3ac4c317bbb58a29",
+          "tests/common/eq.rs": "b0e38007ccf43fd753c8337a739b707bb60e25fbbaa206908245bcd36f1d38d4",
           "tests/common/mod.rs": "b752aa8f1faf8c6abf1286a12fb50b6c257ec1889d81bcdb3dc3257134695a89",
           "tests/common/parse.rs": "b1685e9e0f0569f48d66ddd92d787a12933a1d2f95e7c9ae974a3648763f989b",
           "tests/common/visit.rs": "a260ecd2ce7853cd3644e19aba08e8d358a656fd3fb0f1287cea40c59c9e62c9",
@@ -3146,7 +3188,7 @@
           "tests/snapshot/mod.rs": "4a101272c5abe6ca9f3501e0cacacee9a0ccf7ca773348a239e5b046d0316a7e",
           "tests/test_attribute.rs": "8a4429b7cfe2360bb73beae54a62ae3255ebbd5181467a8608d6f858c2711728",
           "tests/test_derive_input.rs": "ac6fff053bded4ca30f88343cbf984a319119b58805f56058bd6ad61a1f60972",
-          "tests/test_expr.rs": "0356f48052aaa837147fcab33185703e24c0bac5f4d007234f3e86c7cf5a3faa",
+          "tests/test_expr.rs": "b19ff085d05bfc6eaef7bfb2066bfa825b6ca43543ac260589a33b0ab0d9d84c",
           "tests/test_generics.rs": "2bd20cbaab8ff268e6e283ae9564f064f352deab7d3d4beafb7f41baa2b862cf",
           "tests/test_grouping.rs": "fe3de6e8824f0722ab6450c6dfc374f6e0f8fe75c87c4dd56b2cb00a2197ed58",
           "tests/test_ident.rs": "d5850e817720e774cd397a46dbc5298c57933823c18e20805e84503fc9387e8f",
@@ -3173,7 +3215,7 @@
         },
         "name": "syn",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "3.0.9"
+        "version": "3.0.10"
       },
       {
         "checksum": "901704edd0dfe137f1987838ee4f259e4e063c31371bdb423f7ae38ec6f77f02",
@@ -3278,7 +3320,7 @@
         "version": "1.0.27"
       },
       {
-        "checksum": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed",
+        "checksum": "f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a",
         "features": {
           "aarch64-apple-darwin": [
             "default",
@@ -3290,52 +3332,82 @@
           ]
         },
         "inputs": {
-          ".cargo_vcs_info.json": "79d39e19f84f35830fef9637c62027c992e1107f6d850abce545f8277bd99aed",
-          "Cargo.lock": "f219c87b25034c1046eeffa7e75288646b719131dd49cf27e1efe64141c65ba7",
-          "Cargo.toml": "7003e5562b5ab8454b9d78376303151af79011f5dd684c1891e0f46bc9112016",
-          "Cargo.toml.orig": "71ca556493d5a7be3df490bee1cfe11da6174f5d1bd6e346efd76e682b26696b",
+          ".cargo_vcs_info.json": "6694ea703881edb84f8b077df14120796b034ce81e1fa501e1b477cd8242f6c1",
+          "Cargo.lock": "afd7075167dbbfd9761bc1aa41c4349d2eb11801f0653804da3d6acbd9974750",
+          "Cargo.toml": "8f084b776440d30dd3c1334d0a35126ecf2d2fa8ef18d3ac6c4318ec747adbbd",
+          "Cargo.toml.orig": "4524a58196e7fb6bfc6dc4704400799596ad3c6c40924a04167f4979e65a583e",
           "LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
           "LICENSE-MIT": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5",
           "README.md": "141354cfa79fe3a7e739834bf6e001ff1293169e1809cf9eb6d5c8af0b7a191f",
           "src/host.rs": "24bba45b14cb843ea0fe5c857284d458097a13a84847f5c6a15a14c9e1334335",
-          "src/lib.rs": "51f47a93654528f3b8cb92c94fc26ad25775860d84197fff0c3124a687f8c5e3",
-          "src/origin.rs": "e8ffaf759aa78c92574c6ae49f76999a751064621c399059b3d4eb819cb0d821",
-          "src/parser.rs": "2dd4210e1773fc5d3fdc15ce506ecff30dbf8eb358a79bbbc2835cc30d513c3a",
-          "src/path_segments.rs": "28c8b6ffa880c7da76dcf43af8dcae2c46cd74389472e6e43efdf2973026a462",
+          "src/lib.rs": "208c0d522e74e04bafe1107b58acd2c932095b013a86de60e9126f15cb73f0c8",
+          "src/origin.rs": "53d1fb0b3832609ba6be7001df906f03226a501acee1d114e22c6d572ebfadad",
+          "src/parser.rs": "9f868941a6291c323bf8020db4a733b0b460397b693164cb7da863e69ecfc69e",
+          "src/path_segments.rs": "a9c23a17afa6551b87b789a28407b83493ce73251d8cb16b9268ebb5f499eac9",
           "src/quirks.rs": "c3c8380f9dbecf65924272e904cad8876bda0c62e0e48a3c6b1344fac258102f",
           "src/slicing.rs": "b59bf2fa4cbfd31619b860766268d4e99b46537d3b9702b73f6d0a979a7de24a",
-          "tests/expected_failures.txt": "dd016d320be3fe6ad3810c22302f8eabd755d9effc937b2193dbf222855c4b7f",
-          "tests/setters_tests.json": "a3a4cbd7b798bc2c4d9656dc50be7397a5a5ed1f0b52daa1da1ad654d38c1dcd",
-          "tests/unit.rs": "7eb96c1194fba03fd7f469c44cbbe28699dae14399be72e4c5c675a90fe08dc7",
-          "tests/urltestdata.json": "58d67bea710d5f46324fe6841df5fd82090fe4ec2d882bc0fc7c1784d4771884",
-          "tests/wpt.rs": "2d083ab72ad8cc9b116dd164e63440dd120f07977ac306377633cfe214f34a62"
+          "tests/expected_failures.txt": "9c258df221787cbd08f2e6016c7bd64da28008c5e9c38bd7a155b0a440112019",
+          "tests/setters_tests.json": "ca0fd23fa12bedd6a1258c66f641500349abd942fad9c23336f23d88ed4a9a47",
+          "tests/unit.rs": "3c95ebee99f84189407ec0ec68e3a10903249d09fe59957eb4711ecb76d287e2",
+          "tests/urltestdata.json": "d2eef2efe1d230f86456b2910ddf268d755dcec4ee491efc1ecd7cf742d1499e",
+          "tests/wpt.rs": "1a8e313fd63b93a263dc58cfd09dcbc0598618b8f8b736ffff05d4b33a1e7ada"
         },
         "name": "url",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "2.5.8"
+        "version": "2.5.9"
       },
       {
-        "checksum": "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be",
+        "checksum": "af3bd9d3e571c26fcce9d033b87ea5ab061b8d2ffe9b7a5675d810d68f03edf0",
         "features": {
           "aarch64-apple-darwin": [],
           "x86_64-apple-darwin": []
         },
         "inputs": {
-          ".cargo_vcs_info.json": "1c1e73a54966c5d2fbea5ca7545b70a15f1428b6d06f1728f07d4c8c4fd72d00",
+          ".cargo_vcs_info.json": "256bcd14517f65cae4f98dd4d706e0d41ea718c4b3e7bebea3cb305552c9fa63",
           ".gitignore": "c1e953ee360e77de57f7b02f1b7880bd6a3dc22d1a69e953c2ac2c52cc52d247",
           "COPYRIGHT": "c30152c94a6d75e021adbc52b3a52470366a46edb917e17deae3259251af244c",
-          "Cargo.toml": "df82c17a094e56a7c66d9aba1f68a1c3647518694c25326f09c5634a9012f21e",
-          "Cargo.toml.orig": "f69955726d1a34e10c075ba2570b1d13193e0420ece583b962174d1dcc076d62",
+          "Cargo.lock": "b5423e37c7a87861693abcc2100c8cdd02dc478624fa92c70ebe8050ec47f4ac",
+          "Cargo.toml": "10c71b1d879f9be3e12cf9b3d63c9c25b251a7bf7290f248ff0a98bd5e0d724a",
+          "Cargo.toml.orig": "84f934b5f3c6650a71bb249948c8e2757ddc3f150a8908204f06a121faa47276",
           "LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
           "LICENSE-MIT": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
-          "README.md": "806ed7e6fad84cb440a763c03369af8a2dd01c60712bb19c635448c2a9d58b7e",
-          "src/indices.rs": "b01fbaac3c9a09be130cac57066a980362a1290fac2fe0f27f6238818235f94c",
-          "src/lib.rs": "5ac63cc86ea5ff25ac5b2988f172efa9f338ea1214874f16e568c965b210e427",
-          "src/report.rs": "4b228198912dbc65733f6a9d42051440148833bfb4ae31a10bfeafe9ed45b7ef"
+          "README.md": "1d22772821205f148e78a8a102700b5b5e43fe0c44e83988ef0a8fd030c7bce0",
+          "src/basic.rs": "b4a6755f951b255126892d6a10511a377e510343b009c1c86df36b9d530e63e2",
+          "src/handler.rs": "038ad490dc52afa2dd57f6bff6d3b374fcd8156b4615efeef24b14ceba7ea7c4",
+          "src/indices.rs": "80d354f207007420d90391a161c7bddec57f76db63a596ee0a4831db1c383216",
+          "src/lib.rs": "7bd14c86d9b1a0237f3777136afb6183de40df6a3d9f747131110faae8857488",
+          "src/macros.rs": "85e15d9c31ba3588c60351f09bd868bc33b9f6d8a96153e25c71dec113471e45",
+          "src/report.rs": "851158f370b7a8523c88dd58d545cc136e0b4c23623d2ccb1725e82bb1e1622e",
+          "src/str.rs": "2a55aecac9997b93558daafae30e66109af866b760bdb5aaf3b027549107c21a"
         },
         "name": "utf8_iter",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "version": "1.0.4"
+        "version": "1.1.0"
+      },
+      {
+        "checksum": "3a3b425286980a367278453f3b6d28cdcb134b574e5a35824a6ff5eebad50bb6",
+        "features": {
+          "aarch64-apple-darwin": [],
+          "x86_64-apple-darwin": []
+        },
+        "inputs": {
+          ".cargo_vcs_info.json": "2a2c683ac1c76f4a3ea6d5a5d44002cf42fcac96da20cb1157cf627f0acef303",
+          ".gitignore": "44c92e3a70ad3307b7056871c2bdb096d8bfa9373f5bf06a79bb6324a20ff2fb",
+          "CONTRIBUTING.md": "d1649737d4b282ef5beb0af325a4861919e66312c59924368f3592474f6d9436",
+          "COPYRIGHT": "3210be7332b5bdf48eb24a945258b9f38616a2cceb0dfc06e3c3c7e9740475a0",
+          "Cargo.lock": "745586b97c0dc74f1fbb6b01b57e2ebf1c8dcbbf49ef7b035c218de92af5f8dd",
+          "Cargo.toml": "1fb910baa0ecf63395e15467f20fc397cf8a6896ebe70a6ce7627ba7cae83993",
+          "Cargo.toml.orig": "a557a7f2ee28c5ce2f65db80532f2ee6836eea230190a6bf4f7763e9b82773d9",
+          "LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "LICENSE-MIT": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
+          "README.md": "d31e0ab59e1032a905c4ee9b79d7a3e90111127c95159fb2b2a2ba66c4a92e14",
+          "src/lib.rs": "e63f19a92cf0d975228612ceb4a57f1dbe5d749dd9ce54bb251a6ff3bd3ee781",
+          "src/utf16.rs": "61337acd5cc51ccd523e82965cee99ecd9e795935b65c1474c08f17c348922f6",
+          "src/utf8.rs": "1beed1d7bb3e8f75125db543894a57c1773484001e8c82637a6cb3a8e6c02e2e"
+        },
+        "name": "utf_types",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "version": "1.0.0"
       },
       {
         "features": {
@@ -3354,11 +3426,11 @@
           "crates/core/src/snapshots.rs": "1d464d2cf262af01b92e0cf25da9af106c01171a83c6545c0a52147cee03f7af",
           "crates/core/tests/display_overlap.rs": "4d5b08b294ee1cf24ec9a850dd4d57ecd3e15876185ba9ff7aa40cc88006fa47",
           "crates/core/tests/geometry.rs": "ef9d2358eacfffdd905c9930cde5e1c9e840d3cebfd39344b09b349cfede0435",
-          "crates/core/tests/requests.rs": "e88dfd2606b8bbd32904f42b564cac61d969bb66b82aadde39251634f0609c48",
+          "crates/core/tests/requests.rs": "f67416ec2e20586b52336a2d1eec290e2cd50cb04f1897d14174ec6719c16928",
           "crates/core/tests/snapshots.rs": "19450e1d9809576d00e03940e222b58440185191a007c52910dbe8e0a2fbd297"
         },
         "name": "window-management",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "version": "0.1.0"
       },
       {
@@ -3375,7 +3447,7 @@
           "crates/windows/src/movement_tests.rs": "a54d2f09cbc3cc4176888cf46ecd0099d4e440ad2e79c92d973f56c087839de5"
         },
         "name": "window-management-windows",
-        "source": "git+https://github.com/naviapps/window-management.git?rev=06463118a74029a57038c4e614e36a429b2516ae#06463118a74029a57038c4e614e36a429b2516ae",
+        "source": "git+https://github.com/naviapps/window-management.git?rev=4703b68005ba34ee9f16988606975eafb7d7752a#4703b68005ba34ee9f16988606975eafb7d7752a",
         "version": "0.1.0"
       },
       {
@@ -3725,12 +3797,12 @@
       "x86_64-apple-darwin"
     ],
     "workspaceInputs": {
-      "Cargo.lock": "093d7c00bd0f1434b62451ed6593f4b13908164530709e298859319061557b4c",
-      "Cargo.toml": "348397b7f836506dfdef87943a231c8eba71cb083aca993ee38166d480b25ad6",
+      "Cargo.lock": "843ecff0319cd8b725e95f8eb2694de3a6a67439c54db20fe4b3eef187ef7104",
+      "Cargo.toml": "0d35e4277274ea34313559b8cfa3b73d1991e703dff37723bc41553bcf258e83",
       "crates/core/Cargo.toml": "41bb2e841039178ea5e05b042fc969b6cd0585901ae0d6e5d823d0c67dd5475c",
       "crates/ffi/Cargo.toml": "11e8eeb5b7bf765a084234ed4a6d6d86c24d93f7883640d2556a382d0ed2c59f",
       "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3",
-      "rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33"
+      "rust-toolchain.toml": "6b1cf8341d9a08d76c6deb1e9df90a0b208d0ef0d00ee05e0173e9cd4f0f425d"
     }
   },
   "deploymentTarget": "26.0",
@@ -3781,33 +3853,33 @@
     "_desktop_actions_windows_target_destroy"
   ],
   "inputs": {
-    "Cargo.lock": "093d7c00bd0f1434b62451ed6593f4b13908164530709e298859319061557b4c",
-    "Cargo.toml": "348397b7f836506dfdef87943a231c8eba71cb083aca993ee38166d480b25ad6",
+    "Cargo.lock": "843ecff0319cd8b725e95f8eb2694de3a6a67439c54db20fe4b3eef187ef7104",
+    "Cargo.toml": "0d35e4277274ea34313559b8cfa3b73d1991e703dff37723bc41553bcf258e83",
     "LICENSE": "e18e92825e5b064c568d67d636729c2d8669b61ea9d68b0fa5283b713d70aab1",
     "ThirdParty/Rust/COPYRIGHT": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af",
-    "ThirdParty/Rust/COPYRIGHT-library.html": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27",
+    "ThirdParty/Rust/COPYRIGHT-library.html": "626556344c12679d7cab2c1aa2ce80de01937b62c2c88c62f0650a469be18799",
     "ThirdParty/Rust/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/Rust/LICENSE-MIT": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1",
-    "ThirdParty/Rust/provenance.json": "123e52d01e6685dedbffe4062cfc4db869d9cfac10470b4a1b930c442da2e654",
+    "ThirdParty/Rust/provenance.json": "eed9af2d1c0de869ffb6117537a259735ed635f9c46119d578df4029289cd497",
     "ThirdParty/autocfg-1.5.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
     "ThirdParty/autocfg-1.5.1/LICENSE-MIT": "27995d58ad5c1145c1a8cd86244ce844886958a35eb2b78c6b772748669999ac",
     "ThirdParty/displaydoc-0.2.7/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
     "ThirdParty/displaydoc-0.2.7/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "ThirdParty/form_urlencoded-1.2.2/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
-    "ThirdParty/form_urlencoded-1.2.2/LICENSE-MIT": "20c7855c364d57ea4c97889a5e8d98470a9952dade37bd9248b9a54431670e5e",
-    "ThirdParty/icu_collections-2.1.1/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_locale_core-2.1.1/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_normalizer-2.1.1/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_normalizer_data-2.1.1/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_properties-2.1.2/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_properties_data-2.1.2/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
-    "ThirdParty/icu_provider-2.1.1/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/form_urlencoded-1.2.3/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "ThirdParty/form_urlencoded-1.2.3/LICENSE-MIT": "20c7855c364d57ea4c97889a5e8d98470a9952dade37bd9248b9a54431670e5e",
+    "ThirdParty/icu_collections-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_locale_core-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_normalizer-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_normalizer_data-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_properties-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_properties_data-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
+    "ThirdParty/icu_provider-2.4.0/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
     "ThirdParty/idna-1.1.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
     "ThirdParty/idna-1.1.0/LICENSE-MIT": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5",
-    "ThirdParty/idna_adapter-1.2.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
-    "ThirdParty/idna_adapter-1.2.1/LICENSE-MIT": "8b43ce8accd61e9d370b5ca9e9c4f953279b5c239926c62315b40e24df51b726",
-    "ThirdParty/itoa-1.0.18/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
-    "ThirdParty/itoa-1.0.18/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "ThirdParty/idna_adapter-1.2.2/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "ThirdParty/idna_adapter-1.2.2/LICENSE-MIT": "8b43ce8accd61e9d370b5ca9e9c4f953279b5c239926c62315b40e24df51b726",
+    "ThirdParty/itoa-1.0.19/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+    "ThirdParty/itoa-1.0.19/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/litemap-0.8.3/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
     "ThirdParty/memchr-2.8.3/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f",
     "ThirdParty/memchr-2.8.3/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
@@ -3824,7 +3896,7 @@
     "ThirdParty/proc-macro2-1.0.107/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/quote-1.0.47/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/quote-1.0.47/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "ThirdParty/registry-notices.json": "89ef0a55f7846a00eb7ab2141baf7ae5d0fcac96daa734aab194147c66368172",
+    "ThirdParty/registry-notices.json": "c79a0874d69b5ffc1b5da2b41e2252dd631860d3f3ca7a52a8c80b0c0cb17134",
     "ThirdParty/serde-1.0.229/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/serde-1.0.229/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/serde_core-1.0.229/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
@@ -3833,24 +3905,27 @@
     "ThirdParty/serde_derive-1.0.229/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/serde_json-1.0.154/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/serde_json-1.0.154/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "ThirdParty/smallvec-1.16.4/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
-    "ThirdParty/smallvec-1.16.4/LICENSE-MIT": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9",
+    "ThirdParty/smallvec-1.16.6/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "ThirdParty/smallvec-1.16.6/LICENSE-MIT": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9",
     "ThirdParty/stable_deref_trait-1.2.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
     "ThirdParty/stable_deref_trait-1.2.1/LICENSE-MIT": "5e05b024f653a5ce199e77cbbbd42fb5553562ec714b819421ed0c3e552a75d7",
     "ThirdParty/syn-2.0.119/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/syn-2.0.119/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
-    "ThirdParty/syn-3.0.9/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
-    "ThirdParty/syn-3.0.9/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "ThirdParty/syn-3.0.10/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+    "ThirdParty/syn-3.0.10/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/synstructure-0.14.0/LICENSE": "219920e865eee70b7dcfc948a86b099e7f4fe2de01bcca2ca9a20c0a033f2b59",
     "ThirdParty/tinystr-0.8.5/LICENSE": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2",
     "ThirdParty/unicode-ident-1.0.27/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
     "ThirdParty/unicode-ident-1.0.27/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
     "ThirdParty/unicode-ident-1.0.27/LICENSE-UNICODE": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1",
-    "ThirdParty/url-2.5.8/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
-    "ThirdParty/url-2.5.8/LICENSE-MIT": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5",
-    "ThirdParty/utf8_iter-1.0.4/COPYRIGHT": "c30152c94a6d75e021adbc52b3a52470366a46edb917e17deae3259251af244c",
-    "ThirdParty/utf8_iter-1.0.4/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-    "ThirdParty/utf8_iter-1.0.4/LICENSE-MIT": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
+    "ThirdParty/url-2.5.9/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "ThirdParty/url-2.5.9/LICENSE-MIT": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5",
+    "ThirdParty/utf8_iter-1.1.0/COPYRIGHT": "c30152c94a6d75e021adbc52b3a52470366a46edb917e17deae3259251af244c",
+    "ThirdParty/utf8_iter-1.1.0/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "ThirdParty/utf8_iter-1.1.0/LICENSE-MIT": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
+    "ThirdParty/utf_types-1.0.0/COPYRIGHT": "3210be7332b5bdf48eb24a945258b9f38616a2cceb0dfc06e3c3c7e9740475a0",
+    "ThirdParty/utf_types-1.0.0/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "ThirdParty/utf_types-1.0.0/LICENSE-MIT": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c",
     "ThirdParty/windows-0.62.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
     "ThirdParty/windows-0.62.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
     "ThirdParty/windows-collections-0.3.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b",
@@ -3907,7 +3982,7 @@
     "crates/windows/Cargo.toml": "a7eaa349918acabbddbe307623e7a0bbc3310b798f0cd7ff7abf153aa36a46a3",
     "crates/windows/src/lib.rs": "79e3b8adcdc84f6ecaf2a90e86435e175f13ed3d5b49df37af72248819d22eab",
     "native.toml": "7af5ca278a0e3c1b4863bfd5339fc6357ac9cf2ec057fc0795826837676166fc",
-    "rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33"
+    "rust-toolchain.toml": "6b1cf8341d9a08d76c6deb1e9df90a0b208d0ef0d00ee05e0173e9cd4f0f425d"
   },
   "linkage": "dynamic-framework",
   "outputs": {
@@ -3916,12 +3991,12 @@
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Headers": "036ae9446c4f0c59046671d1d96e2de4f606b340d8a5c1927b2d51bc293e0365",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Modules": "278b6b2d8f8418e2e4877a67a109b6e3865174e4fa7405870a643e95cbc2f783",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Resources": "c213ee8e9c523538d862da3e5716b64bf090f6a1be08914954ae33cfbda7dbb2",
-    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/CDesktopActions": "35676373c7a99e01453335859e3602836e81acf540f81c8aff45aae34acee8ef",
+    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/CDesktopActions": "ddc96e4503d19ebca371257f7456716bdca3b25fd78b7b57ce7f98baff3a0f4c",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Headers/desktop_actions.h": "091aba4d8cb455ca22f6f67bee0cc9e72ee913ae4d87e3d93cdeae57a666393f",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Modules/module.modulemap": "e2c080e0366e2583eba5ba71dfad94deb77ce799dc06f3b6fa9a37f5f9b33f15",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Resources/Info.plist": "dd868704fc95ad4b32dd4c9329c4810da26651641159426ecaae7cfcd5de2453",
-    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Resources/ThirdPartyNotices.txt": "261a65a833d868f471a0de6e727334a64c7c25889df701ed1d54d04522d07a4d",
-    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/_CodeSignature/CodeResources": "77b211bbcd9c25c96d547408567f17f776e4081cfe590a89c8842526eb457447",
+    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Resources/ThirdPartyNotices.txt": "4e889704399895f2e4cec55e5ea21fe87d00629265019e43c00764be6f374b00",
+    "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/_CodeSignature/CodeResources": "e7e887e62b349413529e83502ba0cb182501b1b18ecd4751f321586fe95cb25a",
     "Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/Current": "ee26006c07174064a7bed9b283a8b016d74a295e05c4e23a1846538d69b23c5f"
   },
   "productionSources": [

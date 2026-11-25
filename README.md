@@ -285,7 +285,7 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 
 ## Development and validation
 
-Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.99.1 and .NET 10.
+Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.100.0 and .NET 10.
 The checks use public SDK Tooling pinned in [`mise.toml`](https://github.com/naviapps/desktop-actions/blob/main/mise.toml), together
 with SDK-owned fixtures and validation settings. Run from the repository root.
 

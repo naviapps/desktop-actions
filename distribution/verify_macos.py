@@ -55,6 +55,7 @@ def pack_pair(root, dependency_source, runtimes, work):
     # Each artifact uses the tool revision that produced its native receipt.
     environment = subprocess_environment()
     environment["NUGET_PACKAGES"] = str(work / "restore")
+    prepare_generated(dependency, env=environment)
     result = work / "window-package.txt"
     subprocess.run(
         [

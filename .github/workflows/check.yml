@@ -23,14 +23,14 @@ concurrency:
 jobs:
   plan:
     if: ${{ !inputs.native-aot }}
-    uses: naviapps/sdk-tooling/.github/workflows/plan-checks.yml@54d09a55da0ffe938ebd13d708c53a2bd28d6be0
+    uses: naviapps/sdk-tooling/.github/workflows/plan-checks.yml@9ff679a53617d014c0c85345894dfe1bd54c3974
     with:
       package-documentation: README.md
   swift:
     name: Swift
     needs: plan
     if: ${{ needs.plan.outputs.documentation-only != 'true' && inputs.platform != 'windows' }}
-    uses: naviapps/sdk-tooling/.github/workflows/check-swift.yml@54d09a55da0ffe938ebd13d708c53a2bd28d6be0
+    uses: naviapps/sdk-tooling/.github/workflows/check-swift.yml@9ff679a53617d014c0c85345894dfe1bd54c3974
   windows:
     name: Test Rust
     needs: plan
@@ -40,10 +40,10 @@ jobs:
     env:
       GIT_TERMINAL_PROMPT: "0"
     steps:
-      - uses: actions/checkout@v6.1.0
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: naviapps/sdk-tooling/.github/actions/test-rust-windows@888bf13f109ac7dc806b29478cc9c4acacdf6515
+      - uses: naviapps/sdk-tooling/.github/actions/test-rust-windows@main
   native-aot:
     name: Run Native AOT NuGet consumer
     if: inputs.native-aot
@@ -56,23 +56,23 @@ jobs:
         shell: pwsh
         working-directory: sdk
     steps:
-      - uses: actions/checkout@v6.1.0
+      - uses: actions/checkout@v7.0.1
         with:
           path: sdk
           persist-credentials: false
       - name: Check out SDK Tooling for the Native AOT check
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
         with:
           repository: naviapps/sdk-tooling
-          ref: 9bc189f2b33a6dd28955b50910c7e8d406f1ffe4
+          ref: 9ff679a53617d014c0c85345894dfe1bd54c3974
           path: sdk-tooling
           persist-credentials: false
       - uses: actions/setup-python@v7.1.0
         with:
-          python-version: "3.15.1"
+          python-version: "3.15.2"
           architecture: x64
       - name: Install pinned x64 .NET SDK
-        uses: actions/setup-dotnet@v6.0.0
+        uses: actions/setup-dotnet@v6.1.0
         env:
           DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
         with:
@@ -80,5 +80,9 @@ jobs:
           architecture: x64
       - name: Install pinned Rust
         run: rustup install --no-self-update
+      - name: Install pinned cbindgen
+        run: |
+          $version = python -c 'import tomllib; from pathlib import Path; print(tomllib.loads(Path("mise.toml").read_text())["tools"]["cargo:cbindgen"])'
+          cargo install --locked cbindgen --version $version
       - name: Verify the x64 packages and publish the Native AOT consumer
         run: python -I -B ../sdk-tooling/ci/run_sdk_tooling.py windows -m distribution.verify_windows --native-aot
