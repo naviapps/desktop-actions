@@ -35,13 +35,9 @@ gesture matching and product UI.
   [macOS execution](https://github.com/naviapps/desktop-actions/blob/main/docs/swift-macos.md)
   and [SwiftUI controls](https://github.com/naviapps/desktop-actions/blob/main/docs/swiftui.md)
 - [C header bundled in the framework](https://github.com/naviapps/desktop-actions/blob/main/Artifacts/CDesktopActions.xcframework/macos-arm64_x86_64/CDesktopActions.framework/Versions/A/Headers/desktop_actions.h) and
-  [.NET public API](https://github.com/naviapps/desktop-actions/tree/main/bindings/dotnet/src/NaviApps.DesktopActions)
+  [.NET guide](bindings/dotnet/README.md)
 
 ## Installation
-
-The native ABI is 6. Keep managed packages and native
-runtime assets from the same build. Private feeds must retain immutable package
-versions; local packing and CI do not publish or replace a feed package.
 
 ### Swift
 
@@ -119,35 +115,14 @@ xcrun clang -std=c17 -mmacosx-version-min=26.0 consumer.c \
   -Xlinker -rpath -Xlinker "$framework_dir" -o consumer
 ```
 
-Keep the header and binary from the same SDK revision. A C client needs neither
-Rust nor the SDK sources. Copy each `desktop_actions_json_view` result before calling
+The C ABI is 6. Keep the header and binary from the same SDK revision. A C client
+needs neither Rust nor the SDK sources. Copy each `desktop_actions_json_view` result before calling
 `desktop_actions_json_destroy` on its owner if the bytes are needed afterward.
 
 ### .NET
 
-.NET consumers use `NaviApps.DesktopActions` and its exact
-`NaviApps.WindowManagement` dependency. Download
-`desktop-actions-nuget-<revision>-<attempt>` from a successful
-[SDK distribution run](https://github.com/naviapps/sdk-tooling/actions/workflows/check-sdk-distribution.yml)
-for your selected revision. Verify each package against its SHA-256 receipt
-and put both packages in one local feed. Desktop Actions is at the artifact
-root and Window Management is under `dependencies/`.
-
-From a new .NET 10 client directory, substitute the absolute path to that feed
-and the exact Desktop Actions version:
-
-```sh
-dotnet new console --framework net10.0 --no-restore
-dotnet package add NaviApps.DesktopActions --version "[0.1.0]" --no-restore
-dotnet restore --source "/absolute/path/to/sdk-packages" --packages .nuget-packages
-```
-
-Use a fresh cache directory whenever you switch candidates with the same version.
-Try the [C# example](#inspect-an-action) with `dotnet run --no-restore`.
-The pair includes native assets for macOS 26 or later on ARM64 and x64, and
-Windows 11 x64. Use x64 .NET on Windows 11 ARM64.
-`WindowsActionExecutor` performs live effects on Windows. Use `DesktopActionsMacOS`
-from Swift for native macOS effects.
+Use [NaviApps.DesktopActions](bindings/dotnet/README.md#install) and its exact
+`NaviApps.WindowManagement` dependency.
 
 ## Inspect an action
 
@@ -172,34 +147,12 @@ Swift `ActionPreflight.inspectKind(_:on:)` and .NET `ActionCatalog.InspectKind`
 preview availability and privacy requirements before the host collects input.
 Plan an actual request to validate its input and inspect its instructions.
 
-```csharp
-using NaviApps.DesktopActions;
-
-var text = new ActionInput.Text("  https://example.com  ");
-var open = ActionRequest.CreateWithInput("action.workspace.open-url", text);
-var restoredText = ActionInput.FromJson(open.TypedInput!.ToJson());
-
-var action = ActionRequest.Create("action.editing.copy");
-var windows = action.Plan(ActionPlatform.Windows);
-if (windows.Steps[0].Instruction is ActionMethod.KeyEvent key)
-{
-    Console.WriteLine(key.VirtualKeyCode);
-}
-```
-
-.NET `ActionPlanStep.Instruction` provides typed values from the Rust plan.
-`ActionPlanStep.Method` exposes the owned JSON for callers that inspect the wire fields.
-Catalog parameters expose `TypedExampleInput` for action construction.
-The .NET catalog, text evaluation, text and input-free request coding, and result
-codecs use source-generated JSON metadata. Typed window inputs use the
-WindowManagement codecs. Result construction, decoding, and runner failure
-reporting work with `System.Text.Json` reflection disabled.
+For the C# example and managed projections, see
+[Inspect an action in .NET](bindings/dotnet/README.md#inspect-an-action).
 
 For live macOS execution and host permission hooks, see the
 [macOS API guide](https://github.com/naviapps/desktop-actions/blob/main/docs/swift-macos.md).
-For .NET Windows execution, see the [Windows guide](https://github.com/naviapps/desktop-actions/blob/main/docs/WINDOWS.md).
-Managed Windows hosts can opt into captured-foreground execution with
-`WindowsActionExecutor.CaptureForegroundTarget` and `ExecuteForTargetAsync`.
+For live Windows execution, see the [Windows guide](docs/WINDOWS.md).
 
 ## Platform boundaries
 
@@ -350,14 +303,12 @@ The Windows job verifies both x64 builds and runs the Native AOT consumer.
 The macOS job combines the accepted DLLs with both macOS architectures in each
 package. The workflow verifies the same primary package and exact dependency
 on macOS ARM64, macOS x64 through Rosetta and Windows x64, including emulation
-on Windows 11 ARM64 when requested. Use the [.NET installation](#net) instructions
-to consume the verified packages.
+on Windows 11 ARM64 when requested. Use the
+[.NET installation guide](bindings/dotnet/README.md#install) to consume the packages.
 
 For local macOS distribution checks, run `mise exec -- make check-distribution`.
-It uses the revision in the `sdk-tooling` task in `mise.toml`.
-The `[native]` section of the same file declares the native artifact and is
-recorded in its build receipt. For a detailed Swift
-dependency-graph check, run `mise run sdk-tooling -- swift-consumer --distribution`.
+For a detailed Swift dependency-graph check, run
+`mise run sdk-tooling -- swift-consumer --distribution`.
 
 Independent package consumers live in [`fixtures/consumers/`](https://github.com/naviapps/desktop-actions/tree/main/fixtures/consumers).
 The [owned Windows acceptance projects](https://github.com/naviapps/desktop-actions/tree/main/fixtures/acceptance/windows) exercise
@@ -366,11 +317,12 @@ packaging and validation entry points.
 
 ### Native artifacts and package checks
 
-A clean clone uses the tracked framework. Rebuild it after production Rust/C/input
-changes with `mise exec -- make native`; test-only edits do not require a rebuild.
-The native build generates the C header and module map at ignored paths in
-`crates/ffi` and bundles both in the framework. `make native-verify` checks the
-framework and its receipt against the Rust FFI and the generated C files.
+A clean clone uses the tracked framework. Rebuild after changes to the Rust FFI
+or other native build inputs with `mise exec -- make native`. The `[native]`
+section of [`sdk-tooling.toml`](sdk-tooling.toml) declares the artifact.
+The build generates the C header and module map in `crates/ffi` and bundles them
+in the framework. `make native-verify` checks the framework against the generated
+declarations and its build receipt.
 `make check-distribution` verifies the framework and runs the release build and
 distribution tool tests. The Rust tests in `make check` cover the input codec,
 metadata invariants and platform plan matrix. The binding tests exercise typed
@@ -407,7 +359,6 @@ mise run sdk-tooling -- nuget-consumer /path/to/NaviApps.DesktopActions.0.1.0.nu
 The package fixture checks codecs, platform planning, shared window requests/runtime and bounded execution
 without posting input. Keep `ThirdParty/`, Rust provenance, framework
 `Resources/ThirdPartyNotices.txt` and NuGet runtime notices intact.
-`mise exec -- make native-verify` checks the framework against its build receipt.
 
 ### Documentation and static checks
 
