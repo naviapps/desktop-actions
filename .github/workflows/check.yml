@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   check:
-    uses: naviapps/sdk-tooling/.github/workflows/check-sdk.yml@8eac75dd86d19cdbb86f3fdde78b0a76076be869
+    uses: naviapps/sdk-tooling/.github/workflows/check-sdk.yml@03326c1dbad064e1e6f173569d1ef0a3983814d4
     with:
       platform: ${{ inputs.platform || 'all' }}
       windows: rust

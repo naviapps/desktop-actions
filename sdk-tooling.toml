@@ -4,7 +4,7 @@ symbol_prefix = "desktop_actions_"
 minimum_macos = "26.0"
 
 [checks.swift]
-inputs = ["Package.swift", "Sources", "Tests", "Artifacts", "ThirdParty"]
+inputs = ["Package.swift", "Sources", "Artifacts", "ThirdParty"]
 executable = "DesktopActionsConsumer"
 
 [checks.rust_c]

@@ -15,4 +15,4 @@ uv = "0.13.10"
 
 [tasks.sdk-tooling]
 description = "Run the shared SDK development and distribution checks"
-run = "uvx --from git+https://github.com/naviapps/sdk-tooling.git@8eac75dd86d19cdbb86f3fdde78b0a76076be869 sdk-tooling"
+run = "uvx --from git+https://github.com/naviapps/sdk-tooling.git@03326c1dbad064e1e6f173569d1ef0a3983814d4 sdk-tooling"
