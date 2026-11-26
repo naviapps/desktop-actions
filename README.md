@@ -238,7 +238,8 @@ macOS and Windows and is unsafe to retry because focus can change after a close.
 
 ## Development and validation
 
-Use Swift 6.3 or newer with Xcode, macOS 26 or newer, Rust 1.100.0 and .NET 10.
+Use Xcode with Swift 6.3 or newer on macOS 26 or newer, the
+[pinned Rust toolchain](rust-toolchain.toml), and .NET 10.
 The checks use public SDK Tooling pinned in [`mise.toml`](https://github.com/naviapps/desktop-actions/blob/main/mise.toml), together
 with SDK-owned fixtures and validation settings. Run from the repository root.
 
@@ -256,9 +257,9 @@ Keep the Rust and Swift revisions aligned for DesktopApplications and WindowMana
 
 `make check` runs the source checks, Rust workspace tests and Clippy, strict
 Swift tests and the standalone Swift consumer. The first invocation of the
-shared tool can fetch its pinned revision without private credentials. GitHub Actions
-runs the Swift tests and consumer on macOS 26 with Xcode 26.6 and macOS 27 with
-Xcode 27.2. Public Windows CI runs the Rust workspace tests on x64.
+shared tool can fetch its pinned revision without private credentials. The
+[SDK workflow](.github/workflows/check.yml) runs the Swift tests and consumer on
+macOS 26 and 27 and the Rust workspace tests on Windows x64.
 
 ### Consumer installation checks
 
